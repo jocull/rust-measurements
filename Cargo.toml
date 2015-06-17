@@ -4,3 +4,5 @@ version = "0.1.0"
 authors = ["James O'Cull <jocull@delmarsd.com>"]
 documentation = "https://jocull.github.io/rust-measurements/"
 repository = "https://github.com/jocull/rust-measurements"
+description = "Handle metric and imperial measurements with ease!"
+license = "MIT"
