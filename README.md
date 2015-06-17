@@ -1,4 +1,4 @@
-# And Rust said, "Let there be units."
+# And Rust said, "Let there be units".
 
 Hurray! Now you can work with units of measure in a headache-free way.
 
