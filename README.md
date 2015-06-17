@@ -1,4 +1,4 @@
-![Build Status](https://travis-ci.org/jocull/rust-measurements.svg)
+[![Build Status](https://travis-ci.org/jocull/rust-measurements.svg)](https://travis-ci.org/jocull/rust-measurements)
 
 # And Rust said, "Let there be units".
 
