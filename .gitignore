@@ -1,5 +1,2 @@
-target/debug
-target/release
-target/package
-target/doc/.lock
+target
 Cargo.lock
