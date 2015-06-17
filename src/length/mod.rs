@@ -1,8 +1,9 @@
 pub mod consts;
 mod traits;
-
 use self::consts::*;
 
+/// The `Length` struct can be used to deal with lengths in a common way.
+/// Common metric and imperial units are supported.
 #[derive(Copy, Clone, Debug)]
 pub struct Length {
     meters: f64
