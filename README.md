@@ -1,3 +1,5 @@
+![Build Status](https://travis-ci.org/jocull/rust-measurements.svg)
+
 # And Rust said, "Let there be units".
 
 Hurray! Now you can work with units of measure in a headache-free way.
