@@ -1,2 +1,5 @@
-target
+target/debug
+target/release
+target/package
+target/doc/.lock
 Cargo.lock
