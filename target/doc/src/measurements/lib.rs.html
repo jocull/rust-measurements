@@ -56,6 +56,8 @@
 <span id="14">14</span>
 <span id="15">15</span>
 <span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
 </pre><pre class='rust '>
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
 <span class='kw'>mod</span> <span class='ident'>tests</span>;
@@ -66,7 +68,9 @@
 <span class='doccomment'>/// # Example</span>
 <span class='doccomment'>/// </span>
 <span class='doccomment'>/// ```</span>
-<span class='doccomment'>/// let football_field = Length::from_yards(1.0);</span>
+<span class='doccomment'>/// use measurements::length::Length;</span>
+<span class='doccomment'>/// </span>
+<span class='doccomment'>/// let football_field = Length::from_yards(100.0);</span>
 <span class='doccomment'>/// let meters = football_field.as_meters();</span>
 <span class='doccomment'>/// println!(&quot;There are {} meters in a football field.&quot;, meters);</span>
 <span class='doccomment'>/// ```</span>

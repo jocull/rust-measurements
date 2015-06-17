@@ -49,7 +49,9 @@ Common metric and imperial units are supported.</p>
 
 <h1 id="example" class='section-header'><a
                            href="#example">Example</a></h1><pre id='rust-example-rendered' class='rust '>
-<span class='kw'>let</span> <span class='ident'>football_field</span> <span class='op'>=</span> <span class='ident'>Length</span>::<span class='ident'>from_yards</span>(<span class='number'>1.0</span>);
+<span class='kw'>use</span> <span class='ident'>measurements</span>::<span class='ident'>length</span>::<span class='ident'>Length</span>;
+ 
+<span class='kw'>let</span> <span class='ident'>football_field</span> <span class='op'>=</span> <span class='ident'>Length</span>::<span class='ident'>from_yards</span>(<span class='number'>100.0</span>);
 <span class='kw'>let</span> <span class='ident'>meters</span> <span class='op'>=</span> <span class='ident'>football_field</span>.<span class='ident'>as_meters</span>();
 <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;There are {} meters in a football field.&quot;</span>, <span class='ident'>meters</span>);
 </pre>
