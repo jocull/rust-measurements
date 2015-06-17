@@ -9,7 +9,7 @@ mod tests;
 /// ```
 /// use measurements::length::Length;
 /// 
-/// let football_field = Length::from_yards(1.0);
+/// let football_field = Length::from_yards(100.0);
 /// let meters = football_field.as_meters();
 /// println!("There are {} meters in a football field.", meters);
 /// ```
