@@ -23,7 +23,8 @@ In your code...
 ```
 extern crate measurements;
 
-use measurements::length::{Length, Temperature};
+use measurements::length::Length;
+use measurements::temperature::Temperature;
 
 let football_field = Length::from_yards(100.0);
 let meters = football_field.as_meters();
