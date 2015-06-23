@@ -16,3 +16,18 @@ mod tests;
 
 #[allow(dead_code)]
 pub mod length;
+
+/// The `Temperature` struct can be used to deal with temperatures in a common way.
+/// 
+/// # Example
+/// 
+/// ```
+/// use measurements::temperature::Temperature;
+/// 
+/// let boiling_water = Temperature::from_celsius(100.0);
+/// let fahrenheit = boiling_water.as_fahrenheit();
+/// println!("Boiling water measures at {} degrees fahrenheit.", fahrenheit);
+/// ```
+
+#[allow(dead_code)]
+pub mod temperature;

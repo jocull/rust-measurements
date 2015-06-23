@@ -1,4 +1,5 @@
 mod length_tests;
+mod temperature_tests;
 
 const DEFAULT_DELTA: f64 = 0.000001;
 
