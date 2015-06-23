@@ -4,7 +4,10 @@
 
 Hurray! Now you can work with units of measure in a headache-free way.
 
-Currently only `Length` is available, but I am planning to add more shortly.
+Currently available units:
+
+- Length
+- Temperature
 
 ### Example
 
@@ -12,7 +15,7 @@ In your Cargo.toml...
 
 ```
 [dependencies]
-measurements = "^0.1.0"
+measurements = "^0.2.0"
 ```
 
 In your code...
@@ -20,9 +23,13 @@ In your code...
 ```
 extern crate measurements;
 
-use measurements::length::Length;
+use measurements::length::{Length, Temperature};
 
 let football_field = Length::from_yards(100.0);
 let meters = football_field.as_meters();
 println!("There are {} meters in a football field.", meters);
+
+let boiling_water = Temperature::from_celsius(100.0);
+let fahrenheit = boiling_water.as_fahrenheit();
+println!("Boiling water measures at {} degrees fahrenheit.", fahrenheit);
 ```
