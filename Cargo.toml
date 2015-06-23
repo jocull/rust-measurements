@@ -1,8 +1,8 @@
 [package]
 name = "measurements"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["James O'Cull <jocull@delmarsd.com>"]
 documentation = "https://jocull.github.io/rust-measurements/"
 repository = "https://github.com/jocull/rust-measurements"
-description = "Handle metric and imperial measurements with ease!"
+description = "Handle metric, imperial, and other measurements with ease! Types: Length, Temperature"
 license = "MIT"

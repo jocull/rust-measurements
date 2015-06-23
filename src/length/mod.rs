@@ -1,6 +1,20 @@
-pub mod consts;
 mod traits;
-use self::consts::*;
+
+// Constants, metric
+const METER_NANOMETER_FACTOR: f64 = 1000000000.0;
+const METER_MICROMETER_FACTOR: f64 = 1000000.0;
+const METER_MILLIMETER_FACTOR: f64 = 1000.0;
+const METER_CENTIMETER_FACTOR: f64 = 100.0;
+const METER_DECAMETER_FACTOR: f64 = 0.1;
+const METER_HECTOMETER_FACTOR: f64 = 0.01;
+const METER_KILOMETER_FACTOR: f64 = 0.001;
+
+// Constants, imperial
+const METER_INCH_FACTOR: f64 = 39.3700787402;
+const METER_FEET_FACTOR: f64 = 3.28083989501;
+const METER_YARD_FACTOR: f64 = 1.09361329834;
+const METER_FURLONG_FACTOR: f64 = 0.0049709695379;
+const METER_MILE_FACTOR: f64 = 0.000621371192237;
 
 /// The `Length` struct can be used to deal with lengths in a common way.
 /// Common metric and imperial units are supported.
