@@ -160,10 +160,38 @@
 <span id="118">118</span>
 <span id="119">119</span>
 <span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
 </pre><pre class='rust '>
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>consts</span>;
 <span class='kw'>mod</span> <span class='ident'>traits</span>;
-<span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>consts</span>::<span class='op'>*</span>;
+
+<span class='comment'>// Constants, metric</span>
+<span class='kw'>const</span> <span class='ident'>METER_NANOMETER_FACTOR</span>: <span class='ident'>f64</span> <span class='op'>=</span> <span class='number'>1000000000.0</span>;
+<span class='kw'>const</span> <span class='ident'>METER_MICROMETER_FACTOR</span>: <span class='ident'>f64</span> <span class='op'>=</span> <span class='number'>1000000.0</span>;
+<span class='kw'>const</span> <span class='ident'>METER_MILLIMETER_FACTOR</span>: <span class='ident'>f64</span> <span class='op'>=</span> <span class='number'>1000.0</span>;
+<span class='kw'>const</span> <span class='ident'>METER_CENTIMETER_FACTOR</span>: <span class='ident'>f64</span> <span class='op'>=</span> <span class='number'>100.0</span>;
+<span class='kw'>const</span> <span class='ident'>METER_DECAMETER_FACTOR</span>: <span class='ident'>f64</span> <span class='op'>=</span> <span class='number'>0.1</span>;
+<span class='kw'>const</span> <span class='ident'>METER_HECTOMETER_FACTOR</span>: <span class='ident'>f64</span> <span class='op'>=</span> <span class='number'>0.01</span>;
+<span class='kw'>const</span> <span class='ident'>METER_KILOMETER_FACTOR</span>: <span class='ident'>f64</span> <span class='op'>=</span> <span class='number'>0.001</span>;
+
+<span class='comment'>// Constants, imperial</span>
+<span class='kw'>const</span> <span class='ident'>METER_INCH_FACTOR</span>: <span class='ident'>f64</span> <span class='op'>=</span> <span class='number'>39.3700787402</span>;
+<span class='kw'>const</span> <span class='ident'>METER_FEET_FACTOR</span>: <span class='ident'>f64</span> <span class='op'>=</span> <span class='number'>3.28083989501</span>;
+<span class='kw'>const</span> <span class='ident'>METER_YARD_FACTOR</span>: <span class='ident'>f64</span> <span class='op'>=</span> <span class='number'>1.09361329834</span>;
+<span class='kw'>const</span> <span class='ident'>METER_FURLONG_FACTOR</span>: <span class='ident'>f64</span> <span class='op'>=</span> <span class='number'>0.0049709695379</span>;
+<span class='kw'>const</span> <span class='ident'>METER_MILE_FACTOR</span>: <span class='ident'>f64</span> <span class='op'>=</span> <span class='number'>0.000621371192237</span>;
 
 <span class='doccomment'>/// The `Length` struct can be used to deal with lengths in a common way.</span>
 <span class='doccomment'>/// Common metric and imperial units are supported.</span>

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Temperature","The `Temperature` struct can be used to deal with temperatures in a common way."]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["length","The `Length` struct can be used to deal with lengths in a common way. Common metric and imperial units are supported."]]});
+initSidebarItems({"mod":[["length","The `Length` struct can be used to deal with lengths in a common way. Common metric and imperial units are supported."],["temperature","The `Temperature` struct can be used to deal with temperatures in a common way."]]});
