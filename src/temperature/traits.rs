@@ -19,19 +19,47 @@ impl Sub for Temperature {
     }
 }
 
-impl Div for Temperature {
-    type Output = Temperature;
+/// 
+/// Dividing a Temperature by another Temperature returns a ratio.
+/// 
+impl Div<Temperature> for Temperature {
+    type Output = f64;
     
-    fn div(self, rhs: Temperature) -> Temperature {
-        Temperature::from_kelvin(self.kelvin / rhs.kelvin)
+    fn div(self, rhs: Temperature) -> f64 {
+        self.kelvin / rhs.kelvin
     }
 }
 
-impl Mul for Temperature {
+/// 
+/// Dividing a `Temperature` by a factor returns a new portion of that temperature.
+/// 
+impl Div<f64> for Temperature {
+    type Output = Temperature;
+    
+    fn div(self, rhs: f64) -> Temperature {
+        Temperature::from_kelvin(self.kelvin / rhs)
+    }
+}
+
+/// 
+/// Multiplying a `Temperature` by another `Temperature` returns the product of those temperatures.
+/// 
+impl Mul<Temperature> for Temperature {
     type Output = Temperature;
     
     fn mul(self, rhs: Temperature) -> Temperature {
         Temperature::from_kelvin(self.kelvin * rhs.kelvin)
+    }
+}
+
+/// 
+/// Multiplying a `Temperature` by a factor increases (or decreases) that temperature a number of times.
+/// 
+impl Mul<f64> for Temperature {
+    type Output = Temperature;
+    
+    fn mul(self, rhs: f64) -> Temperature {
+        Temperature::from_kelvin(self.kelvin * rhs)
     }
 }
 

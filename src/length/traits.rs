@@ -19,19 +19,47 @@ impl Sub for Length {
     }
 }
 
-impl Div for Length {
-    type Output = Length;
+/// 
+/// Dividing a `Length` by another `Length` returns a ratio.
+/// 
+impl Div<Length> for Length {
+    type Output = f64;
     
-    fn div(self, rhs: Length) -> Length {
-        Length::from_meters(self.meters / rhs.meters)
+    fn div(self, rhs: Length) -> f64 {
+        self.meters / rhs.meters
     }
 }
 
-impl Mul for Length {
+/// 
+/// Dividing a `Length` by a factor returns a new portion of that length.
+/// 
+impl Div<f64> for Length {
+    type Output = Length;
+    
+    fn div(self, rhs: f64) -> Length {
+        Length::from_meters(self.meters / rhs)
+    }
+}
+
+/// 
+/// Multiplying a `Length` by another `Length` returns the product of those lengths.
+/// 
+impl Mul<Length> for Length {
     type Output = Length;
     
     fn mul(self, rhs: Length) -> Length {
         Length::from_meters(self.meters * rhs.meters)
+    }
+}
+
+/// 
+/// Multiplying a `Length` by a factor increases (or decreases) that length a number of times.
+/// 
+impl Mul<f64> for Length {
+    type Output = Length;
+    
+    fn mul(self, rhs: f64) -> Length {
+        Length::from_meters(self.meters * rhs)
     }
 }
 

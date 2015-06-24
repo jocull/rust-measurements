@@ -169,15 +169,19 @@ fn mul() {
     let a = Length::from_meters(2.0);
     let b = Length::from_meters(4.0);
     let c = a * b;
+    let d = b * 2.0;
     assert_almost_eq(c.as_meters(), 8.0);
+    assert_almost_eq(d.as_meters(), 8.0);
 }
 
 #[test]
 fn div() {
     let a = Length::from_meters(2.0);
     let b = Length::from_meters(4.0);
-    let c = a / b;
-    assert_almost_eq(c.as_meters(), 0.5);
+    let c = a * b;
+    let d = a * 2.0;
+    assert_almost_eq(c.as_meters(), 8.0);
+    assert_almost_eq(d.as_meters(), 4.0);
 }
 
 #[test]
