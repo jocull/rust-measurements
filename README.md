@@ -20,7 +20,7 @@ measurements = "^0.2.0"
 
 In your code...
 
-```
+```rust
 extern crate measurements;
 
 use measurements::length::Length;
