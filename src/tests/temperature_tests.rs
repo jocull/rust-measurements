@@ -56,7 +56,9 @@ fn mul() {
     let a = Temperature::from_kelvin(2.0);
     let b = Temperature::from_kelvin(4.0);
     let c = a * b;
+    let d = a * 2.0;
     assert_almost_eq(c.as_kelvin(), 8.0);
+    assert_almost_eq(d.as_kelvin(), 4.0);
 }
 
 #[test]
@@ -64,7 +66,9 @@ fn div() {
     let a = Temperature::from_kelvin(2.0);
     let b = Temperature::from_kelvin(4.0);
     let c = a / b;
-    assert_almost_eq(c.as_kelvin(), 0.5);
+    let d = a / 2.0;
+    assert_almost_eq(c, 0.5);
+    assert_almost_eq(d.as_kelvin(), 1.0);
 }
 
 #[test]

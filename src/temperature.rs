@@ -1,4 +1,4 @@
-mod traits;
+use super::measurement::*;
 
 /// The `Temperature` struct can be used to deal with temperatures in a common way.
 #[derive(Copy, Clone, Debug)]
@@ -7,19 +7,19 @@ pub struct Temperature {
 }
 
 impl Temperature {
-    pub fn from_kelvin(kelvin: f64) -> Temperature {
+    pub fn from_kelvin(kelvin: f64) -> Self {
         Temperature { kelvin: kelvin }
     }
     
-    pub fn from_celsius(celsius: f64) -> Temperature {
+    pub fn from_celsius(celsius: f64) -> Self {
         Self::from_kelvin(celsius + 273.15)
     }
     
-    pub fn from_fahrenheit(fahrenheit: f64) -> Temperature {
+    pub fn from_fahrenheit(fahrenheit: f64) -> Self {
         Self::from_kelvin((fahrenheit - 32.0) / 1.8 + 273.15)
     }
     
-    pub fn from_rankine(rankine: f64) -> Temperature {
+    pub fn from_rankine(rankine: f64) -> Self {
         Self::from_kelvin((rankine - 491.67) / 1.8 + 273.15)
     }
     
@@ -39,3 +39,15 @@ impl Temperature {
         (self.kelvin - 273.15) * 1.8 + 491.67
     }
 }
+
+impl Measurement for Temperature {
+    fn get_base_units(&self) -> f64 {
+        self.kelvin
+    }
+    
+    fn from_base_units(units: f64) -> Self {
+        Self::from_kelvin(units)
+    }
+}
+
+implement_measurement! { Temperature }
