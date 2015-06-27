@@ -57,6 +57,6 @@ pub mod length;
 #[allow(dead_code)]
 pub mod temperature;
 
+// Include when running tests, but don't export them
 #[cfg(test)]
-#[macro_use]
 mod tests;
