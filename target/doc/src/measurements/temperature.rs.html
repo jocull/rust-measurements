@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `src/temperature/mod.rs`.">
+    <meta name="description" content="Source to the Rust file `temperature.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
-    <title>mod.rs.html -- source</title>
+    <title>temperature.rs.html -- source</title>
 
-    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
 
     
     
@@ -81,8 +81,20 @@
 <span id="39">39</span>
 <span id="40">40</span>
 <span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
 </pre><pre class='rust '>
-<span class='kw'>mod</span> <span class='ident'>traits</span>;
+<span class='kw'>use</span> <span class='ident'>super</span>::<span class='ident'>measurement</span>::<span class='op'>*</span>;
 
 <span class='doccomment'>/// The `Temperature` struct can be used to deal with temperatures in a common way.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>Debug</span>)]</span>
@@ -91,19 +103,19 @@
 }
 
 <span class='kw'>impl</span> <span class='ident'>Temperature</span> {
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_kelvin</span>(<span class='ident'>kelvin</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Temperature</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_kelvin</span>(<span class='ident'>kelvin</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Temperature</span> { <span class='ident'>kelvin</span>: <span class='ident'>kelvin</span> }
     }
     
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_celsius</span>(<span class='ident'>celsius</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Temperature</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_celsius</span>(<span class='ident'>celsius</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_kelvin</span>(<span class='ident'>celsius</span> <span class='op'>+</span> <span class='number'>273.15</span>)
     }
     
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_fahrenheit</span>(<span class='ident'>fahrenheit</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Temperature</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_fahrenheit</span>(<span class='ident'>fahrenheit</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_kelvin</span>((<span class='ident'>fahrenheit</span> <span class='op'>-</span> <span class='number'>32.0</span>) <span class='op'>/</span> <span class='number'>1.8</span> <span class='op'>+</span> <span class='number'>273.15</span>)
     }
     
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_rankine</span>(<span class='ident'>rankine</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Temperature</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_rankine</span>(<span class='ident'>rankine</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_kelvin</span>((<span class='ident'>rankine</span> <span class='op'>-</span> <span class='number'>491.67</span>) <span class='op'>/</span> <span class='number'>1.8</span> <span class='op'>+</span> <span class='number'>273.15</span>)
     }
     
@@ -123,6 +135,18 @@
         (<span class='self'>self</span>.<span class='ident'>kelvin</span> <span class='op'>-</span> <span class='number'>273.15</span>) <span class='op'>*</span> <span class='number'>1.8</span> <span class='op'>+</span> <span class='number'>491.67</span>
     }
 }
+
+<span class='kw'>impl</span> <span class='ident'>Measurement</span> <span class='kw'>for</span> <span class='ident'>Temperature</span> {
+    <span class='kw'>fn</span> <span class='ident'>get_base_units</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
+        <span class='self'>self</span>.<span class='ident'>kelvin</span>
+    }
+    
+    <span class='kw'>fn</span> <span class='ident'>from_base_units</span>(<span class='ident'>units</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
+        <span class='ident'>Self</span>::<span class='ident'>from_kelvin</span>(<span class='ident'>units</span>)
+    }
+}
+
+<span class='macro'>implement_measurement</span><span class='macro'>!</span> { <span class='ident'>Temperature</span> }
 </pre>
 </section>
     <section id='search' class="content hidden"></section>
@@ -163,13 +187,13 @@
     
 
     <script>
-        window.rootPath = "../../../";
+        window.rootPath = "../../";
         window.currentCrate = "measurements";
         window.playgroundUrl = "";
     </script>
-    <script src="../../../jquery.js"></script>
-    <script src="../../../main.js"></script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
     
-    <script async src="../../../search-index.js"></script>
+    <script async src="../../search-index.js"></script>
 </body>
 </html>

@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `src/length/mod.rs`.">
+    <meta name="description" content="Source to the Rust file `length.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
-    <title>mod.rs.html -- source</title>
+    <title>length.rs.html -- source</title>
 
-    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
 
     
     
@@ -174,8 +174,20 @@
 <span id="132">132</span>
 <span id="133">133</span>
 <span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
 </pre><pre class='rust '>
-<span class='kw'>mod</span> <span class='ident'>traits</span>;
+<span class='kw'>use</span> <span class='ident'>super</span>::<span class='ident'>measurement</span>::<span class='op'>*</span>;
 
 <span class='comment'>// Constants, metric</span>
 <span class='kw'>const</span> <span class='ident'>METER_NANOMETER_FACTOR</span>: <span class='ident'>f64</span> <span class='op'>=</span> <span class='number'>1000000000.0</span>;
@@ -202,56 +214,56 @@
 
 <span class='kw'>impl</span> <span class='ident'>Length</span> {
     <span class='comment'>// Inputs, metric</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_meters</span>(<span class='ident'>meters</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Length</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_meters</span>(<span class='ident'>meters</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Length</span> { <span class='ident'>meters</span>: <span class='ident'>meters</span> }
     }
     
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_nanometers</span>(<span class='ident'>nanometers</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Length</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_nanometers</span>(<span class='ident'>nanometers</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_meters</span>(<span class='ident'>nanometers</span> <span class='op'>/</span> <span class='ident'>METER_NANOMETER_FACTOR</span>)
     }
     
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_micrometers</span>(<span class='ident'>micrometers</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Length</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_micrometers</span>(<span class='ident'>micrometers</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_meters</span>(<span class='ident'>micrometers</span> <span class='op'>/</span> <span class='ident'>METER_MICROMETER_FACTOR</span>)
     }
     
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_millimeters</span>(<span class='ident'>millimeters</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Length</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_millimeters</span>(<span class='ident'>millimeters</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_meters</span>(<span class='ident'>millimeters</span> <span class='op'>/</span> <span class='ident'>METER_MILLIMETER_FACTOR</span>)
     }
     
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_centimeters</span>(<span class='ident'>centimeters</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Length</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_centimeters</span>(<span class='ident'>centimeters</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_meters</span>(<span class='ident'>centimeters</span> <span class='op'>/</span> <span class='ident'>METER_CENTIMETER_FACTOR</span>)
     }
     
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_decameters</span>(<span class='ident'>decameters</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Length</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_decameters</span>(<span class='ident'>decameters</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_meters</span>(<span class='ident'>decameters</span> <span class='op'>/</span> <span class='ident'>METER_DECAMETER_FACTOR</span>)
     }
     
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_hectometers</span>(<span class='ident'>hectometers</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Length</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_hectometers</span>(<span class='ident'>hectometers</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_meters</span>(<span class='ident'>hectometers</span> <span class='op'>/</span> <span class='ident'>METER_HECTOMETER_FACTOR</span>)
     }
     
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_kilometers</span>(<span class='ident'>kilometers</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Length</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_kilometers</span>(<span class='ident'>kilometers</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_meters</span>(<span class='ident'>kilometers</span> <span class='op'>/</span> <span class='ident'>METER_KILOMETER_FACTOR</span>)
     }
     
     <span class='comment'>// Inputs, imperial</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_inches</span>(<span class='ident'>inches</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Length</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_inches</span>(<span class='ident'>inches</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_meters</span>(<span class='ident'>inches</span> <span class='op'>/</span> <span class='ident'>METER_INCH_FACTOR</span>)
     }
     
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_feet</span>(<span class='ident'>feet</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Length</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_feet</span>(<span class='ident'>feet</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_meters</span>(<span class='ident'>feet</span> <span class='op'>/</span> <span class='ident'>METER_FEET_FACTOR</span>)
     }
     
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_yards</span>(<span class='ident'>yards</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Length</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_yards</span>(<span class='ident'>yards</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_meters</span>(<span class='ident'>yards</span> <span class='op'>/</span> <span class='ident'>METER_YARD_FACTOR</span>)
     }
     
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_furlongs</span>(<span class='ident'>furlongs</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Length</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_furlongs</span>(<span class='ident'>furlongs</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_meters</span>(<span class='ident'>furlongs</span> <span class='op'>/</span> <span class='ident'>METER_FURLONG_FACTOR</span>)
     }
     
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_miles</span>(<span class='ident'>miles</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Length</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_miles</span>(<span class='ident'>miles</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Self</span>::<span class='ident'>from_meters</span>(<span class='ident'>miles</span> <span class='op'>/</span> <span class='ident'>METER_MILE_FACTOR</span>)
     }
     
@@ -309,6 +321,18 @@
         <span class='self'>self</span>.<span class='ident'>meters</span> <span class='op'>*</span> <span class='ident'>METER_MILE_FACTOR</span>
     }
 }
+
+<span class='kw'>impl</span> <span class='ident'>Measurement</span> <span class='kw'>for</span> <span class='ident'>Length</span> {
+    <span class='kw'>fn</span> <span class='ident'>get_base_units</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
+        <span class='self'>self</span>.<span class='ident'>meters</span>
+    }
+    
+    <span class='kw'>fn</span> <span class='ident'>from_base_units</span>(<span class='ident'>units</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
+        <span class='ident'>Self</span>::<span class='ident'>from_meters</span>(<span class='ident'>units</span>)
+    }
+}
+
+<span class='macro'>implement_measurement</span><span class='macro'>!</span> { <span class='ident'>Length</span> }
 </pre>
 </section>
     <section id='search' class="content hidden"></section>
@@ -349,13 +373,13 @@
     
 
     <script>
-        window.rootPath = "../../../";
+        window.rootPath = "../../";
         window.currentCrate = "measurements";
         window.playgroundUrl = "";
     </script>
-    <script src="../../../jquery.js"></script>
-    <script src="../../../main.js"></script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
     
-    <script async src="../../../search-index.js"></script>
+    <script async src="../../search-index.js"></script>
 </body>
 </html>

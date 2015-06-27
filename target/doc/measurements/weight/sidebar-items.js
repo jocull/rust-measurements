@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Weight","The `Weight` struct can be used to deal with weights in a common way."]]});

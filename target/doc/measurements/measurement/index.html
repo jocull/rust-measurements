@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `temperature` mod in crate `measurements`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, temperature">
+    <meta name="description" content="API documentation for the Rust `measurement` mod in crate `measurements`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, measurement">
 
-    <title>measurements::temperature - Rust</title>
+    <title>measurements::measurement - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../../main.css">
 
@@ -26,7 +26,7 @@
 
     <section class="sidebar">
         
-        <p class='location'><a href='../index.html'>measurements</a></p><script>window.sidebarCurrent = {name: 'temperature', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+        <p class='location'><a href='../index.html'>measurements</a></p><script>window.sidebarCurrent = {name: 'measurement', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
     </section>
 
     <nav class="sub">
@@ -41,26 +41,40 @@
     </nav>
 
     <section id='main' class="content mod">
-<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>measurements</a>::<wbr><a class='mod' href=''>temperature</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>measurements</a>::<wbr><a class='mod' href=''>measurement</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-624' href='../../src/measurements/temperature.rs.html#1-53'>[src]</a></span></h1>
-<div class='docblock'><p>The <code>Temperature</code> struct can be used to deal with temperatures in a common way.</p>
+        </span><a id='src-4' href='../../src/measurements/measurement.rs.html#1-82'>[src]</a></span></h1>
+<div class='docblock'><p>The <code>Measurement</code> trait and the <code>implement_measurement!</code> macro
+provides a common way for various measurements to be implemented.</p>
 
 <h1 id="example" class='section-header'><a
                            href="#example">Example</a></h1><pre id='rust-example-rendered' class='rust '>
-<span class='kw'>use</span> <span class='ident'>measurements</span>::<span class='ident'>temperature</span>::<span class='ident'>Temperature</span>;
+<span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
+<span class='kw'>use</span> <span class='ident'>measurements</span>::<span class='ident'>measurement</span>::<span class='op'>*</span>;
  
-<span class='kw'>let</span> <span class='ident'>boiling_water</span> <span class='op'>=</span> <span class='ident'>Temperature</span>::<span class='ident'>from_celsius</span>(<span class='number'>100.0</span>);
-<span class='kw'>let</span> <span class='ident'>fahrenheit</span> <span class='op'>=</span> <span class='ident'>boiling_water</span>.<span class='ident'>as_fahrenheit</span>();
-<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Boiling water measures at {} degrees fahrenheit.&quot;</span>, <span class='ident'>fahrenheit</span>);
+<span class='kw'>struct</span> <span class='ident'>Cubits</span> {
+    <span class='ident'>forearms</span>: <span class='ident'>f64</span>
+}
+ 
+<span class='kw'>impl</span> <span class='ident'>Measurement</span> <span class='kw'>for</span> <span class='ident'>Cubits</span> {
+    <span class='kw'>fn</span> <span class='ident'>get_base_units</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
+        <span class='self'>self</span>.<span class='ident'>forearms</span>
+    }
+     
+    <span class='kw'>fn</span> <span class='ident'>from_base_units</span>(<span class='ident'>units</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
+        <span class='ident'>Cubits</span> { <span class='ident'>forearms</span>: <span class='ident'>units</span> }
+    }
+}
+
+<span class='comment'>// Invoke the macro to automatically implement Add, Sub, etc...</span>
+<span class='comment'>// implement_measurement! { Cubits } // TODO: Fix doc tests to make this work...</span>
 </pre>
-</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+</div><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
 <table>
                     <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.Temperature.html'
-                               title='measurements::temperature::Temperature'>Temperature</a></td>
-                        <td class='docblock short'><p>The <code>Temperature</code> struct can be used to deal with temperatures in a common way.</p>
-</td>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='trait' href='trait.Measurement.html'
+                               title='measurements::measurement::Measurement'>Measurement</a></td>
+                        <td class='docblock short'></td>
                     </tr>
                 </table></section>
     <section id='search' class="content hidden"></section>
