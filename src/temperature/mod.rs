@@ -1,4 +1,4 @@
-mod traits;
+use super::measurement::*;
 
 /// The `Temperature` struct can be used to deal with temperatures in a common way.
 #[derive(Copy, Clone, Debug)]
@@ -39,3 +39,15 @@ impl Temperature {
         (self.kelvin - 273.15) * 1.8 + 491.67
     }
 }
+
+impl Measurement for Temperature {
+    fn get_base_units(&self) -> f64 {
+        self.kelvin
+    }
+    
+    fn from_base_units(units: f64) -> Self {
+        Self::from_kelvin(units)
+    }
+}
+
+implement_measurement! { Temperature }

@@ -1,4 +1,4 @@
-mod traits;
+use super::measurement::*;
 
 // Constants, metric
 const METER_NANOMETER_FACTOR: f64 = 1000000000.0;
@@ -132,3 +132,15 @@ impl Length {
         self.meters * METER_MILE_FACTOR
     }
 }
+
+impl Measurement for Length {
+    fn get_base_units(&self) -> f64 {
+        self.meters
+    }
+    
+    fn from_base_units(units: f64) -> Self {
+        Self::from_meters(units)
+    }
+}
+
+implement_measurement! { Length }
