@@ -38,7 +38,6 @@ pub mod measurement;
 /// let meters = football_field.as_meters();
 /// println!("There are {} meters in a football field.", meters);
 /// ```
-
 #[allow(dead_code)]
 pub mod length;
 
@@ -53,9 +52,13 @@ pub mod length;
 /// let fahrenheit = boiling_water.as_fahrenheit();
 /// println!("Boiling water measures at {} degrees fahrenheit.", fahrenheit);
 /// ```
-
 #[allow(dead_code)]
 pub mod temperature;
+
+/// TODO: Provide docs and examples for this.
+/// 
+#[allow(dead_code)]
+pub mod weight;
 
 // Include when running tests, but don't export them
 #[cfg(test)]

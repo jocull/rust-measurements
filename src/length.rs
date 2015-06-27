@@ -25,56 +25,56 @@ pub struct Length {
 
 impl Length {
     // Inputs, metric
-    pub fn from_meters(meters: f64) -> Length {
+    pub fn from_meters(meters: f64) -> Self {
         Length { meters: meters }
     }
     
-    pub fn from_nanometers(nanometers: f64) -> Length {
+    pub fn from_nanometers(nanometers: f64) -> Self {
         Self::from_meters(nanometers / METER_NANOMETER_FACTOR)
     }
     
-    pub fn from_micrometers(micrometers: f64) -> Length {
+    pub fn from_micrometers(micrometers: f64) -> Self {
         Self::from_meters(micrometers / METER_MICROMETER_FACTOR)
     }
     
-    pub fn from_millimeters(millimeters: f64) -> Length {
+    pub fn from_millimeters(millimeters: f64) -> Self {
         Self::from_meters(millimeters / METER_MILLIMETER_FACTOR)
     }
     
-    pub fn from_centimeters(centimeters: f64) -> Length {
+    pub fn from_centimeters(centimeters: f64) -> Self {
         Self::from_meters(centimeters / METER_CENTIMETER_FACTOR)
     }
     
-    pub fn from_decameters(decameters: f64) -> Length {
+    pub fn from_decameters(decameters: f64) -> Self {
         Self::from_meters(decameters / METER_DECAMETER_FACTOR)
     }
     
-    pub fn from_hectometers(hectometers: f64) -> Length {
+    pub fn from_hectometers(hectometers: f64) -> Self {
         Self::from_meters(hectometers / METER_HECTOMETER_FACTOR)
     }
     
-    pub fn from_kilometers(kilometers: f64) -> Length {
+    pub fn from_kilometers(kilometers: f64) -> Self {
         Self::from_meters(kilometers / METER_KILOMETER_FACTOR)
     }
     
     // Inputs, imperial
-    pub fn from_inches(inches: f64) -> Length {
+    pub fn from_inches(inches: f64) -> Self {
         Self::from_meters(inches / METER_INCH_FACTOR)
     }
     
-    pub fn from_feet(feet: f64) -> Length {
+    pub fn from_feet(feet: f64) -> Self {
         Self::from_meters(feet / METER_FEET_FACTOR)
     }
     
-    pub fn from_yards(yards: f64) -> Length {
+    pub fn from_yards(yards: f64) -> Self {
         Self::from_meters(yards / METER_YARD_FACTOR)
     }
     
-    pub fn from_furlongs(furlongs: f64) -> Length {
+    pub fn from_furlongs(furlongs: f64) -> Self {
         Self::from_meters(furlongs / METER_FURLONG_FACTOR)
     }
     
-    pub fn from_miles(miles: f64) -> Length {
+    pub fn from_miles(miles: f64) -> Self {
         Self::from_meters(miles / METER_MILE_FACTOR)
     }
     

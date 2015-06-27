@@ -7,19 +7,19 @@ pub struct Temperature {
 }
 
 impl Temperature {
-    pub fn from_kelvin(kelvin: f64) -> Temperature {
+    pub fn from_kelvin(kelvin: f64) -> Self {
         Temperature { kelvin: kelvin }
     }
     
-    pub fn from_celsius(celsius: f64) -> Temperature {
+    pub fn from_celsius(celsius: f64) -> Self {
         Self::from_kelvin(celsius + 273.15)
     }
     
-    pub fn from_fahrenheit(fahrenheit: f64) -> Temperature {
+    pub fn from_fahrenheit(fahrenheit: f64) -> Self {
         Self::from_kelvin((fahrenheit - 32.0) / 1.8 + 273.15)
     }
     
-    pub fn from_rankine(rankine: f64) -> Temperature {
+    pub fn from_rankine(rankine: f64) -> Self {
         Self::from_kelvin((rankine - 491.67) / 1.8 + 273.15)
     }
     
