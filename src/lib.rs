@@ -3,7 +3,10 @@
 ///
 /// # Example
 /// ```
+/// // Importing the `implement_measurement` macro from the external crate is important
 /// #[macro_use]
+/// extern crate measurements;
+/// 
 /// use measurements::measurement::*;
 /// 
 /// struct Cubits {
@@ -21,7 +24,11 @@
 /// }
 ///
 /// // Invoke the macro to automatically implement Add, Sub, etc...
-/// // implement_measurement! { Cubits } // TODO: Fix doc tests to make this work...
+/// implement_measurement! { Cubits }
+///
+/// // The main function here is only included to make doc tests compile.
+/// // You should't need it in your own code.
+/// fn main() { }
 /// ```
 #[macro_use]
 pub mod measurement;
