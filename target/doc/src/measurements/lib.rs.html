@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `lib.rs`.">
+    <meta name="description" content="Source to the Rust file `src/lib.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>lib.rs.html -- source</title>
@@ -105,13 +105,23 @@
 <span id="63">63</span>
 <span id="64">64</span>
 <span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
 </pre><pre class='rust '>
 <span class='doccomment'>/// The `Measurement` trait and the `implement_measurement!` macro</span>
 <span class='doccomment'>/// provides a common way for various measurements to be implemented.</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// # Example</span>
 <span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// // Importing the `implement_measurement` macro from the external crate is important</span>
 <span class='doccomment'>/// #[macro_use]</span>
+<span class='doccomment'>/// extern crate measurements;</span>
+<span class='doccomment'>/// </span>
 <span class='doccomment'>/// use measurements::measurement::*;</span>
 <span class='doccomment'>/// </span>
 <span class='doccomment'>/// struct Cubits {</span>
@@ -129,7 +139,11 @@
 <span class='doccomment'>/// }</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// // Invoke the macro to automatically implement Add, Sub, etc...</span>
-<span class='doccomment'>/// // implement_measurement! { Cubits } // TODO: Fix doc tests to make this work...</span>
+<span class='doccomment'>/// implement_measurement! { Cubits }</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// // The main function here is only included to make doc tests compile.</span>
+<span class='doccomment'>/// // You should&#39;t need it in your own code.</span>
+<span class='doccomment'>/// fn main() { }</span>
 <span class='doccomment'>/// ```</span>
 <span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>measurement</span>;

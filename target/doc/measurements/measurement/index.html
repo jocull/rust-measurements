@@ -49,7 +49,10 @@ provides a common way for various measurements to be implemented.</p>
 
 <h1 id="example" class='section-header'><a
                            href="#example">Example</a></h1><pre id='rust-example-rendered' class='rust '>
+<span class='comment'>// Importing the `implement_measurement` macro from the external crate is important</span>
 <span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>measurements</span>;
+ 
 <span class='kw'>use</span> <span class='ident'>measurements</span>::<span class='ident'>measurement</span>::<span class='op'>*</span>;
  
 <span class='kw'>struct</span> <span class='ident'>Cubits</span> {
@@ -67,7 +70,11 @@ provides a common way for various measurements to be implemented.</p>
 }
 
 <span class='comment'>// Invoke the macro to automatically implement Add, Sub, etc...</span>
-<span class='comment'>// implement_measurement! { Cubits } // TODO: Fix doc tests to make this work...</span>
+<span class='macro'>implement_measurement</span><span class='macro'>!</span> { <span class='ident'>Cubits</span> }
+
+<span class='comment'>// The main function here is only included to make doc tests compile.</span>
+<span class='comment'>// You should&#39;t need it in your own code.</span>
+<span class='kw'>fn</span> <span class='ident'>main</span>() { }
 </pre>
 </div><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
 <table>
