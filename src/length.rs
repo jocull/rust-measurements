@@ -18,6 +18,16 @@ const METER_MILE_FACTOR: f64 = 0.000621371192237;
 
 /// The `Length` struct can be used to deal with lengths in a common way.
 /// Common metric and imperial units are supported.
+/// 
+/// # Example
+/// 
+/// ```
+/// use measurements::Length;
+/// 
+/// let football_field = Length::from_yards(100.0);
+/// let meters = football_field.as_meters();
+/// println!("There are {} meters in a football field.", meters);
+/// ```
 #[derive(Copy, Clone, Debug)]
 pub struct Length {
     meters: f64

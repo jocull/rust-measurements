@@ -1,8 +1,42 @@
+/// The `Measurement` trait and the `implement_measurement!` macro
+/// provides a common way for various measurements to be implemented.
+/// 
+/// # Example
+/// ```
+/// // Importing the `implement_measurement` macro from the external crate is important
+/// #[macro_use]
+/// extern crate measurements;
+/// 
+/// use measurements::Measurement;
+/// 
+/// struct Cubits {
+///     forearms: f64
+/// }
+/// 
+/// impl Measurement for Cubits {
+///     fn get_base_units(&self) -> f64 {
+///         self.forearms
+///     }
+///     
+///     fn from_base_units(units: f64) -> Self {
+///         Cubits { forearms: units }
+///     }
+/// }
+///
+/// // Invoke the macro to automatically implement Add, Sub, etc...
+/// implement_measurement! { Cubits }
+///
+/// // The main function here is only included to make doc tests compile.
+/// // You should't need it in your own code.
+/// fn main() { }
+/// ```
 pub trait Measurement {
     fn get_base_units(&self) -> f64;
     fn from_base_units(units: f64) -> Self;
 }
 
+/// This is a special macro that creates the code to implement
+/// operator and comparison overrides.
 #[macro_export]
 macro_rules! implement_measurement {
     ($($t:ty)*) => ($(
