@@ -62,8 +62,18 @@ pub mod length;
 #[allow(dead_code)]
 pub mod temperature;
 
-/// TODO: Provide docs and examples for this.
+/// The `Weight` struct can be used to deal with weights in a common way.
 /// 
+/// #Example
+/// 
+/// ```
+/// use measurements::weight::Weight;
+/// 
+/// let metric_ton = Weight::from_metric_tons(1.0);
+/// let united_states_tons = metric_ton.as_short_tons();
+/// let united_states_pounds = metric_ton.as_pounds();
+/// println!("One metric ton is {} U.S. tons - that's {} pounds!", united_states_tons, united_states_pounds);
+/// ```
 #[allow(dead_code)]
 pub mod weight;
 
