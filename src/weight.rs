@@ -1,6 +1,17 @@
 use super::measurement::*;
 
 /// The `Weight` struct can be used to deal with weights in a common way.
+/// 
+/// #Example
+/// 
+/// ```
+/// use measurements::Weight;
+/// 
+/// let metric_ton = Weight::from_metric_tons(1.0);
+/// let united_states_tons = metric_ton.as_short_tons();
+/// let united_states_pounds = metric_ton.as_pounds();
+/// println!("One metric ton is {} U.S. tons - that's {} pounds!", united_states_tons, united_states_pounds);
+/// ```
 #[derive(Copy, Clone, Debug)]
 pub struct Weight {
     kilograms: f64

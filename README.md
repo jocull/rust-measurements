@@ -24,9 +24,7 @@ In your code...
 ```rust
 extern crate measurements;
 
-use measurements::length::Length;
-use measurements::temperature::Temperature;
-use measurements::weight::Weight;
+use measurements::{Length, Temperature, Weight};
 
 let football_field = Length::from_yards(100.0);
 let meters = football_field.as_meters();
