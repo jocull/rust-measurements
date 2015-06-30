@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Measurement` trait in crate `measurements`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Measurement">
+
+    <title>measurements::Measurement - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='index.html'>measurements</a></p><script>window.sidebarCurrent = {name: 'Measurement', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content trait">
+<h1 class='fqn'><span class='in-band'>Trait <a href='index.html'>measurements</a>::<wbr><a class='trait' href=''>Measurement</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-6' href='../src/measurements/measurement.rs.html#33-36'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait Measurement {
+    fn <a href='#tymethod.get_base_units' class='fnname'>get_base_units</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>;
+    fn <a href='#tymethod.from_base_units' class='fnname'>from_base_units</a>(units: <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; Self;
+}</pre><div class='docblock'><p>The <code>Measurement</code> trait and the <code>implement_measurement!</code> macro
+provides a common way for various measurements to be implemented.</p>
+
+<h1 id="example" class='section-header'><a
+                           href="#example">Example</a></h1><pre id='rust-example-rendered' class='rust '>
+<span class='comment'>// Importing the `implement_measurement` macro from the external crate is important</span>
+<span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>measurements</span>;
+ 
+<span class='kw'>use</span> <span class='ident'>measurements</span>::<span class='ident'>Measurement</span>;
+ 
+<span class='kw'>struct</span> <span class='ident'>Cubits</span> {
+    <span class='ident'>forearms</span>: <span class='ident'>f64</span>
+}
+ 
+<span class='kw'>impl</span> <span class='ident'>Measurement</span> <span class='kw'>for</span> <span class='ident'>Cubits</span> {
+    <span class='kw'>fn</span> <span class='ident'>get_base_units</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
+        <span class='self'>self</span>.<span class='ident'>forearms</span>
+    }
+     
+    <span class='kw'>fn</span> <span class='ident'>from_base_units</span>(<span class='ident'>units</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
+        <span class='ident'>Cubits</span> { <span class='ident'>forearms</span>: <span class='ident'>units</span> }
+    }
+}
+
+<span class='comment'>// Invoke the macro to automatically implement Add, Sub, etc...</span>
+<span class='macro'>implement_measurement</span><span class='macro'>!</span> { <span class='ident'>Cubits</span> }
+
+<span class='comment'>// The main function here is only included to make doc tests compile.</span>
+<span class='comment'>// You should&#39;t need it in your own code.</span>
+<span class='kw'>fn</span> <span class='ident'>main</span>() { }
+</pre>
+</div>
+            <h2 id='required-methods'>Required Methods</h2>
+            <div class='methods'>
+        <h3 id='tymethod.get_base_units' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.get_base_units' class='fnname'>get_base_units</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code></h3><h3 id='tymethod.from_base_units' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.from_base_units' class='fnname'>from_base_units</a>(units: <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; Self</code></h3></div>
+        <h2 id='implementors'>Implementors</h2>
+        <ul class='item-list' id='implementors-list'>
+    <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../measurements/trait.Measurement.html' title='measurements::Measurement'>Measurement</a> for <a class='struct' href='../measurements/struct.Length.html' title='measurements::Length'>Length</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../measurements/trait.Measurement.html' title='measurements::Measurement'>Measurement</a> for <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../measurements/trait.Measurement.html' title='measurements::Measurement'>Measurement</a> for <a class='struct' href='../measurements/struct.Weight.html' title='measurements::Weight'>Weight</a></code></li>
+</ul><script type="text/javascript" async
+                              src="../implementors/measurements/trait.Measurement.js">
+                      </script></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "measurements";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>

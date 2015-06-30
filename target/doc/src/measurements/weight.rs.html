@@ -185,10 +185,32 @@
 <span id="143">143</span>
 <span id="144">144</span>
 <span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>super</span>::<span class='ident'>measurement</span>::<span class='op'>*</span>;
 
 <span class='doccomment'>/// The `Weight` struct can be used to deal with weights in a common way.</span>
+<span class='doccomment'>/// </span>
+<span class='doccomment'>/// #Example</span>
+<span class='doccomment'>/// </span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// use measurements::Weight;</span>
+<span class='doccomment'>/// </span>
+<span class='doccomment'>/// let metric_ton = Weight::from_metric_tons(1.0);</span>
+<span class='doccomment'>/// let united_states_tons = metric_ton.as_short_tons();</span>
+<span class='doccomment'>/// let united_states_pounds = metric_ton.as_pounds();</span>
+<span class='doccomment'>/// println!(&quot;One metric ton is {} U.S. tons - that&#39;s {} pounds!&quot;, united_states_tons, united_states_pounds);</span>
+<span class='doccomment'>/// ```</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Weight</span> {
     <span class='ident'>kilograms</span>: <span class='ident'>f64</span>
@@ -250,7 +272,7 @@
     }
     
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_short_tons</span>(<span class='ident'>short_tons</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
-        <span class='ident'>Self</span>::<span class='ident'>from_short_tons</span>(<span class='ident'>short_tons</span> <span class='op'>*</span> <span class='number'>907.18475</span>)
+        <span class='ident'>Self</span>::<span class='ident'>from_kilograms</span>(<span class='ident'>short_tons</span> <span class='op'>*</span> <span class='number'>907.18475</span>)
     }
     
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_long_tons</span>(<span class='ident'>long_tons</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {

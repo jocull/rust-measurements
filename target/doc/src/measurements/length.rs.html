@@ -186,6 +186,16 @@
 <span id="144">144</span>
 <span id="145">145</span>
 <span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>super</span>::<span class='ident'>measurement</span>::<span class='op'>*</span>;
 
@@ -207,6 +217,16 @@
 
 <span class='doccomment'>/// The `Length` struct can be used to deal with lengths in a common way.</span>
 <span class='doccomment'>/// Common metric and imperial units are supported.</span>
+<span class='doccomment'>/// </span>
+<span class='doccomment'>/// # Example</span>
+<span class='doccomment'>/// </span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// use measurements::Length;</span>
+<span class='doccomment'>/// </span>
+<span class='doccomment'>/// let football_field = Length::from_yards(100.0);</span>
+<span class='doccomment'>/// let meters = football_field.as_meters();</span>
+<span class='doccomment'>/// println!(&quot;There are {} meters in a football field.&quot;, meters);</span>
+<span class='doccomment'>/// ```</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Length</span> {
     <span class='ident'>meters</span>: <span class='ident'>f64</span>

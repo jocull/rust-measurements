@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Temperature` struct in crate `measurements`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Temperature">
+
+    <title>measurements::Temperature - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='index.html'>measurements</a></p><script>window.sidebarCurrent = {name: 'Temperature', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>measurements</a>::<wbr><a class='struct' href=''>Temperature</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-629' href='../src/measurements/temperature.rs.html#15-17'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Temperature {
+    // some fields omitted
+}</pre><div class='docblock'><p>The <code>Temperature</code> struct can be used to deal with temperatures in a common way.</p>
+
+<h1 id="example" class='section-header'><a
+                           href="#example">Example</a></h1><pre id='rust-example-rendered' class='rust '>
+<span class='kw'>use</span> <span class='ident'>measurements</span>::<span class='ident'>Temperature</span>;
+ 
+<span class='kw'>let</span> <span class='ident'>boiling_water</span> <span class='op'>=</span> <span class='ident'>Temperature</span>::<span class='ident'>from_celsius</span>(<span class='number'>100.0</span>);
+<span class='kw'>let</span> <span class='ident'>fahrenheit</span> <span class='op'>=</span> <span class='ident'>boiling_water</span>.<span class='ident'>as_fahrenheit</span>();
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Boiling water measures at {} degrees fahrenheit.&quot;</span>, <span class='ident'>fahrenheit</span>);
+</pre>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h3><div class='impl-items'><h4 id='method.from_kelvin' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.from_kelvin' class='fnname'>from_kelvin</a>(kelvin: <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; Self</code></h4>
+<h4 id='method.from_celsius' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.from_celsius' class='fnname'>from_celsius</a>(celsius: <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; Self</code></h4>
+<h4 id='method.from_fahrenheit' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.from_fahrenheit' class='fnname'>from_fahrenheit</a>(fahrenheit: <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; Self</code></h4>
+<h4 id='method.from_rankine' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.from_rankine' class='fnname'>from_rankine</a>(rankine: <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; Self</code></h4>
+<h4 id='method.as_kelvin' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.as_kelvin' class='fnname'>as_kelvin</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code></h4>
+<h4 id='method.as_celsius' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.as_celsius' class='fnname'>as_celsius</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code></h4>
+<h4 id='method.as_fahrenheit' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.as_fahrenheit' class='fnname'>as_fahrenheit</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code></h4>
+<h4 id='method.as_rankine' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.as_rankine' class='fnname'>as_rankine</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code></h4>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../measurements/trait.Measurement.html' title='measurements::Measurement'>Measurement</a> for <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h3><div class='impl-items'><h4 id='method.get_base_units' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='../measurements/trait.Measurement.html#method.get_base_units' class='fnname'>get_base_units</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code></h4>
+<h4 id='method.from_base_units' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='../measurements/trait.Measurement.html#method.from_base_units' class='fnname'>from_base_units</a>(units: <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; Self</code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Add.html' title='core::ops::Add'>Add</a> for <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h3><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = Self</code></h4>
+<h4 id='method.add' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Add.html#method.add' class='fnname'>add</a>(self, rhs: Self) -&gt; Self</code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Sub.html' title='core::ops::Sub'>Sub</a> for <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h3><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = Self</code></h4>
+<h4 id='method.sub' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Sub.html#method.sub' class='fnname'>sub</a>(self, rhs: Self) -&gt; Self</code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Div.html' title='core::ops::Div'>Div</a>&lt;<a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a>&gt; for <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h3><div class='docblock'><p>Dividing a <code>$t</code> by another <code>$</code> returns a ratio.</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code></h4>
+<h4 id='method.div' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Div.html#method.div' class='fnname'>div</a>(self, rhs: Self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Div.html' title='core::ops::Div'>Div</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>&gt; for <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h3><div class='docblock'><p>Dividing a <code>$</code> by a factor returns a new portion of the measurement.</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = Self</code></h4>
+<h4 id='method.div' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Div.html#method.div' class='fnname'>div</a>(self, rhs: <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; Self</code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Mul.html' title='core::ops::Mul'>Mul</a>&lt;<a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a>&gt; for <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h3><div class='docblock'><p>Multiplying a <code>$t</code> by another <code>$t</code> returns the product of those measurements.</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = Self</code></h4>
+<h4 id='method.mul' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Mul.html#method.mul' class='fnname'>mul</a>(self, rhs: Self) -&gt; Self</code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Mul.html' title='core::ops::Mul'>Mul</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>&gt; for <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h3><div class='docblock'><p>Multiplying a <code>$t</code> by a factor increases (or decreases) that measurement a number of times.</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = Self</code></h4>
+<h4 id='method.mul' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Mul.html#method.mul' class='fnname'>mul</a>(self, rhs: <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; Self</code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h3><div class='impl-items'></div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.eq' class='fnname'>eq</a>(&amp;self, other: &amp;Self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialOrd.html' title='core::cmp::PartialOrd'>PartialOrd</a> for <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h3><div class='impl-items'><h4 id='method.partial_cmp' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialOrd.html#method.partial_cmp' class='fnname'>partial_cmp</a>(&amp;self, other: &amp;Self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='http://doc.rust-lang.org/nightly/core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Ordering</a>&gt;</code></h4>
+<h4 id='method.lt' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialOrd.html#method.lt' class='fnname'>lt</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.le' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialOrd.html#method.le' class='fnname'>le</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.gt' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialOrd.html#method.gt' class='fnname'>gt</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ge' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialOrd.html#method.ge' class='fnname'>ge</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h4>
+<h4 id='method.clone_from' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../measurements/struct.Temperature.html' title='measurements::Temperature'>Temperature</a></code></h3><div class='impl-items'></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "measurements";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>

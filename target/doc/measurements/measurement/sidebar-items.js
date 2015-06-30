@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["Measurement",""]]});
+initSidebarItems({"trait":[["Measurement","The `Measurement` trait and the `implement_measurement!` macro provides a common way for various measurements to be implemented."]]});
