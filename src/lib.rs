@@ -69,4 +69,5 @@ pub mod weight;
 
 // Include when running tests, but don't export them
 #[cfg(test)]
+#[allow(dead_code)]
 mod tests;

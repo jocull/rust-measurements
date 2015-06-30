@@ -62,7 +62,7 @@ impl Weight {
     }
     
     pub fn from_short_tons(short_tons: f64) -> Self {
-        Self::from_short_tons(short_tons * 907.18475)
+        Self::from_kilograms(short_tons * 907.18475)
     }
     
     pub fn from_long_tons(long_tons: f64) -> Self {
