@@ -39,3 +39,12 @@ let united_states_tons = metric_ton.as_short_tons();
 let united_states_pounds = metric_ton.as_pounds();
 println!("One metric ton is {} U.S. tons - that's {} pounds!", united_states_tons, united_states_pounds);
 ```
+
+--------------------------------------
+
+**References**
+
+I am by no means a measurement or math expert, I simply wanted to do something useful while learning Rust. Thank you to these sites and their authors for the great reference material used in building this library.
+
+  - http://www.metric-conversions.org
+  - http://www.conversion-metric.org
