@@ -14,6 +14,10 @@ pub use temperature::Temperature;
 mod weight;
 pub use weight::Weight;
 
+#[allow(dead_code)]
+mod volume;
+pub use volume::Volume;
+
 // Include when running tests, but don't export them
 #[cfg(test)]
 #[allow(dead_code)]
