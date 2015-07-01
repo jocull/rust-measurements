@@ -4,6 +4,6 @@ version = "0.2.1"
 authors = ["James O'Cull <jocull@delmarsd.com>"]
 documentation = "https://jocull.github.io/rust-measurements/"
 repository = "https://github.com/jocull/rust-measurements"
-keywords = ["units", "measurements", "lengths", "weights", "temperatures", "volumes"]
+keywords = ["measurements", "lengths", "weights", "temperatures", "volumes"]
 description = "Handle metric, imperial, and other measurements with ease! Types: Length, Temperature, Weight, Volume"
 license = "MIT"
