@@ -1,22 +1,35 @@
 [![Build Status](https://travis-ci.org/jocull/rust-measurements.svg)](https://travis-ci.org/jocull/rust-measurements)
 
-# And Rust said, "Let there be units".
+# Type-safe units of measure for Rust
 
-Hurray! Now you can work with units of measure in a headache-free way.
+### Why should I care? I already have numbers...
 
-Currently available units:
+Working with units can be very error prone.
+If one person is working in feet and one person is working in meters, what happens?
+
+Doing all of your math in raw numerical types can be unsafe and downright confusing.
+What can we do to help?
+
+### Typed measurements to the rescue!
+
+Working in typed measurements increases safety by dealing with what you really care about: units of measure.
+
+Conversions to and from different units are simple, and operator overrides allow you to work with the measurements directly.
+
+### Currently available measurement types
 
 - Length
 - Temperature
 - Weight
+- Volume
 
-### Example
+### Examples
 
-In your Cargo.toml...
+In your Cargo.toml add the dependency...
 
 ```
 [dependencies]
-measurements = "^0.2.0"
+measurements = "^0.2.1"
 ```
 
 In your code...
@@ -24,20 +37,29 @@ In your code...
 ```rust
 extern crate measurements;
 
-use measurements::{Length, Temperature, Weight};
+use measurements::{Length, Temperature, Weight, Volume};
 
+// Lengths!
 let football_field = Length::from_yards(100.0);
 let meters = football_field.as_meters();
 println!("There are {} meters in a football field.", meters);
 
+/// Temperatures!
 let boiling_water = Temperature::from_celsius(100.0);
 let fahrenheit = boiling_water.as_fahrenheit();
 println!("Boiling water measures at {} degrees fahrenheit.", fahrenheit);
 
+// Weights!
 let metric_ton = Weight::from_metric_tons(1.0);
 let united_states_tons = metric_ton.as_short_tons();
 let united_states_pounds = metric_ton.as_pounds();
 println!("One metric ton is {} U.S. tons - that's {} pounds!", united_states_tons, united_states_pounds);
+
+// Volumes!
+let gallon = Volume::from_gallons(1.0);
+let pint = Volume::from_pints(1.0);
+let beers = gallon / pint;
+println!("A gallon of beer will pour {} pints!", beers);
 ```
 
 --------------------------------------
