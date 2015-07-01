@@ -60,6 +60,10 @@
 <span id="18">18</span>
 <span id="19">19</span>
 <span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
 </pre><pre class='rust '>
 <span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
 <span class='kw'>mod</span> <span class='ident'>measurement</span>;
@@ -76,6 +80,10 @@
 <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>dead_code</span>)]</span>
 <span class='kw'>mod</span> <span class='ident'>weight</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>weight</span>::<span class='ident'>Weight</span>;
+
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>dead_code</span>)]</span>
+<span class='kw'>mod</span> <span class='ident'>volume</span>;
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>volume</span>::<span class='ident'>Volume</span>;
 
 <span class='comment'>// Include when running tests, but don&#39;t export them</span>
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
