@@ -8,8 +8,8 @@ use super::measurement::*;
 /// ```
 /// use measurements::Pressure;
 ///
-/// let earth = Pressue::from_atmospheres(1.0);
-/// let mbar = earth.as_mbar();
+/// let earth = Pressure::from_atmospheres(1.0);
+/// let mbar = earth.as_millibars();
 /// println!("Atmospheric pressure is {} mbar.", mbar);
 /// ```
 #[derive(Copy, Clone, Debug)]
