@@ -14,7 +14,7 @@ use super::measurement::*;
 /// ```
 #[derive(Copy, Clone, Debug)]
 pub struct Volume {
-    litres: f64
+    litres: f64,
 }
 
 // Constants, metric

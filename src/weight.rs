@@ -14,7 +14,7 @@ use super::measurement::*;
 /// ```
 #[derive(Copy, Clone, Debug)]
 pub struct Weight {
-    kilograms: f64
+    kilograms: f64,
 }
 
 impl Weight {

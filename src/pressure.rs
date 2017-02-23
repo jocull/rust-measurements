@@ -14,7 +14,7 @@ use super::measurement::*;
 /// ```
 #[derive(Copy, Clone, Debug)]
 pub struct Pressure {
-    millibars: f64
+    millibars: f64,
 }
 
 impl Pressure {

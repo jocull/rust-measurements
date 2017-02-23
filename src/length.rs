@@ -30,7 +30,7 @@ const METER_MILE_FACTOR: f64 = 0.000621371192237;
 /// ```
 #[derive(Copy, Clone, Debug)]
 pub struct Length {
-    meters: f64
+    meters: f64,
 }
 
 impl Length {

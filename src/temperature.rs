@@ -13,7 +13,7 @@ use super::measurement::*;
 /// ```
 #[derive(Copy, Clone, Debug)]
 pub struct Temperature {
-    kelvin: f64
+    kelvin: f64,
 }
 
 impl Temperature {

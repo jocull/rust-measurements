@@ -56,9 +56,8 @@ macro_rules! implement_measurement {
             }
         }
 
-        ///
-        /// Dividing a `$t` by another `$` returns a ratio.
-        ///
+        // Dividing a `$t` by another `$` returns a ratio.
+        //
         impl ::std::ops::Div<$t> for $t {
             type Output = f64;
 
@@ -67,9 +66,8 @@ macro_rules! implement_measurement {
             }
         }
 
-        ///
-        /// Dividing a `$` by a factor returns a new portion of the measurement.
-        ///
+        // Dividing a `$` by a factor returns a new portion of the measurement.
+        //
         impl ::std::ops::Div<f64> for $t {
             type Output = Self;
 
@@ -78,9 +76,8 @@ macro_rules! implement_measurement {
             }
         }
 
-        ///
-        /// Multiplying a `$t` by another `$t` returns the product of those measurements.
-        ///
+        // Multiplying a `$t` by another `$t` returns the product of those measurements.
+        //
         impl ::std::ops::Mul<$t> for $t {
             type Output = Self;
 
@@ -89,9 +86,8 @@ macro_rules! implement_measurement {
             }
         }
 
-        ///
-        /// Multiplying a `$t` by a factor increases (or decreases) that measurement a number of times.
-        ///
+        // Multiplying a `$t` by a factor increases (or decreases) that measurement a number of times.
+        //
         impl ::std::ops::Mul<f64> for $t {
             type Output = Self;
 
