@@ -1,9 +1,10 @@
 [package]
 name = "measurements"
-version = "0.2.1"
-authors = ["James O'Cull <jocull@delmarsd.com>"]
-documentation = "https://jocull.github.io/rust-measurements/"
+version = "0.3.0"
+authors = ["James O'Cull <jocull@delmarsd.com>", "Jonathan Pallant <github@thejpster.org.uk"]
+documentation = "https://docs.rs/crate/measurements"
 repository = "https://github.com/jocull/rust-measurements"
 keywords = ["measurements", "lengths", "weights", "temperatures", "volumes"]
-description = "Handle metric, imperial, and other measurements with ease! Types: Length, Temperature, Weight, Volume"
+description = "Handle metric, imperial, and other measurements with ease! Types: Length, Temperature, Weight, Volume, Pressure"
 license = "MIT"
+readme = "README.md"
