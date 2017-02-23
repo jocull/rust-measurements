@@ -22,14 +22,15 @@ Conversions to and from different units are simple, and operator overrides allow
 - Temperature
 - Weight
 - Volume
+- Pressure
 
 ### Examples
 
 In your Cargo.toml add the dependency...
 
-```
+```toml
 [dependencies]
-measurements = "^0.2.1"
+measurements = "^0.3.0"
 ```
 
 In your code...
@@ -37,29 +38,35 @@ In your code...
 ```rust
 extern crate measurements;
 
-use measurements::{Length, Temperature, Weight, Volume};
+use measurements::{Length, Pressure, Temperature, Volume, Weight};
 
-// Lengths!
-let football_field = Length::from_yards(100.0);
-let meters = football_field.as_meters();
-println!("There are {} meters in a football field.", meters);
+fn main() {
+    // Lengths!
+    let football_field = Length::from_yards(100.0);
+    let meters = football_field.as_meters();
+    println!("There are {} meters in a football field.", meters);
 
-/// Temperatures!
-let boiling_water = Temperature::from_celsius(100.0);
-let fahrenheit = boiling_water.as_fahrenheit();
-println!("Boiling water measures at {} degrees fahrenheit.", fahrenheit);
+    /// Temperatures!
+    let boiling_water = Temperature::from_celsius(100.0);
+    let fahrenheit = boiling_water.as_fahrenheit();
+    println!("Boiling water measures at {} degrees fahrenheit.", fahrenheit);
 
-// Weights!
-let metric_ton = Weight::from_metric_tons(1.0);
-let united_states_tons = metric_ton.as_short_tons();
-let united_states_pounds = metric_ton.as_pounds();
-println!("One metric ton is {} U.S. tons - that's {} pounds!", united_states_tons, united_states_pounds);
+    // Weights!
+    let metric_ton = Weight::from_metric_tons(1.0);
+    let united_states_tons = metric_ton.as_short_tons();
+    let united_states_pounds = metric_ton.as_pounds();
+    println!("One metric ton is {} U.S. tons - that's {} pounds!", united_states_tons, united_states_pounds);
 
-// Volumes!
-let gallon = Volume::from_gallons(1.0);
-let pint = Volume::from_pints(1.0);
-let beers = gallon / pint;
-println!("A gallon of beer will pour {} pints!", beers);
+    // Volumes!
+    let gallon = Volume::from_gallons(1.0);
+    let pint = Volume::from_pints(1.0);
+    let beers = gallon / pint;
+    println!("A gallon of beer will pour {:.1} pints!", beers);
+
+    // Pressures!
+    let atmosphere = Pressure::from_atmospheres(1.0);
+    println!("Earth's atmosphere is usually {} psi", atmosphere.as_psi());
+}
 ```
 
 --------------------------------------

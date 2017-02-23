@@ -1,12 +1,12 @@
 use temperature::*;
-use super::{assert_almost_eq};
+use super::assert_almost_eq;
 
 // Temperature Units
 #[test]
 fn kelvin() {
     let t = Temperature::from_kelvin(100.0);
     let o = t.as_kelvin();
-    
+
     assert_almost_eq(o, 100.0);
 }
 
@@ -14,7 +14,7 @@ fn kelvin() {
 fn celsius() {
     let t = Temperature::from_kelvin(100.0);
     let o = t.as_celsius();
-    
+
     assert_almost_eq(o, -173.15);
 }
 
@@ -22,7 +22,7 @@ fn celsius() {
 fn fahrenheit() {
     let t = Temperature::from_kelvin(100.0);
     let o = t.as_fahrenheit();
-    
+
     assert_almost_eq(o, -279.67);
 }
 
@@ -30,7 +30,7 @@ fn fahrenheit() {
 fn rankine() {
     let t = Temperature::from_kelvin(100.0);
     let o = t.as_rankine();
-    
+
     assert_almost_eq(o, 180.0);
 }
 

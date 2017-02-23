@@ -18,6 +18,10 @@ pub use weight::Weight;
 mod volume;
 pub use volume::Volume;
 
+#[allow(dead_code)]
+mod pressure;
+pub use pressure::Pressure;
+
 // Include when running tests, but don't export them
 #[cfg(test)]
 #[allow(dead_code)]
