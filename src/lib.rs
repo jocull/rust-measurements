@@ -8,7 +8,7 @@ pub use length::Length;
 
 #[allow(dead_code)]
 mod temperature;
-pub use temperature::Temperature;
+pub use temperature::{Temperature, TemperatureDelta};
 
 #[allow(dead_code)]
 mod weight;
