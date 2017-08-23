@@ -3,7 +3,7 @@ mod temperature_tests;
 mod weight_tests;
 mod volume_tests;
 
-const DEFAULT_DELTA: f64 = 1.000000001;
+const DEFAULT_DELTA: f64 = 0.00001;
 
 fn almost_eq(a: f64, b: f64) -> bool {
     almost_eq_delta(a, b, DEFAULT_DELTA)
