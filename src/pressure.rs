@@ -23,11 +23,11 @@ impl Pressure {
     }
 
     pub fn from_pascals(pascals: f64) -> Pressure {
-        Self::from_hectopascals(pascals * 100.0)
+        Self::from_millibars(pascals / 100.0)
     }
 
     pub fn from_kilopascals(kilopascals: f64) -> Pressure {
-        Self::from_hectopascals(kilopascals / 10.0)
+        Self::from_millibars(kilopascals * 10.0)
     }
 
     pub fn from_millibars(millibars: f64) -> Pressure {
@@ -89,6 +89,8 @@ implement_measurement! { Pressure }
 
 impl ::std::fmt::Display for Pressure {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "{:.1} Pa", self.as_pascals())
+        let p = f.precision().unwrap_or(1);
+        let w = f.width().unwrap_or(0);
+        write!(f, "{value:width$.prec$}\u{00A0}Pa", prec=p, width=w, value=self.as_pascals())
     }
 }
