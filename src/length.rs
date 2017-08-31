@@ -157,6 +157,8 @@ implement_measurement! { Length }
 
 impl ::std::fmt::Display for Length {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "{:.1} m", self.as_meters())
+        let p = f.precision().unwrap_or(1);
+        let w = f.width().unwrap_or(0);
+        write!(f, "{value:width$.prec$}\u{00A0}m", prec=p, width=w, value=self.as_meters())
     }
 }
