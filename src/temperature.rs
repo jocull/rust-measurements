@@ -164,12 +164,16 @@ impl ::std::cmp::PartialOrd for TemperatureDelta {
 
 impl ::std::fmt::Display for Temperature {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "{:.1} \u{00B0}C", self.as_celsius())
+        let p = f.precision().unwrap_or(1);
+        let w = f.width().unwrap_or(0);
+        write!(f, "{temp:width$.prec$}\u{00A0}\u{00B0}C", prec=p, width=w, temp=self.as_celsius())
     }
 }
 
 impl ::std::fmt::Display for TemperatureDelta {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "{:.1} C\u{00B0}", self.as_celsius())
+        let p = f.precision().unwrap_or(1);
+        let w = f.width().unwrap_or(0);
+        write!(f, "{temp:width$.prec$}\u{00A0}\u{00B0}C", prec=p, width=w, temp=self.as_celsius())
     }
 }
