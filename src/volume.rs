@@ -211,6 +211,8 @@ implement_measurement! { Volume }
 
 impl ::std::fmt::Display for Volume {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "{:.1} m\u{00B3}", self.as_cubic_meters())
+        let p = f.precision().unwrap_or(1);
+        let w = f.width().unwrap_or(0);
+        write!(f, "{volume:width$.prec$}\u{00A0}m\u{00B3}", prec=p, width=w, volume=self.as_cubic_meters())
     }
 }
