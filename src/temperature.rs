@@ -110,6 +110,25 @@ impl Measurement for Temperature {
     fn from_base_units(degrees_kelvin: f64) -> Self {
         Self::from_kelvin(degrees_kelvin)
     }
+
+    fn get_base_units_name(&self) -> &'static str {
+        "K"
+    }
+
+}
+
+impl Measurement for TemperatureDelta {
+    fn get_base_units(&self) -> f64 {
+        self.kelvin_degrees
+    }
+
+    fn from_base_units(kelvin_degrees: f64) -> Self {
+        Self::from_kelvin(kelvin_degrees)
+    }
+
+    fn get_base_units_name(&self) -> &'static str {
+        "K"
+    }
 }
 
 impl ::std::ops::Add<TemperatureDelta> for Temperature {
@@ -162,18 +181,5 @@ impl ::std::cmp::PartialOrd for TemperatureDelta {
     }
 }
 
-impl ::std::fmt::Display for Temperature {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        let p = f.precision().unwrap_or(1);
-        let w = f.width().unwrap_or(0);
-        write!(f, "{temp:width$.prec$}\u{00A0}\u{00B0}C", prec=p, width=w, temp=self.as_celsius())
-    }
-}
-
-impl ::std::fmt::Display for TemperatureDelta {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        let p = f.precision().unwrap_or(1);
-        let w = f.width().unwrap_or(0);
-        write!(f, "{temp:width$.prec$}\u{00A0}\u{00B0}C", prec=p, width=w, temp=self.as_celsius())
-    }
-}
+implement_display!( Temperature );
+implement_display!( TemperatureDelta );

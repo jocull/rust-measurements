@@ -151,12 +151,12 @@ impl Measurement for Weight {
     fn from_base_units(units: f64) -> Self {
         Self::from_kilograms(units)
     }
+
+    fn get_base_units_name(&self) -> &'static str {
+        "kg"
+    }
+
 }
 
 implement_measurement! { Weight }
 
-impl ::std::fmt::Display for Weight {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "{:.1} kg", self.as_kilograms())
-    }
-}

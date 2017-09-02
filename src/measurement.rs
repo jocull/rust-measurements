@@ -21,6 +21,10 @@
 ///     fn from_base_units(units: f64) -> Self {
 ///         Cubits { forearms: units }
 ///     }
+///
+///    fn get_base_units_name(&self) -> &'static str {
+///        "cu"
+///    }
 /// }
 ///
 /// // Invoke the macro to automatically implement Add, Sub, etc...
@@ -31,15 +35,43 @@
 /// fn main() { }
 /// ```
 pub trait Measurement {
+    fn get_appropriate_units_name(&self) -> &'static str {
+        self.get_base_units_name()
+    }
+    fn get_appropriate_units(&self) -> f64 {
+        self.get_base_units()
+    }
+    fn get_base_units_name(&self) -> &'static str;
     fn get_base_units(&self) -> f64;
     fn from_base_units(units: f64) -> Self;
 }
+
+/// This is a special macro that creates the code to implement
+/// std::fmt::Display.
+#[macro_export]
+macro_rules! implement_display {
+    ($($t:ty)*) => ($(
+
+        impl ::std::fmt::Display for $t {
+            fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                let p = f.precision().unwrap_or(1);
+                let w = f.width().unwrap_or(0);
+                write!(f, "{value:width$.prec$}\u{00A0}{unit}",
+                    prec=p, width=w, value=self.get_appropriate_units(), unit=self.get_appropriate_units_name())
+            }
+        }
+    )*)
+}
+
 
 /// This is a special macro that creates the code to implement
 /// operator and comparison overrides.
 #[macro_export]
 macro_rules! implement_measurement {
     ($($t:ty)*) => ($(
+
+        implement_display!( $t );
+
         impl ::std::ops::Add for $t {
             type Output = Self;
 

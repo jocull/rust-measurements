@@ -205,14 +205,12 @@ impl Measurement for Volume {
     fn from_base_units(units: f64) -> Self {
         Self::from_litres(units)
     }
+
+    fn get_base_units_name(&self) -> &'static str {
+        "l"
+    }
+
 }
 
 implement_measurement! { Volume }
 
-impl ::std::fmt::Display for Volume {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        let p = f.precision().unwrap_or(1);
-        let w = f.width().unwrap_or(0);
-        write!(f, "{volume:width$.prec$}\u{00A0}m\u{00B3}", prec=p, width=w, volume=self.as_cubic_meters())
-    }
-}

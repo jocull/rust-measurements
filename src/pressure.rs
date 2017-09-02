@@ -83,14 +83,11 @@ impl Measurement for Pressure {
     fn from_base_units(units: f64) -> Self {
         Self::from_millibars(units)
     }
+
+    fn get_base_units_name(&self) -> &'static str {
+        "mbar"
+    }
 }
 
 implement_measurement! { Pressure }
 
-impl ::std::fmt::Display for Pressure {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        let p = f.precision().unwrap_or(1);
-        let w = f.width().unwrap_or(0);
-        write!(f, "{value:width$.prec$}\u{00A0}Pa", prec=p, width=w, value=self.as_pascals())
-    }
-}
