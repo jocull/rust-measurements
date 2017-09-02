@@ -2,24 +2,19 @@
 mod measurement;
 pub use measurement::Measurement;
 
-#[allow(dead_code)]
-mod length;
+pub mod length;
 pub use length::Length;
 
-#[allow(dead_code)]
-mod temperature;
+pub mod temperature;
 pub use temperature::{Temperature, TemperatureDelta};
 
-#[allow(dead_code)]
-mod weight;
+pub mod weight;
 pub use weight::Weight;
 
-#[allow(dead_code)]
-mod volume;
+pub mod volume;
 pub use volume::Volume;
 
-#[allow(dead_code)]
-mod pressure;
+pub mod pressure;
 pub use pressure::Pressure;
 
 // Include when running tests, but don't export them

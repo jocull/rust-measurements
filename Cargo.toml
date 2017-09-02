@@ -1,7 +1,9 @@
 [package]
 name = "measurements"
 version = "0.4.0"
-authors = ["James O'Cull <jocull@delmarsd.com>", "Jonathan Pallant <github@thejpster.org.uk"]
+authors = ["James O'Cull <jocull@delmarsd.com>",
+          "Jonathan Pallant <github@thejpster.org.uk>",
+          "Hannah McLaughlin <h@mcla.ug>"]
 documentation = "https://docs.rs/crate/measurements"
 repository = "https://github.com/jocull/rust-measurements"
 keywords = ["measurements", "lengths", "weights", "temperatures", "volumes"]
