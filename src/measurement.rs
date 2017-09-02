@@ -35,11 +35,8 @@
 /// fn main() { }
 /// ```
 pub trait Measurement {
-    fn get_appropriate_units_name(&self) -> &'static str {
-        self.get_base_units_name()
-    }
-    fn get_appropriate_units(&self) -> f64 {
-        self.get_base_units()
+    fn get_appropriate_units(&self) -> (&'static str, f64) {
+        (self.get_base_units_name(), self.get_base_units())
     }
     fn get_base_units_name(&self) -> &'static str;
     fn get_base_units(&self) -> f64;
@@ -56,8 +53,9 @@ macro_rules! implement_display {
             fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
                 let p = f.precision().unwrap_or(1);
                 let w = f.width().unwrap_or(0);
+                let (unit, value) = self.get_appropriate_units();
                 write!(f, "{value:width$.prec$}\u{00A0}{unit}",
-                    prec=p, width=w, value=self.get_appropriate_units(), unit=self.get_appropriate_units_name())
+                    prec=p, width=w, value=value, unit=unit)
             }
         }
     )*)

@@ -156,6 +156,20 @@ impl Measurement for Weight {
         "kg"
     }
 
+    fn get_appropriate_units(&self) -> (&'static str, f64) {
+        if self.kilograms >= 1_000.0 {
+            ("tonnes", self.kilograms / 1000.0)
+        } else if self.kilograms < 0.000_000_1 {
+            ("\u{00B5}g", self.kilograms * 1_000_000_000.0)
+        } else if self.kilograms < 0.000_1 {
+            ("mg", self.kilograms * 1_000_000.0)
+        } else if self.kilograms < 1.0 {
+            ("g", self.kilograms * 1000.0)
+        } else {
+            ("kg", self.kilograms)
+        }
+    }
+
 }
 
 implement_measurement! { Weight }

@@ -87,6 +87,14 @@ impl Measurement for Pressure {
     fn get_base_units_name(&self) -> &'static str {
         "mbar"
     }
+
+    fn get_appropriate_units(&self) -> (&'static str, f64) {
+        if self.millibars >= 1_000.0 {
+            ("bar", self.millibars / 1000.0)
+        } else {
+            ("mbar", self.millibars)
+        }
+    }
 }
 
 implement_measurement! { Pressure }

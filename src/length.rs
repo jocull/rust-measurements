@@ -155,6 +155,25 @@ impl Measurement for Length {
     fn get_base_units_name(&self) -> &'static str {
         "m"
     }
+
+    fn get_appropriate_units(&self) -> (&'static str, f64) {
+        if self.meters >= 1_000_000_000.0 {
+            ("million km", self.meters / 1000_000_000.0)
+        } else if self.meters >= 1_000.0 {
+            ("km", self.meters / 1000.0)
+        } else if self.meters < 0.000_000_1 {
+            ("nm", self.meters * 1_000_000_000.0)
+        } else if self.meters < 0.000_1 {
+            ("\u{00B5}m", self.meters * 1_000_000.0)
+        } else if self.meters < 0.1 {
+            ("mm", self.meters * 1000.0)
+        } else if self.meters < 1.0 {
+            ("cm", self.meters * 100.0)
+        } else {
+            ("m", self.meters)
+        }
+    }
+
 }
 
 implement_measurement! { Length }

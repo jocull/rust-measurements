@@ -210,6 +210,18 @@ impl Measurement for Volume {
         "l"
     }
 
+    fn get_appropriate_units(&self) -> (&'static str, f64) {
+        if self.litres >= 1_000.0 {
+            ("m\u{00B3}", self.litres / 1000.0)
+        } else if self.litres < 0.000_1 {
+            ("\u{00B5}l", self.litres * 1_000_000.0)
+        } else if self.litres < 1.0 {
+            ("ml", self.litres * 1000.0)
+        } else {
+            ("l", self.litres)
+        }
+    }
+
 }
 
 implement_measurement! { Volume }
