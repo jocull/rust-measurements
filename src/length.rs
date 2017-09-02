@@ -173,8 +173,6 @@ impl Measurement for Length {
             ("m", self.meters)
         }
     }
-
 }
 
 implement_measurement! { Length }
-

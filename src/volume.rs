@@ -221,8 +221,6 @@ impl Measurement for Volume {
             ("l", self.litres)
         }
     }
-
 }
 
 implement_measurement! { Volume }
-

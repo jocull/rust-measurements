@@ -44,11 +44,11 @@ impl TemperatureDelta {
     }
 
     pub fn from_fahrenheit(farenheit_degrees: f64) -> Self {
-        TemperatureDelta { kelvin_degrees: farenheit_degrees / 1.8}
+        TemperatureDelta { kelvin_degrees: farenheit_degrees / 1.8 }
     }
 
     pub fn from_rankine(rankine_degrees: f64) -> Self {
-        TemperatureDelta { kelvin_degrees: rankine_degrees / 1.8}
+        TemperatureDelta { kelvin_degrees: rankine_degrees / 1.8 }
     }
 
     pub fn as_kelvin(&self) -> f64 {
@@ -114,7 +114,6 @@ impl Measurement for Temperature {
     fn get_base_units_name(&self) -> &'static str {
         "K"
     }
-
 }
 
 impl Measurement for TemperatureDelta {
@@ -155,7 +154,7 @@ impl ::std::ops::Sub<Temperature> for Temperature {
     }
 }
 
-impl ::std::cmp::Eq for Temperature { }
+impl ::std::cmp::Eq for Temperature {}
 impl ::std::cmp::PartialEq for Temperature {
     fn eq(&self, other: &Self) -> bool {
         self.get_base_units() == other.get_base_units()
@@ -168,7 +167,7 @@ impl ::std::cmp::PartialOrd for Temperature {
     }
 }
 
-impl ::std::cmp::Eq for TemperatureDelta { }
+impl ::std::cmp::Eq for TemperatureDelta {}
 impl ::std::cmp::PartialEq for TemperatureDelta {
     fn eq(&self, other: &Self) -> bool {
         self.kelvin_degrees == other.kelvin_degrees
@@ -181,5 +180,5 @@ impl ::std::cmp::PartialOrd for TemperatureDelta {
     }
 }
 
-implement_display!( Temperature );
-implement_display!( TemperatureDelta );
+implement_display!(Temperature);
+implement_display!(TemperatureDelta);

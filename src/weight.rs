@@ -10,7 +10,9 @@ use super::measurement::*;
 /// let metric_ton = Weight::from_metric_tons(1.0);
 /// let united_states_tons = metric_ton.as_short_tons();
 /// let united_states_pounds = metric_ton.as_pounds();
-/// println!("One metric ton is {} U.S. tons - that's {} pounds!", united_states_tons, united_states_pounds);
+/// println!(
+///     "One metric ton is {} U.S. tons - that's {} pounds!",
+///     united_states_tons, united_states_pounds);
 /// ```
 #[derive(Copy, Clone, Debug)]
 pub struct Weight {
@@ -169,8 +171,6 @@ impl Measurement for Weight {
             ("kg", self.kilograms)
         }
     }
-
 }
 
 implement_measurement! { Weight }
-

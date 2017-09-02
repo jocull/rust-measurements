@@ -98,4 +98,3 @@ impl Measurement for Pressure {
 }
 
 implement_measurement! { Pressure }
-

@@ -106,8 +106,8 @@ macro_rules! implement_measurement {
             }
         }
 
-        // Multiplying a `$t` by another `$t` returns the product of those measurements.
-        //
+        // Multiplying a `$t` by another `$t` returns the product of those
+        // measurements.
         impl ::std::ops::Mul<$t> for $t {
             type Output = Self;
 
@@ -116,8 +116,8 @@ macro_rules! implement_measurement {
             }
         }
 
-        // Multiplying a `$t` by a factor increases (or decreases) that measurement a number of times.
-        //
+        // Multiplying a `$t` by a factor increases (or decreases) that
+        // measurement a number of times.
         impl ::std::ops::Mul<f64> for $t {
             type Output = Self;
 
