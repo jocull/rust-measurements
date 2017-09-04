@@ -17,6 +17,9 @@ pub use volume::Volume;
 pub mod pressure;
 pub use pressure::Pressure;
 
+pub mod speed;
+pub use speed::Speed;
+
 // Include when running tests, but don't export them
 #[cfg(test)]
 #[allow(dead_code)]
