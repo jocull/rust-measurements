@@ -65,7 +65,7 @@ fn decameter() {
 #[test]
 fn hectometer() {
     let i1 = Length::from_meters(100.0);
-    let r1 = i1.as_hectometer();
+    let r1 = i1.as_hectometers();
 
     let i2 = Length::from_hectometers(100.0);
     let r2 = i2.as_meters();

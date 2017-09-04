@@ -14,7 +14,7 @@ use super::measurement::*;
 /// ```
 #[derive(Copy, Clone, Debug)]
 pub struct Volume {
-    litres: f64,
+    liters: f64,
 }
 
 // Constants, metric
@@ -40,170 +40,202 @@ const LITER_CUBIC_FEET_FACTOR: f64 = 0.0353146667215;
 const LITER_CUBIC_YARD_FACTOR: f64 = 0.0013079506193;
 
 impl Volume {
-    // Inputs, metric
-    pub fn from_litres(litres: f64) -> Self {
-        Volume { litres: litres }
+    // Inputs, metric, with both spellings of liter/litre.
+    pub fn from_liters(liters: f64) -> Self {
+        Volume { liters: liters }
+    }
+
+    pub fn from_litres(liters: f64) -> Self {
+        Self::from_liters(liters)
     }
 
     pub fn from_cubic_centimeters(cubic_centimeters: f64) -> Self {
-        Self::from_litres(cubic_centimeters / LITER_CUBIC_CENTIMETER_FACTOR)
+        Self::from_liters(cubic_centimeters / LITER_CUBIC_CENTIMETER_FACTOR)
+    }
+
+    pub fn from_cubic_centimetres(cubic_centimeters: f64) -> Self {
+        Self::from_cubic_centimeters(cubic_centimeters)
     }
 
     pub fn from_milliliters(milliliters: f64) -> Self {
-        Self::from_litres(milliliters / LITER_MILLILITERS_FACTOR)
+        Self::from_liters(milliliters / LITER_MILLILITERS_FACTOR)
+    }
+
+    pub fn from_millilitres(milliliters: f64) -> Self {
+        Self::from_milliliters(milliliters)
     }
 
     pub fn from_cubic_meters(cubic_meters: f64) -> Self {
-        Self::from_litres(cubic_meters / LITER_CUBIC_METER_FACTOR)
+        Self::from_liters(cubic_meters / LITER_CUBIC_METER_FACTOR)
+    }
+
+    pub fn from_cubic_metres(cubic_meters: f64) -> Self {
+        Self::from_cubic_meters(cubic_meters)
     }
 
     // Inputs, imperial
     pub fn from_drops(drops: f64) -> Self {
-        Self::from_litres(drops / LITER_DROP_FACTOR)
+        Self::from_liters(drops / LITER_DROP_FACTOR)
     }
 
     pub fn from_drams(drams: f64) -> Self {
-        Self::from_litres(drams / LITER_DRAM_FACTOR)
+        Self::from_liters(drams / LITER_DRAM_FACTOR)
     }
 
     pub fn from_teaspoons(teaspoons: f64) -> Self {
-        Self::from_litres(teaspoons / LITER_TEASPOONS_FACTOR)
+        Self::from_liters(teaspoons / LITER_TEASPOONS_FACTOR)
     }
 
     pub fn from_tablespoons(tablespoons: f64) -> Self {
-        Self::from_litres(tablespoons / LITER_TABLESPOONS_FACTOR)
+        Self::from_liters(tablespoons / LITER_TABLESPOONS_FACTOR)
     }
 
     pub fn from_fluid_ounces_uk(fluid_ounces_uk: f64) -> Self {
-        Self::from_litres(fluid_ounces_uk / LITER_FLUID_OUNCES_UK_FACTOR)
+        Self::from_liters(fluid_ounces_uk / LITER_FLUID_OUNCES_UK_FACTOR)
     }
 
     pub fn from_fluid_ounces(fluid_ounces: f64) -> Self {
-        Self::from_litres(fluid_ounces / LITER_FLUID_OUNCES_FACTOR)
+        Self::from_liters(fluid_ounces / LITER_FLUID_OUNCES_FACTOR)
     }
 
     pub fn from_cubic_inches(cubic_inches: f64) -> Self {
-        Self::from_litres(cubic_inches / LITER_CUBIC_INCHES_FACTOR)
+        Self::from_liters(cubic_inches / LITER_CUBIC_INCHES_FACTOR)
     }
 
     pub fn from_cups(cups: f64) -> Self {
-        Self::from_litres(cups / LITER_CUP_FACTOR)
+        Self::from_liters(cups / LITER_CUP_FACTOR)
     }
 
     pub fn from_pints(pints: f64) -> Self {
-        Self::from_litres(pints / LITER_PINTS_FACTOR)
+        Self::from_liters(pints / LITER_PINTS_FACTOR)
     }
 
     pub fn from_pints_uk(pints_uk: f64) -> Self {
-        Self::from_litres(pints_uk / LITER_PINTS_UK_FACTOR)
+        Self::from_liters(pints_uk / LITER_PINTS_UK_FACTOR)
     }
 
     pub fn from_quarts(quarts: f64) -> Self {
-        Self::from_litres(quarts / LITER_QUARTS_FACTOR)
+        Self::from_liters(quarts / LITER_QUARTS_FACTOR)
     }
 
     pub fn from_gallons(gallons: f64) -> Self {
-        Self::from_litres(gallons / LITER_GALLONS_FACTOR)
+        Self::from_liters(gallons / LITER_GALLONS_FACTOR)
     }
 
     pub fn from_gallons_uk(gallons_uk: f64) -> Self {
-        Self::from_litres(gallons_uk / LITER_GALLONS_UK_FACTOR)
+        Self::from_liters(gallons_uk / LITER_GALLONS_UK_FACTOR)
     }
 
     pub fn from_cubic_feet(cubic_feet: f64) -> Self {
-        Self::from_litres(cubic_feet / LITER_CUBIC_FEET_FACTOR)
+        Self::from_liters(cubic_feet / LITER_CUBIC_FEET_FACTOR)
     }
 
     pub fn from_cubic_yards(cubic_yards: f64) -> Self {
-        Self::from_litres(cubic_yards / LITER_CUBIC_YARD_FACTOR)
+        Self::from_liters(cubic_yards / LITER_CUBIC_YARD_FACTOR)
     }
 
     // Outputs, metric
     pub fn as_cubic_centimeters(&self) -> f64 {
-        self.litres * LITER_CUBIC_CENTIMETER_FACTOR
+        self.liters * LITER_CUBIC_CENTIMETER_FACTOR
+    }
+
+    pub fn as_cubic_centimetres(&self) -> f64 {
+        self.as_cubic_centimeters()
     }
 
     pub fn as_milliliters(&self) -> f64 {
-        self.litres * LITER_MILLILITERS_FACTOR
+        self.liters * LITER_MILLILITERS_FACTOR
+    }
+
+    pub fn as_millilitres(&self) -> f64 {
+        self.as_milliliters()
+    }
+
+    pub fn as_liters(&self) -> f64 {
+        self.liters
     }
 
     pub fn as_litres(&self) -> f64 {
-        self.litres
+        self.as_liters()
     }
 
     pub fn as_cubic_meters(&self) -> f64 {
-        self.litres * LITER_CUBIC_METER_FACTOR
+        self.liters * LITER_CUBIC_METER_FACTOR
+    }
+
+    pub fn as_cubic_metres(&self) -> f64 {
+        self.as_cubic_meters()
     }
 
     // Outputs, imperial
     pub fn as_drops(&self) -> f64 {
-        self.litres * LITER_DROP_FACTOR
+        self.liters * LITER_DROP_FACTOR
     }
 
     pub fn as_drams(&self) -> f64 {
-        self.litres * LITER_DRAM_FACTOR
+        self.liters * LITER_DRAM_FACTOR
     }
 
     pub fn as_teaspoons(&self) -> f64 {
-        self.litres * LITER_TEASPOONS_FACTOR
+        self.liters * LITER_TEASPOONS_FACTOR
     }
 
     pub fn as_tablespoons(&self) -> f64 {
-        self.litres * LITER_TABLESPOONS_FACTOR
+        self.liters * LITER_TABLESPOONS_FACTOR
     }
 
     pub fn as_cubic_inches(&self) -> f64 {
-        self.litres * LITER_CUBIC_INCHES_FACTOR
+        self.liters * LITER_CUBIC_INCHES_FACTOR
     }
 
     pub fn as_fluid_ounces_uk(&self) -> f64 {
-        self.litres * LITER_FLUID_OUNCES_UK_FACTOR
+        self.liters * LITER_FLUID_OUNCES_UK_FACTOR
     }
 
     pub fn as_fluid_ounces(&self) -> f64 {
-        self.litres * LITER_FLUID_OUNCES_FACTOR
+        self.liters * LITER_FLUID_OUNCES_FACTOR
     }
 
     pub fn as_cups(&self) -> f64 {
-        self.litres * LITER_CUP_FACTOR
+        self.liters * LITER_CUP_FACTOR
     }
 
     pub fn as_pints(&self) -> f64 {
-        self.litres * LITER_PINTS_FACTOR
+        self.liters * LITER_PINTS_FACTOR
     }
 
     pub fn as_pints_uk(&self) -> f64 {
-        self.litres * LITER_PINTS_UK_FACTOR
+        self.liters * LITER_PINTS_UK_FACTOR
     }
 
     pub fn as_quarts(&self) -> f64 {
-        self.litres * LITER_QUARTS_FACTOR
+        self.liters * LITER_QUARTS_FACTOR
     }
 
     pub fn as_gallons(&self) -> f64 {
-        self.litres * LITER_GALLONS_FACTOR
+        self.liters * LITER_GALLONS_FACTOR
     }
 
     pub fn as_gallons_uk(&self) -> f64 {
-        self.litres * LITER_GALLONS_UK_FACTOR
+        self.liters * LITER_GALLONS_UK_FACTOR
     }
 
     pub fn as_cubic_feet(&self) -> f64 {
-        self.litres * LITER_CUBIC_FEET_FACTOR
+        self.liters * LITER_CUBIC_FEET_FACTOR
     }
 
     pub fn as_cubic_yards(&self) -> f64 {
-        self.litres * LITER_CUBIC_YARD_FACTOR
+        self.liters * LITER_CUBIC_YARD_FACTOR
     }
 }
 
 impl Measurement for Volume {
     fn get_base_units(&self) -> f64 {
-        self.litres
+        self.liters
     }
 
     fn from_base_units(units: f64) -> Self {
-        Self::from_litres(units)
+        Self::from_liters(units)
     }
 
     fn get_base_units_name(&self) -> &'static str {
@@ -211,14 +243,14 @@ impl Measurement for Volume {
     }
 
     fn get_appropriate_units(&self) -> (&'static str, f64) {
-        if self.litres >= 1_000.0 {
-            ("m\u{00B3}", self.litres / 1000.0)
-        } else if self.litres < 0.000_1 {
-            ("\u{00B5}l", self.litres * 1_000_000.0)
-        } else if self.litres < 1.0 {
-            ("ml", self.litres * 1000.0)
+        if self.liters >= 1_000.0 {
+            ("m\u{00B3}", self.liters / 1000.0)
+        } else if self.liters < 0.000_1 {
+            ("\u{00B5}l", self.liters * 1_000_000.0)
+        } else if self.liters < 1.0 {
+            ("ml", self.liters * 1000.0)
         } else {
-            ("l", self.litres)
+            ("l", self.liters)
         }
     }
 }
