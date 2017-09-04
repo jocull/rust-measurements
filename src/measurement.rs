@@ -106,16 +106,6 @@ macro_rules! implement_measurement {
             }
         }
 
-        // Multiplying a `$t` by another `$t` returns the product of those
-        // measurements.
-        impl ::std::ops::Mul<$t> for $t {
-            type Output = Self;
-
-            fn mul(self, rhs: Self) -> Self {
-                Self::from_base_units(self.get_base_units() * rhs.get_base_units())
-            }
-        }
-
         // Multiplying a `$t` by a factor increases (or decreases) that
         // measurement a number of times.
         impl ::std::ops::Mul<f64> for $t {
@@ -123,6 +113,15 @@ macro_rules! implement_measurement {
 
             fn mul(self, rhs: f64) -> Self {
                 Self::from_base_units(self.get_base_units() * rhs)
+            }
+        }
+
+        // Multiplying by a factor is commutative
+        impl ::std::ops::Mul<$t> for f64 {
+            type Output = $t;
+
+            fn mul(self, rhs: $t) -> $t {
+                rhs * self
             }
         }
 

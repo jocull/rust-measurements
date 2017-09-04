@@ -138,6 +138,14 @@ impl ::std::ops::Add<TemperatureDelta> for Temperature {
     }
 }
 
+impl ::std::ops::Add<Temperature> for TemperatureDelta {
+    type Output = Temperature;
+
+    fn add(self, other: Temperature) -> Temperature {
+        other + self
+    }
+}
+
 impl ::std::ops::Sub<TemperatureDelta> for Temperature {
     type Output = Temperature;
 
@@ -167,18 +175,5 @@ impl ::std::cmp::PartialOrd for Temperature {
     }
 }
 
-impl ::std::cmp::Eq for TemperatureDelta {}
-impl ::std::cmp::PartialEq for TemperatureDelta {
-    fn eq(&self, other: &Self) -> bool {
-        self.kelvin_degrees == other.kelvin_degrees
-    }
-}
-
-impl ::std::cmp::PartialOrd for TemperatureDelta {
-    fn partial_cmp(&self, other: &Self) -> Option<::std::cmp::Ordering> {
-        self.kelvin_degrees.partial_cmp(&other.kelvin_degrees)
-    }
-}
-
 implement_display!(Temperature);
-implement_display!(TemperatureDelta);
+implement_measurement!(TemperatureDelta);
