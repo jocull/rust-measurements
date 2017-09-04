@@ -5,6 +5,7 @@ mod volume_tests;
 mod speed_tests;
 mod acceleration_tests;
 mod energy_tests;
+mod power_tests;
 
 const DEFAULT_DELTA: f64 = 0.00001;
 

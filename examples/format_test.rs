@@ -7,6 +7,7 @@ use measurements::Weight;
 use measurements::Speed;
 use measurements::Acceleration;
 use measurements::Energy;
+use measurements::Power;
 
 fn main() {
     for power in -12..12 {
@@ -20,7 +21,6 @@ fn main() {
         println!("Speed of {0:.3}", Speed::from_meters_per_second(val));
         println!("Acceleration of {0:.3}", Acceleration::from_meters_per_second_per_second(val));
         println!("Energy of {0:.3}", Energy::from_joules(val));
+        println!("Power of {0:.3}", Power::from_watts(val));
     }
-
-    println!("1.0 GeV is {}", Energy::from_e_v(1e9));
 }
