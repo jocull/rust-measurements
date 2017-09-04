@@ -1,4 +1,6 @@
 use super::measurement::*;
+use super::Length;
+use std::time::Duration;
 
 /// The `Speed` struct can be used to deal with speeds in a common way.
 /// Common metric and imperial units are supported.
@@ -57,6 +59,16 @@ impl Speed {
 
     pub fn as_miles_per_hour(&self) -> f64 {
         (self.meters_per_second / 1609.0) * 3600.0
+    }
+}
+
+impl ::std::ops::Div<Duration> for Length {
+    type Output = Speed;
+
+    fn div(self, rhs: Duration) -> Speed {
+        // It would be useful if Duration had a method that did this...
+        let seconds: f64 = rhs.as_secs() as f64 + ((rhs.subsec_nanos() as f64) * 1e-9);
+        Speed::from_meters_per_second(self.as_meters() / seconds)
     }
 }
 

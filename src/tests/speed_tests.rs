@@ -1,5 +1,7 @@
 use speed::*;
 use super::assert_almost_eq;
+use std::time::Duration;
+use length::Length;
 
 // Metric
 #[test]
@@ -14,6 +16,16 @@ fn kilometers_per_hour() {
     assert_almost_eq(r2, 27.7777777777);
 }
 
+#[test]
+fn length_over_time() {
+    let l1 = Length::from_meters(3.0);
+    let t1 = Duration::new(1, 500_000_000);
+    let i1 = l1 / t1;
+    let r1 = i1.as_meters_per_second();
+    assert_almost_eq(r1, 2.0);
+}
+
+#[test]
 fn kilometres_per_hour() {
     let i1 = Speed::from_metres_per_second(100.0);
     let r1 = i1.as_kilometres_per_hour();
