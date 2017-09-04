@@ -5,6 +5,8 @@ use measurements::Pressure;
 use measurements::Volume;
 use measurements::Weight;
 use measurements::Speed;
+use measurements::Acceleration;
+
 fn main() {
     for power in -9..9 {
         let val: f64 = 123.456 * (10.0f64.powf(power as f64));
@@ -15,5 +17,6 @@ fn main() {
         println!("Volume of {0:.3}", Volume::from_litres(val));
         println!("Weight of {0:.3}", Weight::from_kilograms(val));
         println!("Speed of {0:.3}", Speed::from_meters_per_second(val));
+        println!("Acceleration of {0:.3}", Acceleration::from_meters_per_second_per_second(val));
     }
 }

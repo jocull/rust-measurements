@@ -26,6 +26,15 @@ fn length_over_time() {
 }
 
 #[test]
+fn acceleration() {
+    // To get to 100 m/s at 50 m/s/s takes 2.0 seconds
+    let s = Length::from_meters(100.0) / Duration::new(1, 0);
+    let a = Length::from_meters(50.0) / Duration::new(1, 0) / Duration::new(1, 0);
+    let t = s / a;
+    assert_eq!(t, Duration::new(2, 0));
+}
+
+#[test]
 fn kilometres_per_hour() {
     let i1 = Speed::from_metres_per_second(100.0);
     let r1 = i1.as_kilometres_per_hour();

@@ -3,6 +3,7 @@ mod temperature_tests;
 mod weight_tests;
 mod volume_tests;
 mod speed_tests;
+mod acceleration_tests;
 
 const DEFAULT_DELTA: f64 = 0.00001;
 

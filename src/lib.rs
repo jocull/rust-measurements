@@ -20,6 +20,9 @@ pub use pressure::Pressure;
 pub mod speed;
 pub use speed::Speed;
 
+pub mod acceleration;
+pub use acceleration::Acceleration;
+
 // Include when running tests, but don't export them
 #[cfg(test)]
 #[allow(dead_code)]
