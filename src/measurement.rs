@@ -38,8 +38,26 @@ pub trait Measurement {
     fn get_appropriate_units(&self) -> (&'static str, f64) {
         (self.get_base_units_name(), self.get_base_units())
     }
+
+    /// Given a list of units and their scale relative to the base unit,
+    /// select the most appropriate one.
+    ///
+    /// The list must be smallest to largest, e.g. ("nanometre", 10-9) to
+    /// ("kilometre", 10e3)
+    fn pick_appropriate_units(&self, list: &[(&'static str, f64)]) -> (&'static str, f64) {
+        for &(ref unit, ref scale) in list.iter().rev() {
+            let value = self.get_base_units() / scale;
+            if value.abs() > 1.0 {
+                return (unit, value);
+            }
+        };
+        (list[0].0, self.get_base_units() / list[0].1)
+    }
+
     fn get_base_units_name(&self) -> &'static str;
+
     fn get_base_units(&self) -> f64;
+
     fn from_base_units(units: f64) -> Self;
 }
 

@@ -246,21 +246,19 @@ impl Measurement for Length {
     }
 
     fn get_appropriate_units(&self) -> (&'static str, f64) {
-        if self.meters >= 1_000_000_000.0 {
-            ("million km", self.meters / 1000_000_000.0)
-        } else if self.meters >= 1_000.0 {
-            ("km", self.meters / 1000.0)
-        } else if self.meters < 0.000_000_1 {
-            ("nm", self.meters * 1_000_000_000.0)
-        } else if self.meters < 0.000_1 {
-            ("\u{00B5}m", self.meters * 1_000_000.0)
-        } else if self.meters < 0.1 {
-            ("mm", self.meters * 1000.0)
-        } else if self.meters < 1.0 {
-            ("cm", self.meters * 100.0)
-        } else {
-            ("m", self.meters)
-        }
+        // Smallest to largest
+        let list = [
+            ("pm", 1e-12),
+            ("nm", 1e-9),
+            ("\u{00B5}m", 1e-6),
+            ("mm", 1e-3),
+            ("cm", 1e-2),
+            ("m", 1e0),
+            ("km", 1e3),
+            ("thousand km", 1e6),
+            ("million km", 1e9),
+        ];
+        self.pick_appropriate_units(&list)
     }
 }
 

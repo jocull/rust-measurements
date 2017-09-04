@@ -243,15 +243,17 @@ impl Measurement for Volume {
     }
 
     fn get_appropriate_units(&self) -> (&'static str, f64) {
-        if self.liters >= 1_000.0 {
-            ("m\u{00B3}", self.liters / 1000.0)
-        } else if self.liters < 0.000_1 {
-            ("\u{00B5}l", self.liters * 1_000_000.0)
-        } else if self.liters < 1.0 {
-            ("ml", self.liters * 1000.0)
-        } else {
-            ("l", self.liters)
-        }
+        // Smallest to largest
+        let list = [
+            ("pl", 1e-12),
+            ("nl", 1e-9),
+            ("\u{00B5}l", 1e-6),
+            ("ml", 1e-3),
+            ("l", 1e0),
+            ("m\u{00B3}", 1e3),
+            ("km\u{00B3}", 1e12),
+        ];
+        self.pick_appropriate_units(&list)
     }
 }
 

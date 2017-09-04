@@ -159,17 +159,18 @@ impl Measurement for Weight {
     }
 
     fn get_appropriate_units(&self) -> (&'static str, f64) {
-        if self.kilograms >= 1_000.0 {
-            ("tonnes", self.kilograms / 1000.0)
-        } else if self.kilograms < 0.000_000_1 {
-            ("\u{00B5}g", self.kilograms * 1_000_000_000.0)
-        } else if self.kilograms < 0.000_1 {
-            ("mg", self.kilograms * 1_000_000.0)
-        } else if self.kilograms < 1.0 {
-            ("g", self.kilograms * 1000.0)
-        } else {
-            ("kg", self.kilograms)
-        }
+        // Smallest to largest
+        let list = [
+            ("ng", 1e-12),
+            ("\u{00B5}g", 1e-9),
+            ("mg", 1e-6),
+            ("g", 1e-3),
+            ("kg", 1e0),
+            ("tonnes", 1e3),
+            ("thousand tonnes", 1e6),
+            ("million tonnes", 1e9),
+        ];
+        self.pick_appropriate_units(&list)
     }
 }
 

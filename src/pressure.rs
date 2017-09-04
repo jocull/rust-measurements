@@ -89,11 +89,13 @@ impl Measurement for Pressure {
     }
 
     fn get_appropriate_units(&self) -> (&'static str, f64) {
-        if self.millibars >= 1_000.0 {
-            ("bar", self.millibars / 1000.0)
-        } else {
-            ("mbar", self.millibars)
-        }
+        let list = [
+            ("millibars", 1e0),
+            ("bar", 1e3),
+            ("thousand bar", 1e6),
+            ("million bar", 1e9),
+        ];
+        self.pick_appropriate_units(&list)
     }
 }
 
