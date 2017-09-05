@@ -215,7 +215,9 @@ fn add() {
     let a = Volume::from_litres(2.0);
     let b = Volume::from_litres(4.0);
     let c = a + b;
+    let d = b + a;
     assert_almost_eq(c.as_litres(), 6.0);
+    assert_eq!(c, d);
 }
 
 #[test]
@@ -228,12 +230,11 @@ fn sub() {
 
 #[test]
 fn mul() {
-    let a = Volume::from_litres(2.0);
-    let b = Volume::from_litres(4.0);
-    let c = a * b;
-    let d = a * 2.0;
-    assert_almost_eq(c.as_litres(), 8.0);
-    assert_almost_eq(d.as_litres(), 4.0);
+    let a = Volume::from_litres(3.0);
+    let b = a * 2.0;
+    let c = 2.0 * a;
+    assert_almost_eq(b.as_litres(), 6.0);
+    assert_eq!(b, c);
 }
 
 #[test]

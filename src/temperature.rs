@@ -44,11 +44,11 @@ impl TemperatureDelta {
     }
 
     pub fn from_fahrenheit(farenheit_degrees: f64) -> Self {
-        TemperatureDelta { kelvin_degrees: farenheit_degrees / 1.8}
+        TemperatureDelta { kelvin_degrees: farenheit_degrees / 1.8 }
     }
 
     pub fn from_rankine(rankine_degrees: f64) -> Self {
-        TemperatureDelta { kelvin_degrees: rankine_degrees / 1.8}
+        TemperatureDelta { kelvin_degrees: rankine_degrees / 1.8 }
     }
 
     pub fn as_kelvin(&self) -> f64 {
@@ -110,6 +110,24 @@ impl Measurement for Temperature {
     fn from_base_units(degrees_kelvin: f64) -> Self {
         Self::from_kelvin(degrees_kelvin)
     }
+
+    fn get_base_units_name(&self) -> &'static str {
+        "K"
+    }
+}
+
+impl Measurement for TemperatureDelta {
+    fn get_base_units(&self) -> f64 {
+        self.kelvin_degrees
+    }
+
+    fn from_base_units(kelvin_degrees: f64) -> Self {
+        Self::from_kelvin(kelvin_degrees)
+    }
+
+    fn get_base_units_name(&self) -> &'static str {
+        "K"
+    }
 }
 
 impl ::std::ops::Add<TemperatureDelta> for Temperature {
@@ -117,6 +135,14 @@ impl ::std::ops::Add<TemperatureDelta> for Temperature {
 
     fn add(self, other: TemperatureDelta) -> Temperature {
         Temperature::from_kelvin(self.degrees_kelvin + other.kelvin_degrees)
+    }
+}
+
+impl ::std::ops::Add<Temperature> for TemperatureDelta {
+    type Output = Temperature;
+
+    fn add(self, other: Temperature) -> Temperature {
+        other + self
     }
 }
 
@@ -136,7 +162,7 @@ impl ::std::ops::Sub<Temperature> for Temperature {
     }
 }
 
-impl ::std::cmp::Eq for Temperature { }
+impl ::std::cmp::Eq for Temperature {}
 impl ::std::cmp::PartialEq for Temperature {
     fn eq(&self, other: &Self) -> bool {
         self.get_base_units() == other.get_base_units()
@@ -149,27 +175,5 @@ impl ::std::cmp::PartialOrd for Temperature {
     }
 }
 
-impl ::std::cmp::Eq for TemperatureDelta { }
-impl ::std::cmp::PartialEq for TemperatureDelta {
-    fn eq(&self, other: &Self) -> bool {
-        self.kelvin_degrees == other.kelvin_degrees
-    }
-}
-
-impl ::std::cmp::PartialOrd for TemperatureDelta {
-    fn partial_cmp(&self, other: &Self) -> Option<::std::cmp::Ordering> {
-        self.kelvin_degrees.partial_cmp(&other.kelvin_degrees)
-    }
-}
-
-impl ::std::fmt::Display for Temperature {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "{:.1} \u{00B0}C", self.as_celsius())
-    }
-}
-
-impl ::std::fmt::Display for TemperatureDelta {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "{:.1} C\u{00B0}", self.as_celsius())
-    }
-}
+implement_display!(Temperature);
+implement_measurement!(TemperatureDelta);

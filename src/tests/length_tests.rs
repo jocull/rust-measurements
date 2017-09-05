@@ -65,7 +65,7 @@ fn decameter() {
 #[test]
 fn hectometer() {
     let i1 = Length::from_meters(100.0);
-    let r1 = i1.as_hectometer();
+    let r1 = i1.as_hectometers();
 
     let i2 = Length::from_hectometers(100.0);
     let r2 = i2.as_meters();
@@ -153,7 +153,9 @@ fn add() {
     let a = Length::from_meters(2.0);
     let b = Length::from_meters(4.0);
     let c = a + b;
+    let d = b + a;
     assert_almost_eq(c.as_meters(), 6.0);
+    assert_eq!(c, d);
 }
 
 #[test]
@@ -166,22 +168,21 @@ fn sub() {
 
 #[test]
 fn mul() {
-    let a = Length::from_meters(2.0);
-    let b = Length::from_meters(4.0);
-    let c = a * b;
-    let d = b * 2.0;
-    assert_almost_eq(c.as_meters(), 8.0);
-    assert_almost_eq(d.as_meters(), 8.0);
+    let a = Length::from_meters(3.0);
+    let b = a * 2.0;
+    let c = 2.0 * a;
+    assert_almost_eq(b.as_meters(), 6.0);
+    assert_eq!(b, c);
 }
 
 #[test]
 fn div() {
     let a = Length::from_meters(2.0);
     let b = Length::from_meters(4.0);
-    let c = a * b;
-    let d = a * 2.0;
-    assert_almost_eq(c.as_meters(), 8.0);
-    assert_almost_eq(d.as_meters(), 4.0);
+    let c = a / b;
+    let d = a / 2.0;
+    assert_almost_eq(c, 0.5);
+    assert_almost_eq(d.as_meters(), 1.0);
 }
 
 #[test]

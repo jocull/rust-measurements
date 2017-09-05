@@ -40,7 +40,19 @@ fn add() {
     let a = Temperature::from_kelvin(2.0);
     let b = TemperatureDelta::from_kelvin(4.0);
     let c = a + b;
+    let d = b + a;
     assert_almost_eq(c.as_kelvin(), 6.0);
+    assert_eq!(c, d);
+}
+
+#[test]
+fn add2() {
+    let a = TemperatureDelta::from_kelvin(2.0);
+    let b = TemperatureDelta::from_kelvin(4.0);
+    let c = a + b;
+    let d = b + a;
+    assert_almost_eq(c.as_kelvin(), 6.0);
+    assert_eq!(c, d);
 }
 
 #[test]
@@ -57,6 +69,23 @@ fn sub2() {
     let b = Temperature::from_celsius(75.0);
     let c = a - b;
     assert_almost_eq(c.as_kelvin(), 25.0);
+}
+
+#[test]
+fn sub3() {
+    let a = TemperatureDelta::from_fahrenheit(180.0);
+    let b = TemperatureDelta::from_celsius(75.0);
+    let c = a - b;
+    assert_almost_eq(c.as_kelvin(), 25.0);
+}
+
+#[test]
+fn mul() {
+    let a = TemperatureDelta::from_celsius(5.0);
+    let b = a * 2.0;
+    let c = 2.0 * a;
+    assert_almost_eq(b.as_celsius(), 10.0);
+    assert_eq!(b, c);
 }
 
 #[test]

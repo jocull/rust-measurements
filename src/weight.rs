@@ -10,7 +10,9 @@ use super::measurement::*;
 /// let metric_ton = Weight::from_metric_tons(1.0);
 /// let united_states_tons = metric_ton.as_short_tons();
 /// let united_states_pounds = metric_ton.as_pounds();
-/// println!("One metric ton is {} U.S. tons - that's {} pounds!", united_states_tons, united_states_pounds);
+/// println!(
+///     "One metric ton is {} U.S. tons - that's {} pounds!",
+///     united_states_tons, united_states_pounds);
 /// ```
 #[derive(Copy, Clone, Debug)]
 pub struct Weight {
@@ -151,12 +153,25 @@ impl Measurement for Weight {
     fn from_base_units(units: f64) -> Self {
         Self::from_kilograms(units)
     }
+
+    fn get_base_units_name(&self) -> &'static str {
+        "kg"
+    }
+
+    fn get_appropriate_units(&self) -> (&'static str, f64) {
+        // Smallest to largest
+        let list = [
+            ("ng", 1e-12),
+            ("\u{00B5}g", 1e-9),
+            ("mg", 1e-6),
+            ("g", 1e-3),
+            ("kg", 1e0),
+            ("tonnes", 1e3),
+            ("thousand tonnes", 1e6),
+            ("million tonnes", 1e9),
+        ];
+        self.pick_appropriate_units(&list)
+    }
 }
 
 implement_measurement! { Weight }
-
-impl ::std::fmt::Display for Weight {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "{:.1} kg", self.as_kilograms())
-    }
-}

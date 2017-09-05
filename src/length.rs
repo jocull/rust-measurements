@@ -1,4 +1,6 @@
 use super::measurement::*;
+use std::time::Duration;
+use speed::Speed;
 
 // Constants, metric
 const METER_NANOMETER_FACTOR: f64 = 1000000000.0;
@@ -34,37 +36,70 @@ pub struct Length {
 }
 
 impl Length {
-    // Inputs, metric
+    // Inputs, metric, with both spellings of meter/metre
+
     pub fn from_meters(meters: f64) -> Self {
         Length { meters: meters }
+    }
+
+    pub fn from_metres(metres: f64) -> Self {
+        Self::from_meters(metres)
     }
 
     pub fn from_nanometers(nanometers: f64) -> Self {
         Self::from_meters(nanometers / METER_NANOMETER_FACTOR)
     }
 
+    pub fn from_nanometres(nanometers: f64) -> Self {
+        Self::from_nanometers(nanometers)
+    }
+
     pub fn from_micrometers(micrometers: f64) -> Self {
         Self::from_meters(micrometers / METER_MICROMETER_FACTOR)
+    }
+
+    pub fn from_micrometres(micrometers: f64) -> Self {
+        Self::from_micrometers(micrometers)
     }
 
     pub fn from_millimeters(millimeters: f64) -> Self {
         Self::from_meters(millimeters / METER_MILLIMETER_FACTOR)
     }
 
+    pub fn from_millimetres(millimeters: f64) -> Self {
+        Self::from_millimeters(millimeters)
+    }
+
     pub fn from_centimeters(centimeters: f64) -> Self {
         Self::from_meters(centimeters / METER_CENTIMETER_FACTOR)
+    }
+
+    pub fn from_centimetres(centimeters: f64) -> Self {
+        Self::from_centimeters(centimeters)
     }
 
     pub fn from_decameters(decameters: f64) -> Self {
         Self::from_meters(decameters / METER_DECAMETER_FACTOR)
     }
 
+    pub fn from_decametres(decameters: f64) -> Self {
+        Self::from_decameters(decameters)
+    }
+
     pub fn from_hectometers(hectometers: f64) -> Self {
         Self::from_meters(hectometers / METER_HECTOMETER_FACTOR)
     }
 
+    pub fn from_hectometres(hectometers: f64) -> Self {
+        Self::from_hectometers(hectometers)
+    }
+
     pub fn from_kilometers(kilometers: f64) -> Self {
         Self::from_meters(kilometers / METER_KILOMETER_FACTOR)
+    }
+
+    pub fn from_kilometres(kilometers: f64) -> Self {
+        Self::from_kilometers(kilometers)
     }
 
     // Inputs, imperial
@@ -93,32 +128,64 @@ impl Length {
         self.meters * METER_NANOMETER_FACTOR
     }
 
+    pub fn as_nanometres(&self) -> f64 {
+        self.as_nanometers()
+    }
+
     pub fn as_micrometers(&self) -> f64 {
         self.meters * METER_MICROMETER_FACTOR
+    }
+
+    pub fn as_micrometres(&self) -> f64 {
+        self.as_micrometers()
     }
 
     pub fn as_millimeters(&self) -> f64 {
         self.meters * METER_MILLIMETER_FACTOR
     }
 
+    pub fn as_millimetres(&self) -> f64 {
+        self.as_millimeters()
+    }
+
     pub fn as_centimeters(&self) -> f64 {
         self.meters * METER_CENTIMETER_FACTOR
+    }
+
+    pub fn as_centimetres(&self) -> f64 {
+        self.as_centimeters()
     }
 
     pub fn as_meters(&self) -> f64 {
         self.meters
     }
 
+    pub fn as_metres(&self) -> f64 {
+        self.as_meters()
+    }
+
     pub fn as_decameters(&self) -> f64 {
         self.meters * METER_DECAMETER_FACTOR
     }
 
-    pub fn as_hectometer(&self) -> f64 {
+    pub fn as_decametres(&self) -> f64 {
+        self.as_decameters()
+    }
+
+    pub fn as_hectometers(&self) -> f64 {
         self.meters * METER_HECTOMETER_FACTOR
+    }
+
+    pub fn as_hectometres(&self) -> f64 {
+        self.as_hectometers()
     }
 
     pub fn as_kilometers(&self) -> f64 {
         self.meters * METER_KILOMETER_FACTOR
+    }
+
+    pub fn as_kilometres(&self) -> f64 {
+        self.as_kilometers()
     }
 
     // Outputs, imperial
@@ -143,6 +210,28 @@ impl Length {
     }
 }
 
+/// Length / Time = Speed
+impl ::std::ops::Div<Duration> for Length {
+    type Output = Speed;
+
+    fn div(self, rhs: Duration) -> Speed {
+        // It would be useful if Duration had a method that did this...
+        let seconds: f64 = rhs.as_secs() as f64 + ((rhs.subsec_nanos() as f64) * 1e-9);
+        Speed::from_meters_per_second(self.as_meters() / seconds)
+    }
+}
+
+/// Length / Speed = Time
+impl ::std::ops::Div<Speed> for Length {
+    type Output = Duration;
+
+    fn div(self, rhs: Speed) -> Duration {
+        let seconds =  self.as_meters() / rhs.as_meters_per_second();
+        let nanosecs = (seconds * 1e9) % 1e9;
+        Duration::new(seconds as u64, nanosecs as u32)
+    }
+}
+
 impl Measurement for Length {
     fn get_base_units(&self) -> f64 {
         self.meters
@@ -151,12 +240,26 @@ impl Measurement for Length {
     fn from_base_units(units: f64) -> Self {
         Self::from_meters(units)
     }
+
+    fn get_base_units_name(&self) -> &'static str {
+        "m"
+    }
+
+    fn get_appropriate_units(&self) -> (&'static str, f64) {
+        // Smallest to largest
+        let list = [
+            ("pm", 1e-12),
+            ("nm", 1e-9),
+            ("\u{00B5}m", 1e-6),
+            ("mm", 1e-3),
+            ("cm", 1e-2),
+            ("m", 1e0),
+            ("km", 1e3),
+            ("thousand km", 1e6),
+            ("million km", 1e9),
+        ];
+        self.pick_appropriate_units(&list)
+    }
 }
 
 implement_measurement! { Length }
-
-impl ::std::fmt::Display for Length {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "{:.1} m", self.as_meters())
-    }
-}

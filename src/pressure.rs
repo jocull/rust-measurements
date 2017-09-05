@@ -23,11 +23,11 @@ impl Pressure {
     }
 
     pub fn from_pascals(pascals: f64) -> Pressure {
-        Self::from_hectopascals(pascals * 100.0)
+        Self::from_millibars(pascals / 100.0)
     }
 
     pub fn from_kilopascals(kilopascals: f64) -> Pressure {
-        Self::from_hectopascals(kilopascals / 10.0)
+        Self::from_millibars(kilopascals * 10.0)
     }
 
     pub fn from_millibars(millibars: f64) -> Pressure {
@@ -83,12 +83,20 @@ impl Measurement for Pressure {
     fn from_base_units(units: f64) -> Self {
         Self::from_millibars(units)
     }
+
+    fn get_base_units_name(&self) -> &'static str {
+        "mbar"
+    }
+
+    fn get_appropriate_units(&self) -> (&'static str, f64) {
+        let list = [
+            ("millibars", 1e0),
+            ("bar", 1e3),
+            ("thousand bar", 1e6),
+            ("million bar", 1e9),
+        ];
+        self.pick_appropriate_units(&list)
+    }
 }
 
 implement_measurement! { Pressure }
-
-impl ::std::fmt::Display for Pressure {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "{:.1} Pa", self.as_pascals())
-    }
-}

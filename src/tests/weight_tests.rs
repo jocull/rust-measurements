@@ -171,7 +171,9 @@ fn add() {
     let a = Weight::from_kilograms(2.0);
     let b = Weight::from_kilograms(4.0);
     let c = a + b;
+    let d = b + a;
     assert_almost_eq(c.as_kilograms(), 6.0);
+    assert_eq!(c, d);
 }
 
 #[test]
@@ -184,12 +186,11 @@ fn sub() {
 
 #[test]
 fn mul() {
-    let a = Weight::from_kilograms(2.0);
-    let b = Weight::from_kilograms(4.0);
-    let c = a * b;
-    let d = a * 2.0;
-    assert_almost_eq(c.as_kilograms(), 8.0);
-    assert_almost_eq(d.as_kilograms(), 4.0);
+    let a = Weight::from_kilograms(3.0);
+    let b = a * 2.0;
+    let c = 2.0 * a;
+    assert_almost_eq(b.as_kilograms(), 6.0);
+    assert_eq!(b, c);
 }
 
 #[test]
