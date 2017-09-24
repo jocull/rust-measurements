@@ -29,6 +29,9 @@ pub use energy::Energy;
 pub mod power;
 pub use power::Power;
 
+pub mod data;
+pub use data::Data;
+
 // Include when running tests, but don't export them
 #[cfg(test)]
 #[allow(dead_code)]
