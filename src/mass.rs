@@ -1,13 +1,13 @@
 use super::measurement::*;
 
-/// The `Weight` struct can be used to deal with weights in a common way.
+/// The `Mass` struct can be used to deal with masss in a common way.
 ///
 /// #Example
 ///
 /// ```
-/// use measurements::Weight;
+/// use measurements::Mass;
 ///
-/// let metric_ton = Weight::from_metric_tons(1.0);
+/// let metric_ton = Mass::from_metric_tons(1.0);
 /// let united_states_tons = metric_ton.as_short_tons();
 /// let united_states_pounds = metric_ton.as_pounds();
 /// println!(
@@ -15,14 +15,14 @@ use super::measurement::*;
 ///     united_states_tons, united_states_pounds);
 /// ```
 #[derive(Copy, Clone, Debug)]
-pub struct Weight {
+pub struct Mass {
     kilograms: f64,
 }
 
-impl Weight {
+impl Mass {
     // Inputs, metric
     pub fn from_kilograms(kilograms: f64) -> Self {
-        Weight { kilograms: kilograms }
+        Mass { kilograms: kilograms }
     }
 
     pub fn from_micrograms(micrograms: f64) -> Self {
@@ -50,8 +50,8 @@ impl Weight {
         Self::from_kilograms(grains / 15432.358)
     }
 
-    pub fn from_pennyweights(pennyweights: f64) -> Self {
-        Self::from_kilograms(pennyweights / 643.01493)
+    pub fn from_pennymasss(pennymasss: f64) -> Self {
+        Self::from_kilograms(pennymasss / 643.01493)
     }
 
     pub fn from_ounces(ounces: f64) -> Self {
@@ -112,7 +112,7 @@ impl Weight {
         self.kilograms * 15432.358
     }
 
-    pub fn as_pennyweights(&self) -> f64 {
+    pub fn as_pennymasss(&self) -> f64 {
         self.kilograms * 643.01493
     }
 
@@ -145,7 +145,7 @@ impl Weight {
     }
 }
 
-impl Measurement for Weight {
+impl Measurement for Mass {
     fn get_base_units(&self) -> f64 {
         self.kilograms
     }
@@ -174,4 +174,4 @@ impl Measurement for Weight {
     }
 }
 
-implement_measurement! { Weight }
+implement_measurement! { Mass }

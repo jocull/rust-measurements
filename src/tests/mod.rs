@@ -1,6 +1,6 @@
 mod length_tests;
 mod temperature_tests;
-mod weight_tests;
+mod mass_tests;
 mod volume_tests;
 mod speed_tests;
 mod acceleration_tests;
