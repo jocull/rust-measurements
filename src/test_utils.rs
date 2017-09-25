@@ -1,6 +1,6 @@
 //! Utility code for test_utils
 
-const DEFAULT_DELTA: f64 = 1e-4;
+const DEFAULT_DELTA: f64 = 1e-5;
 
 /// Check two floating point values are approximately equal
 pub fn almost_eq(a: f64, b: f64) -> bool {

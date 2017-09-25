@@ -2,12 +2,13 @@
 
 use super::measurement::*;
 
-/// Number of POUNDS in a Newton
+/// Number of POUNDS force in a Newton
 pub const POUNDS_PER_NEWTON: f64 = 0.224809;
-/// Number of POUNDALS in a Newton
+/// Number of POUNDALS in a Newton.  A poundal is the force necessary to
+/// accelerate 1 pound-mass at 1 foot per second per second.
 pub const POUNDALS_PER_NEWTON: f64 = 7.2330;
 /// Number of KILOPONDS in a Newton
-pub const KILOPONDS_PER_NEWTON: f64 = 0.10197;
+pub const KILOPONDS_PER_NEWTON: f64 = 1.0 / 9.80665;
 /// Number of DYNES in a Newton
 pub const DYNES_PER_NEWTON: f64 = 1e5;
 
