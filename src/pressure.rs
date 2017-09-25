@@ -132,3 +132,133 @@ impl Measurement for Pressure {
 }
 
 implement_measurement! { Pressure }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use test_utils::assert_almost_eq;
+
+    #[test]
+    fn hectopascals() {
+        let t = Pressure::from_pascals(100.0);
+        let o = t.as_hectopascals();
+        assert_almost_eq(o, 1.0);
+
+        let t = Pressure::from_hectopascals(100.0);
+        let o = t.as_pascals();
+        assert_almost_eq(o, 10000.0);
+    }
+    #[test]
+    fn millibars() {
+        let t = Pressure::from_pascals(100.0);
+        let o = t.as_millibars();
+        assert_almost_eq(o, 1.0);
+
+        let t = Pressure::from_millibars(100.0);
+        let o = t.as_pascals();
+        assert_almost_eq(o, 10000.0);
+    }
+    #[test]
+    fn kilopascals() {
+        let t = Pressure::from_pascals(100.0);
+        let o = t.as_kilopascals();
+        assert_almost_eq(o, 0.1);
+
+        let t = Pressure::from_kilopascals(100.0);
+        let o = t.as_pascals();
+        assert_almost_eq(o, 100000.0);
+    }
+    #[test]
+    fn bars() {
+        let t = Pressure::from_pascals(100.0);
+        let o = t.as_bars();
+        assert_almost_eq(o, 0.001);
+
+        let t = Pressure::from_bars(100.0);
+        let o = t.as_pascals();
+        assert_almost_eq(o, 1e+7);
+    }
+    #[test]
+    fn atmospheres() {
+        let t = Pressure::from_pascals(100.0);
+        let o = t.as_atmospheres();
+        assert_almost_eq(o, 0.000986923);
+
+        let t = Pressure::from_atmospheres(100.0);
+        let o = t.as_pascals();
+        assert_almost_eq(o, 10132497.2616919);
+    }
+
+    #[test]
+    fn psi() {
+        let t = Pressure::from_pascals(100.0);
+        let o = t.as_psi();
+        assert_almost_eq(o, 0.0145038);
+
+        let t = Pressure::from_psi(100.0);
+        let o = t.as_pascals();
+        assert_almost_eq(o, 689476.9760513823);
+    }
+
+    // Traits
+    #[test]
+    fn add() {
+        let a = Pressure::from_pascals(2.0);
+        let b = Pressure::from_pascals(4.0);
+        let c = a + b;
+        let d = b + a;
+        assert_almost_eq(c.as_pascals(), 6.0);
+        assert_eq!(c, d);
+    }
+
+    #[test]
+    fn sub() {
+        let a = Pressure::from_pascals(2.0);
+        let b = Pressure::from_pascals(4.0);
+        let c = a - b;
+        assert_almost_eq(c.as_pascals(), -2.0);
+    }
+
+    #[test]
+    fn mul() {
+        let a = Pressure::from_pascals(3.0);
+        let b = a * 2.0;
+        let c = 2.0 * a;
+        assert_almost_eq(b.as_pascals(), 6.0);
+        assert_eq!(b, c);
+    }
+
+    #[test]
+    fn div() {
+        let a = Pressure::from_pascals(2.0);
+        let b = Pressure::from_pascals(4.0);
+        let c = a / b;
+        let d = a / 2.0;
+        assert_almost_eq(c, 0.5);
+        assert_almost_eq(d.as_pascals(), 1.0);
+    }
+
+    #[test]
+    fn eq() {
+        let a = Pressure::from_pascals(2.0);
+        let b = Pressure::from_pascals(2.0);
+        assert_eq!(a == b, true);
+    }
+
+    #[test]
+    fn neq() {
+        let a = Pressure::from_pascals(2.0);
+        let b = Pressure::from_pascals(4.0);
+        assert_eq!(a == b, false);
+    }
+
+    #[test]
+    fn cmp() {
+        let a = Pressure::from_pascals(2.0);
+        let b = Pressure::from_pascals(4.0);
+        assert_eq!(a < b, true);
+        assert_eq!(a <= b, true);
+        assert_eq!(a > b, false);
+        assert_eq!(a >= b, false);
+    }   
+}
