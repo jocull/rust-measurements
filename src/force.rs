@@ -106,7 +106,7 @@ impl Force {
 }
 
 impl Measurement for Force {
-    fn get_base_units(&self) -> f64 {
+    fn as_base_units(&self) -> f64 {
         self.newtons
     }
 
@@ -114,7 +114,7 @@ impl Measurement for Force {
         Self::from_newtons(units)
     }
 
-    fn get_base_units_name(&self) -> &'static str {
+    fn as_base_units_name(&self) -> &'static str {
         "N"
     }
 

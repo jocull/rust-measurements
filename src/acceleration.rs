@@ -59,7 +59,7 @@ impl Acceleration {
 }
 
 impl Measurement for Acceleration {
-    fn get_base_units(&self) -> f64 {
+    fn as_base_units(&self) -> f64 {
         self.meters_per_second_per_second
     }
 
@@ -67,7 +67,7 @@ impl Measurement for Acceleration {
         Self::from_meters_per_second_per_second(units)
     }
 
-    fn get_base_units_name(&self) -> &'static str {
+    fn as_base_units_name(&self) -> &'static str {
         "m/s\u{00B2}"
     }
 }
@@ -78,7 +78,7 @@ implement_measurement! { Acceleration }
 mod test {
 
     use super::*;
-    use tests::assert_almost_eq;
+    use test_utils::assert_almost_eq;
     use std::time::Duration;
     use speed::Speed;
 

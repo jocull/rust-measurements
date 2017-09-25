@@ -1,22 +1,4 @@
-//! Utility code for tests
-//! Currently contains tests, but these are going to move.
-
-#[cfg(test)]
-mod length_tests;
-#[cfg(test)]
-mod temperature_tests;
-#[cfg(test)]
-mod mass_tests;
-#[cfg(test)]
-mod volume_tests;
-#[cfg(test)]
-mod speed_tests;
-#[cfg(test)]
-mod energy_tests;
-#[cfg(test)]
-mod power_tests;
-#[cfg(test)]
-mod area_tests;
+//! Utility code for test_utils
 
 const DEFAULT_DELTA: f64 = 0.00001;
 

@@ -45,6 +45,8 @@ pub use force::Force;
 pub mod area;
 pub use area::Area;
 
+pub mod prelude;
+
 /// For given types A, B and C, implement, using base units:
 ///     - A = B * C
 ///     - A = C * B
@@ -56,7 +58,7 @@ macro_rules! impl_maths {
             type Output = $a;
 
             fn mul(self, rhs: $b) -> Self::Output {
-                Self::Output::from_base_units(self.get_base_units() * rhs.get_base_units())
+                Self::Output::from_base_units(self.as_base_units() * rhs.as_base_units())
             }
         }
 
@@ -64,7 +66,7 @@ macro_rules! impl_maths {
             type Output = $b;
 
             fn div(self, rhs: $b) -> Self::Output {
-                Self::Output::from_base_units(self.get_base_units() / rhs.get_base_units())
+                Self::Output::from_base_units(self.as_base_units() / rhs.as_base_units())
             }
         }
     };
@@ -74,7 +76,7 @@ macro_rules! impl_maths {
             type Output = $a;
 
             fn mul(self, rhs: $b) -> Self::Output {
-                Self::Output::from_base_units(self.get_base_units() * rhs.get_base_units())
+                Self::Output::from_base_units(self.as_base_units() * rhs.as_base_units())
             }
         }
 
@@ -82,7 +84,7 @@ macro_rules! impl_maths {
             type Output = $a;
 
             fn mul(self, rhs: $c) -> Self::Output {
-                Self::Output::from_base_units(self.get_base_units() * rhs.get_base_units())
+                Self::Output::from_base_units(self.as_base_units() * rhs.as_base_units())
             }
         }
 
@@ -90,7 +92,7 @@ macro_rules! impl_maths {
             type Output = $b;
 
             fn div(self, rhs: $c) -> Self::Output {
-                Self::Output::from_base_units(self.get_base_units() / rhs.get_base_units())
+                Self::Output::from_base_units(self.as_base_units() / rhs.as_base_units())
             }
         }
 
@@ -98,14 +100,14 @@ macro_rules! impl_maths {
             type Output = $c;
 
             fn div(self, rhs: $b) -> Self::Output {
-                Self::Output::from_base_units(self.get_base_units() / rhs.get_base_units())
+                Self::Output::from_base_units(self.as_base_units() / rhs.as_base_units())
             }
         }
     }
 }
 
 impl Measurement for std::time::Duration {
-    fn get_base_units(&self) -> f64 {
+    fn as_base_units(&self) -> f64 {
         self.as_secs() as f64 + ((self.subsec_nanos() as f64) * 1e-9)
     }
 
@@ -115,7 +117,7 @@ impl Measurement for std::time::Duration {
         std::time::Duration::new(secs, subsec_nanos)
     }
 
-    fn get_base_units_name(&self) -> &'static str {
+    fn as_base_units_name(&self) -> &'static str {
         "s"
     }
 }
@@ -130,4 +132,4 @@ impl_maths!(Power, Force, Speed);
 impl_maths!(Speed, std::time::Duration, Acceleration);
 impl_maths!(Volume, Length, Area);
 
-pub mod tests;
+pub mod test_utils;
