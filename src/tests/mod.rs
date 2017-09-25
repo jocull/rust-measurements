@@ -6,6 +6,7 @@ mod speed_tests;
 mod acceleration_tests;
 mod energy_tests;
 mod power_tests;
+mod area_tests;
 
 const DEFAULT_DELTA: f64 = 0.00001;
 
@@ -14,7 +15,7 @@ fn almost_eq(a: f64, b: f64) -> bool {
 }
 
 fn almost_eq_delta(a: f64, b: f64, d: f64) -> bool {
-    (a - b).abs() < d
+    ((a - b).abs() / a) < d
 }
 
 fn assert_almost_eq(a: f64, b: f64) {

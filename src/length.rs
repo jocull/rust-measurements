@@ -5,7 +5,7 @@ pub const METER_NANOMETER_FACTOR: f64 = 1000000000.0;
 pub const METER_MICROMETER_FACTOR: f64 = 1000000.0;
 pub const METER_MILLIMETER_FACTOR: f64 = 1000.0;
 pub const METER_CENTIMETER_FACTOR: f64 = 100.0;
-pub const METER_DECAMETER_FACTOR: f64 = 0.1;
+pub const METER_DECIMETER_FACTOR: f64 = 10.0;
 pub const METER_HECTOMETER_FACTOR: f64 = 0.01;
 pub const METER_KILOMETER_FACTOR: f64 = 0.001;
 
@@ -76,12 +76,12 @@ impl Length {
         Self::from_centimeters(centimeters)
     }
 
-    pub fn from_decameters(decameters: f64) -> Self {
-        Self::from_meters(decameters / METER_DECAMETER_FACTOR)
+    pub fn from_decimeters(decimeters: f64) -> Self {
+        Self::from_meters(decimeters / METER_DECIMETER_FACTOR)
     }
 
-    pub fn from_decametres(decameters: f64) -> Self {
-        Self::from_decameters(decameters)
+    pub fn from_decimetres(decimeters: f64) -> Self {
+        Self::from_decimeters(decimeters)
     }
 
     pub fn from_hectometers(hectometers: f64) -> Self {
@@ -162,12 +162,12 @@ impl Length {
         self.as_meters()
     }
 
-    pub fn as_decameters(&self) -> f64 {
-        self.meters * METER_DECAMETER_FACTOR
+    pub fn as_decimeters(&self) -> f64 {
+        self.meters * METER_DECIMETER_FACTOR
     }
 
-    pub fn as_decametres(&self) -> f64 {
-        self.as_decameters()
+    pub fn as_decimetres(&self) -> f64 {
+        self.as_decimeters()
     }
 
     pub fn as_hectometers(&self) -> f64 {

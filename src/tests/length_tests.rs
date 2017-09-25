@@ -51,15 +51,15 @@ fn centimeters() {
 }
 
 #[test]
-fn decameter() {
+fn decimeter() {
     let i1 = Length::from_meters(100.0);
-    let r1 = i1.as_decameters();
+    let r1 = i1.as_decimeters();
 
-    let i2 = Length::from_decameters(100.0);
+    let i2 = Length::from_decimeters(100.0);
     let r2 = i2.as_meters();
 
-    assert_almost_eq(r1, 10.0);
-    assert_almost_eq(r2, 1000.0);
+    assert_almost_eq(r1, 1000.0);
+    assert_almost_eq(r2, 10.0);
 }
 
 #[test]

@@ -1,7 +1,7 @@
 use super::measurement::*;
 use super::length;
 
-const SQUARE_METER_ACRE_FACTOR: f64 = 4046.86;
+const SQUARE_METER_ACRE_FACTOR: f64 = 1.0 / 4046.86;
 
 /// The `Area` struct can be used to deal with areas in a common way.
 /// Common metric and imperial units are supported.
@@ -71,14 +71,14 @@ impl Area {
         Self::from_square_centimeters(square_centimetres)
     }
 
-    pub fn from_square_decameters(square_decameters: f64) -> Self {
+    pub fn from_square_decimeters(square_decimeters: f64) -> Self {
         Self::from_square_meters(
-            square_decameters / (length::METER_DECAMETER_FACTOR * length::METER_DECAMETER_FACTOR),
+            square_decimeters / (length::METER_DECIMETER_FACTOR * length::METER_DECIMETER_FACTOR),
         )
     }
 
-    pub fn from_square_decametres(square_decametres: f64) -> Self {
-        Self::from_square_decameters(square_decametres)
+    pub fn from_square_decimetres(square_decimetres: f64) -> Self {
+        Self::from_square_decimeters(square_decimetres)
     }
 
     pub fn from_square_hectometers(square_hectometers: f64) -> Self {
@@ -175,12 +175,12 @@ impl Area {
         self.as_square_meters()
     }
 
-    pub fn as_square_decameters(&self) -> f64 {
-        self.square_meters * (length::METER_DECAMETER_FACTOR * length::METER_DECAMETER_FACTOR)
+    pub fn as_square_decimeters(&self) -> f64 {
+        self.square_meters * (length::METER_DECIMETER_FACTOR * length::METER_DECIMETER_FACTOR)
     }
 
-    pub fn as_square_decametres(&self) -> f64 {
-        self.as_square_decameters()
+    pub fn as_square_decimetres(&self) -> f64 {
+        self.as_square_decimeters()
     }
 
     pub fn as_square_hectometers(&self) -> f64 {

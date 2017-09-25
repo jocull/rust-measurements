@@ -69,11 +69,9 @@ macro_rules! implement_display {
 
         impl ::std::fmt::Display for $t {
             fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                let p = f.precision().unwrap_or(1);
-                let w = f.width().unwrap_or(0);
                 let (unit, value) = self.get_appropriate_units();
-                write!(f, "{value:width$.prec$}\u{00A0}{unit}",
-                    prec=p, width=w, value=value, unit=unit)
+                value.fmt(f)?;
+                write!(f, "\u{00A0}{0}", unit)
             }
         }
     )*)
