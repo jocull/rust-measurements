@@ -1,3 +1,5 @@
+//! Types and contants for handling energy.
+
 use super::measurement::*;
 
 /// The `Energy` struct can be used to deal with energies in a common way.
@@ -17,50 +19,62 @@ pub struct Energy {
 }
 
 impl Energy {
+    /// Create a new Energy from a floating point value in Joules (or watt-seconds)
     pub fn from_joules(joules: f64) -> Energy {
         Energy { joules: joules }
     }
 
+    /// Create a new Energy from a floating point value in Kilocalories (often just called calories)
     pub fn from_kcalories(kcalories: f64) -> Energy {
         Self::from_joules(kcalories * 4186.8)
     }
 
+    /// Create a new Energy from a floating point value in British Thermal Units
     pub fn from_btu(btu: f64) -> Energy {
         Self::from_joules(btu * 1055.056)
     }
 
+    /// Create a new Energy from a floating point value in electron Volts (eV).
     pub fn from_e_v(e_v: f64) -> Energy {
         Self::from_joules(e_v / 6.241509479607718e+18)
     }
 
+    /// Create a new Energy from a floating point value in Watt-hours (Wh)
     pub fn from_watt_hours(wh: f64) -> Energy {
         Self::from_joules(wh * 3600.0)
     }
 
+    /// Create a new Energy from a floating point value in Kilowatt-Hours (kWh)
     pub fn from_kilowatt_hours(kwh: f64) -> Energy {
         Self::from_joules(kwh * 3600.0 * 1000.0)
     }
 
+    /// Convert this Energy into a floating point value in Joules (or watt-seconds)
     pub fn as_joules(&self) -> f64 {
         self.joules
     }
 
+    /// Convert this Energy into a floating point value in Kilocalories (often just called calories)
     pub fn as_kcalories(&self) -> f64 {
         self.joules / 4186.8
     }
 
+    /// Convert this Energy into a floating point value in British Thermal Units
     pub fn as_btu(&self) -> f64 {
         self.joules / 1055.056
     }
 
+    /// Convert this Energy into a floating point value in electron volts (eV)
     pub fn as_e_v(&self) -> f64 {
         self.joules * 6.241509479607718e+18
     }
 
+    /// Convert this Energy into a floating point value in Watt-hours (Wh)
     pub fn as_watt_hours(&self) -> f64 {
         self.joules / 3600.0
     }
 
+    /// Convert this Energy into a floating point value in kilowatt-hours (kWh)
     pub fn as_kilowatt_hours(&self) -> f64 {
         self.joules / (3600.0 * 1000.0)
     }

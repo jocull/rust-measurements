@@ -1,4 +1,19 @@
+//! Types and contants for handling pressure.
+
 use super::measurement::*;
+
+/// Number of Pascals in an atomosphere
+pub const PASCAL_ATMOSPHERE_FACTOR: f64 = 101_325.0;
+/// Number of Pascals in a hectopascal
+pub const PASCAL_HECTOPASCAL_FACTOR: f64 = 100.0;
+/// Number of Pascals in a kilopascal
+pub const PASCAL_KILOPASCAL_FACTOR: f64 = 1000.0;
+/// Number of Pascals in a millibar
+pub const PASCAL_MILLIBAR_FACTOR: f64 = 100.0;
+/// Number of Pascals in a Bar
+pub const PASCAL_BAR_FACTOR: f64 = 100_000.0;
+/// Number of Pascals in a PSI
+pub const PASCAL_PSI_FACTOR: f64 = 6894.76;
 
 /// The `Pressure` struct can be used to deal with presssures in a common way.
 /// Common metric and imperial units are supported.
@@ -18,60 +33,74 @@ pub struct Pressure {
 }
 
 impl Pressure {
+    /// Create new Pressure from floating point value in Pascals (Pa)
     pub fn from_pascals(pascals: f64) -> Pressure {
         Pressure { pascals: pascals }
     }
 
+    /// Create new Pressure from floating point value in hectopascals (hPA)
     pub fn from_hectopascals(hectopascals: f64) -> Pressure {
-        Self::from_pascals(hectopascals * 100.0)
+        Self::from_pascals(hectopascals * PASCAL_HECTOPASCAL_FACTOR)
     }
 
+    /// Create new Pressure from floating point value in millibars (mBar)
     pub fn from_millibars(millibars: f64) -> Pressure {
-        Self::from_pascals(millibars * 100.0)
+        Self::from_pascals(millibars * PASCAL_MILLIBAR_FACTOR)
     }
 
+    /// Create new Pressure from floating point value in kilopascals (kPa)
     pub fn from_kilopascals(kilopascals: f64) -> Pressure {
-        Self::from_pascals(kilopascals * 1000.0)
+        Self::from_pascals(kilopascals * PASCAL_KILOPASCAL_FACTOR)
     }
 
+    /// Create new Pressure from floating point value in psi
     pub fn from_psi(psi: f64) -> Pressure {
-        Self::from_pascals(psi * 6894.76)
+        Self::from_pascals(psi * PASCAL_PSI_FACTOR)
     }
 
+    /// Create new Pressure from floating point value in Bar
     pub fn from_bars(bars: f64) -> Pressure {
-        Self::from_pascals(bars * 100_000.0)
+        Self::from_pascals(bars * PASCAL_BAR_FACTOR)
     }
 
+    /// Create new Pressure from floating point value in Atmospheres
     pub fn from_atmospheres(atmospheres: f64) -> Pressure {
-        Self::from_pascals(atmospheres * 101_325.0)
+        Self::from_pascals(atmospheres * PASCAL_ATMOSPHERE_FACTOR)
     }
 
+    /// Convert this Pressure into a floating point value in Pascals
     pub fn as_pascals(&self) -> f64 {
         self.pascals
     }
 
+    /// Convert this Pressure into a floating point value in hectopascals (hPA)
     pub fn as_hectopascals(&self) -> f64 {
-        self.pascals / 100.0
+        self.pascals / PASCAL_HECTOPASCAL_FACTOR
     }
 
+    /// Convert this Pressure into a floating point value in millibars (mBar)
     pub fn as_millibars(&self) -> f64 {
-        self.pascals / 100.0
+        self.pascals / PASCAL_MILLIBAR_FACTOR
     }
 
+    /// Convert this Pressure into a floating point value in kilopascals (kPA)
     pub fn as_kilopascals(&self) -> f64 {
-        self.pascals / 1000.0
+        self.pascals / PASCAL_KILOPASCAL_FACTOR
     }
 
+    /// Convert this Pressure into a floating point value in pounds per square-inch (psi)
     pub fn as_psi(&self) -> f64 {
-        self.pascals / 6894.76
+        self.pascals / PASCAL_PSI_FACTOR
     }
 
+    /// Convert this Pressure into a floating point value in Bar
     pub fn as_bars(&self) -> f64 {
-        self.pascals / 100_000.0
+        self.pascals / PASCAL_BAR_FACTOR
     }
 
+    /// Convert this Pressure into a floating point value in Atmospheres
     pub fn as_atmospheres(&self) -> f64 {
-        self.pascals / 101_325.0
+        self.pascals / PASCAL_ATMOSPHERE_FACTOR
     }
 }
 

@@ -1,6 +1,9 @@
+//! Types and contants for handling temperature.
+
 use super::measurement::*;
 
-/// The `Temperature` struct can be used to deal with temperatures in a common way.
+/// The `Temperature` struct can be used to deal with absolute temperatures in
+/// a common way.
 ///
 /// # Example
 ///
@@ -35,68 +38,84 @@ pub struct TemperatureDelta {
 }
 
 impl TemperatureDelta {
+    /// Create a new TemperatureDelta from a floating point value in Kelvin
     pub fn from_kelvin(kelvin_degrees: f64) -> Self {
         TemperatureDelta { kelvin_degrees: kelvin_degrees }
     }
 
+    /// Create a new TemperatureDelta from a floating point value in Celsius
     pub fn from_celsius(celsius_degrees: f64) -> Self {
         TemperatureDelta::from_kelvin(celsius_degrees)
     }
 
+    /// Create a new TemperatureDelta from a floating point value in Fahrenheit
     pub fn from_fahrenheit(farenheit_degrees: f64) -> Self {
         TemperatureDelta { kelvin_degrees: farenheit_degrees / 1.8 }
     }
 
+    /// Create a new TemperatureDelta from a floating point value in Rankine
     pub fn from_rankine(rankine_degrees: f64) -> Self {
         TemperatureDelta { kelvin_degrees: rankine_degrees / 1.8 }
     }
 
+    /// Convert this TemperatureDelta to a floating point value in Kelvin
     pub fn as_kelvin(&self) -> f64 {
         self.kelvin_degrees
     }
 
+    /// Convert this TemperatureDelta to a floating point value in Celsius
     pub fn as_celsius(&self) -> f64 {
         self.kelvin_degrees
     }
 
+    /// Convert this TemperatureDelta to a floating point value in Fahrenheit
     pub fn as_fahrenheit(&self) -> f64 {
         self.kelvin_degrees * 1.8
     }
 
+    /// Convert this TemperatureDelta to a floating point value in Rankine
     pub fn as_rankine(&self) -> f64 {
         self.kelvin_degrees * 1.8
     }
 }
 
 impl Temperature {
+    /// Create a new Temperature from a floating point value in Kelvin
     pub fn from_kelvin(degrees_kelvin: f64) -> Self {
         Temperature { degrees_kelvin: degrees_kelvin }
     }
 
+    /// Create a new Temperature from a floating point value in Celsius
     pub fn from_celsius(degrees_celsius: f64) -> Self {
         Self::from_kelvin(degrees_celsius + 273.15)
     }
 
+    /// Create a new Temperature from a floating point value in Fahrenheit
     pub fn from_fahrenheit(degrees_fahrenheit: f64) -> Self {
         Self::from_kelvin((degrees_fahrenheit - 32.0) / 1.8 + 273.15)
     }
 
+    /// Create a new Temperature from a floating point value in Rankine
     pub fn from_rankine(degrees_rankine: f64) -> Self {
         Self::from_kelvin((degrees_rankine - 491.67) / 1.8 + 273.15)
     }
 
+    /// Convert this absolute Temperature to a floating point value in Kelvin
     pub fn as_kelvin(&self) -> f64 {
         self.degrees_kelvin
     }
 
+    /// Convert this absolute Temperature to a floating point value in Celsius
     pub fn as_celsius(&self) -> f64 {
         self.degrees_kelvin - 273.15
     }
 
+    /// Convert this absolute Temperature to a floating point value in Fahrenheit
     pub fn as_fahrenheit(&self) -> f64 {
         (self.degrees_kelvin - 273.15) * 1.8 + 32.0
     }
 
+    /// Convert this absolute Temperature to a floating point value in Rankine
     pub fn as_rankine(&self) -> f64 {
         (self.degrees_kelvin - 273.15) * 1.8 + 491.67
     }

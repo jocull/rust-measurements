@@ -1,4 +1,15 @@
+//! Types and contants for handling power.
+
 use super::measurement::*;
+
+/// Number of horsepower in a watt
+pub const WATT_HORSEPOWER_FACTOR: f64 = 1.0 / 745.6998715822702;
+/// Number of BTU/min in a watt
+pub const WATT_BTU_MIN_FACTOR: f64 = 1.0 / 17.58426666666667;
+/// Number of kW in a W
+pub const WATT_KILOWATT_FACTOR: f64 = 1e-3;
+/// Number of pferdstarken (PS) in a W
+pub const WATT_PS_FACTOR: f64 = 1.0 / 735.499;
 
 /// The `Power` struct can be used to deal with energies in a common way.
 /// Common metric and imperial units are supported.
@@ -18,36 +29,64 @@ pub struct Power {
 }
 
 impl Power {
+    /// Create a new Power from a floating point value in Watts
     pub fn from_watts(watts: f64) -> Power {
         Power { watts: watts }
     }
 
+    /// Create a new Power from a floating point value in horsepower (hp)
     pub fn from_horsepower(horsepower: f64) -> Power {
-        Self::from_watts(horsepower * 745.6998715822702)
+        Self::from_watts(horsepower / WATT_HORSEPOWER_FACTOR)
     }
 
+    /// Create a new Power from a floating point value in metric horsepower (PS)
+    pub fn from_ps(ps: f64) -> Power {
+        Self::from_watts(ps / WATT_PS_FACTOR)
+    }
+
+    /// Create a new Power from a floating point value in metric horsepower (PS)
+    pub fn from_metric_horsepower(metric_horsepower: f64) -> Power {
+        Self::from_watts(metric_horsepower / WATT_PS_FACTOR)
+    }
+
+    /// Create a new Power from a floating point value in BTU/mjn
     pub fn from_btu_per_minute(btu_per_minute: f64) -> Power {
-        Self::from_watts(btu_per_minute * 17.58426666666667)
+        Self::from_watts(btu_per_minute / WATT_BTU_MIN_FACTOR)
     }
 
+    /// Create a new Power from a floating point value in Kilowatts (kW)
     pub fn from_kilowatts(kw: f64) -> Power {
-        Self::from_watts(kw * 1000.0)
+        Self::from_watts(kw / WATT_KILOWATT_FACTOR)
     }
 
+    /// Convert this Power into a floating point value in Watts
     pub fn as_watts(&self) -> f64 {
         self.watts
     }
 
+    /// Convert this Power into a floating point value in horsepower (hp)
     pub fn as_horsepower(&self) -> f64 {
-        self.watts / 745.6998715822702
+        self.watts * WATT_HORSEPOWER_FACTOR
     }
 
+    /// Convert this Power into a floating point value in metric horsepower (PS)
+    pub fn as_ps(&self) -> f64 {
+        self.watts * WATT_PS_FACTOR
+    }
+
+    /// Convert this Power into a floating point value in metric horsepower (PS)
+    pub fn as_metric_horsepower(&self) -> f64 {
+        self.watts * WATT_PS_FACTOR
+    }
+
+    /// Convert this Power into a floating point value in BTU/min
     pub fn as_btu_per_minute(&self) -> f64 {
-        self.watts / 17.58426666666667
+        self.watts * WATT_BTU_MIN_FACTOR
     }
 
+    /// Convert this Power into a floating point value in kilowatts (kW)
     pub fn as_kilowatts(&self) -> f64 {
-        self.watts / 1000.0
+        self.watts * WATT_KILOWATT_FACTOR
     }
 }
 

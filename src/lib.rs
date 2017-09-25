@@ -1,9 +1,19 @@
+//! # Measurements
+//!
+//! Measurements is a crate that lets you represent physical quantities, such
+//! as Lengths, Masses, Pressures, etc. Each quantity has a series of
+//! functions that allow you to convert to and from common units. You can also
+//! perform arithmetic on the quantities - for example you can divide a Force
+//! by an Area to get a Pressure.
+
+#![deny(warnings, missing_docs)]
+
 #[macro_use]
 mod measurement;
 pub use measurement::Measurement;
 
 pub mod length;
-pub use length::Length;
+pub use length::{Distance, Length};
 
 pub mod temperature;
 pub use temperature::{Temperature, TemperatureDelta};
@@ -36,9 +46,9 @@ pub mod area;
 pub use area::Area;
 
 /// For given types A, B and C, implement, using base units:
-///     - A = B * C 
-///     - A = C * B 
-///     - B = A / C 
+///     - A = B * C
+///     - A = C * B
+///     - B = A / C
 ///     - C = A / B
 macro_rules! impl_maths {
     ($a:ty, $b:ty) => {
@@ -120,7 +130,4 @@ impl_maths!(Power, Force, Speed);
 impl_maths!(Speed, std::time::Duration, Acceleration);
 impl_maths!(Volume, Length, Area);
 
-// Include when running tests, but don't export them
-#[cfg(test)]
-#[allow(dead_code)]
-mod tests;
+pub mod tests;

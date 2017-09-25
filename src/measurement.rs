@@ -35,6 +35,13 @@
 /// fn main() { }
 /// ```
 pub trait Measurement {
+    /// Returns a string containing the most appropriate units for this quantity,
+    /// and a floating point value representing this quantity in those units.
+    /// Useful when, for example, a length might be in millimeters if it is very small,
+    /// or kilometers when it is very large.
+    ///
+    /// The default implementation always selects the base unit. Override in your
+    /// Measurement  impl to select better units if required.
     fn get_appropriate_units(&self) -> (&'static str, f64) {
         (self.get_base_units_name(), self.get_base_units())
     }
@@ -54,10 +61,14 @@ pub trait Measurement {
         (list[0].0, self.get_base_units() / list[0].1)
     }
 
+    /// Return the base unit for this type, as a string.
+    /// For example "kilograms"
     fn get_base_units_name(&self) -> &'static str;
 
+    /// Get this quantity in the base units
     fn get_base_units(&self) -> f64;
 
+    /// Create a new quantity from the base units
     fn from_base_units(units: f64) -> Self;
 }
 
@@ -70,9 +81,9 @@ macro_rules! implement_display {
         impl ::std::fmt::Display for $t {
             fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
                 let (unit, value) = self.get_appropriate_units();
-                value.fmt(f)?;
-                "\u{00A0}".fmt(f)?;
-                unit.fmt(f)
+                value.fmt(f)?;      // Value
+                "\u{00A0}".fmt(f)?; // Non-breaking space
+                unit.fmt(f)         // Units
             }
         }
     )*)
@@ -103,7 +114,7 @@ macro_rules! implement_measurement {
             }
         }
 
-        // Dividing a `$t` by another `$` returns a ratio.
+        // Dividing a `$t` by another `$t` returns a ratio.
         //
         impl ::std::ops::Div<$t> for $t {
             type Output = f64;
@@ -113,7 +124,7 @@ macro_rules! implement_measurement {
             }
         }
 
-        // Dividing a `$` by a factor returns a new portion of the measurement.
+        // Dividing a `$t` by a factor returns a new portion of the measurement.
         //
         impl ::std::ops::Div<f64> for $t {
             type Output = Self;
@@ -133,7 +144,7 @@ macro_rules! implement_measurement {
             }
         }
 
-        // Multiplying by a factor is commutative
+        // Multiplying `$t` by a factor is commutative
         impl ::std::ops::Mul<$t> for f64 {
             type Output = $t;
 
