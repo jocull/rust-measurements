@@ -1,5 +1,5 @@
 use super::measurement::*;
-use super::Power;
+use super::*;
 use std::time::Duration;
 
 /// The `Energy` struct can be used to deal with energies in a common way.
@@ -73,9 +73,7 @@ impl ::std::ops::Div<Duration> for Energy {
     type Output = Power;
 
     fn div(self, rhs: Duration) -> Power {
-        // It would be useful if Duration had a method that did this...
-        let seconds: f64 = rhs.as_secs() as f64 + ((rhs.subsec_nanos() as f64) * 1e-9);
-        Power::from_watts(self.as_joules() / seconds)
+        Power::from_watts(self.as_joules() / duration_as_f64(rhs))
     }
 }
 
@@ -84,9 +82,27 @@ impl ::std::ops::Div<Power> for Energy {
     type Output = Duration;
 
     fn div(self, rhs: Power) -> Duration {
-        let seconds =  self.as_joules() / rhs.as_watts();
+        let seconds = self.as_joules() / rhs.as_watts();
         let nanosecs = (seconds * 1e9) % 1e9;
         Duration::new(seconds as u64, nanosecs as u32)
+    }
+}
+
+/// Energy / Length = Force
+impl ::std::ops::Div<Length> for Energy {
+    type Output = Force;
+
+    fn div(self, rhs: Length) -> Force {
+        Force::from_newtons(self.as_joules() / rhs.as_meters())
+    }
+}
+
+/// Energy / Force = Length
+impl ::std::ops::Div<Force> for Energy {
+    type Output = Length;
+
+    fn div(self, rhs: Force) -> Length {
+        Length::from_meters(self.as_joules() / rhs.as_newtons())
     }
 }
 

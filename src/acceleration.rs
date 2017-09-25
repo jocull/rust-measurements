@@ -1,5 +1,5 @@
 use super::measurement::*;
-use super::{Force, Mass, Speed};
+use super::*;
 use std::time::Duration;
 
 /// The `Acceleration` struct can be used to deal with Accelerations in a common way.
@@ -32,12 +32,20 @@ impl Acceleration {
         Acceleration::from_meters_per_second_per_second(metres_per_second_per_second)
     }
 
+    pub fn from_feet_per_second_per_second(feet_per_second_per_second: f64) -> Acceleration {
+        Acceleration::from_metres_per_second_per_second(feet_per_second_per_second / length::METER_FEET_FACTOR)
+    }
+
     pub fn as_meters_per_second_per_second(&self) -> f64 {
         self.meters_per_second_per_second
     }
 
     pub fn as_metres_per_second_per_second(&self) -> f64 {
         self.as_meters_per_second_per_second()
+    }
+
+    pub fn as_feet_per_second_per_second(&self) -> f64 {
+        self.meters_per_second_per_second * length::METER_FEET_FACTOR
     }
 }
 
@@ -46,9 +54,7 @@ impl ::std::ops::Mul<Duration> for Acceleration {
     type Output = Speed;
 
     fn mul(self, rhs: Duration) -> Speed {
-        // It would be useful if Duration had a method that did this...
-        let seconds: f64 = rhs.as_secs() as f64 + ((rhs.subsec_nanos() as f64) * 1e-9);
-        Speed::from_meters_per_second(self.as_meters_per_second_per_second() * seconds)
+        Speed::from_meters_per_second(self.as_meters_per_second_per_second() * duration_as_f64(rhs))
     }
 }
 

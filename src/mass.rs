@@ -1,5 +1,5 @@
 use super::measurement::*;
-use super::{Acceleration, Force};
+use super::*;
 
 /// The `Mass` struct can be used to deal with mass in a common way.
 ///
@@ -151,7 +151,7 @@ impl ::std::ops::Mul<Acceleration> for Mass {
     type Output = Force;
 
     fn mul(self, rhs: Acceleration) -> Force {
-        rhs * self 
+        rhs * self
     }
 }
 

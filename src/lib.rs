@@ -35,6 +35,10 @@ pub use force::Force;
 pub mod area;
 pub use area::Area;
 
+pub fn duration_as_f64(duration: std::time::Duration) -> f64 {
+    duration.as_secs() as f64 + ((duration.subsec_nanos() as f64) * 1e-9)
+}
+
 // Include when running tests, but don't export them
 #[cfg(test)]
 #[allow(dead_code)]

@@ -1,5 +1,5 @@
 use super::measurement::*;
-use super::{Acceleration, Area, Mass, Pressure};
+use super::*;
 
 /// The `Force` struct can be used to deal with force in a common way.
 ///
@@ -125,6 +125,15 @@ impl ::std::ops::Div<Pressure> for Force {
     }
 }
 
+/// Force * Length = Energy
+impl ::std::ops::Mul<Length> for Force {
+    type Output = Energy;
+
+    fn mul(self, rhs: Length) -> Energy {
+        Energy::from_joules(self.as_newtons() * rhs.as_meters())
+    }
+}
+
 impl Measurement for Force {
     fn get_base_units(&self) -> f64 {
         self.newtons
@@ -152,7 +161,6 @@ impl Measurement for Force {
         ];
         self.pick_appropriate_units(&list)
     }
-
 }
 
 implement_measurement! { Force }

@@ -1,5 +1,5 @@
 use super::measurement::*;
-use super::{Length, Area};
+use super::*;
 
 /// The `Volume` struct can be used to deal with volumes in a common way.
 ///

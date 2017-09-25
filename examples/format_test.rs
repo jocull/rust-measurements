@@ -20,7 +20,10 @@ fn main() {
         println!("Volume of {0:.3}", Volume::from_litres(val));
         println!("Mass of {0:.3}", Mass::from_kilograms(val));
         println!("Speed of {0:.3}", Speed::from_meters_per_second(val));
-        println!("Acceleration of {0:.3}", Acceleration::from_meters_per_second_per_second(val));
+        println!(
+            "Acceleration of {0:.3}",
+            Acceleration::from_meters_per_second_per_second(val)
+        );
         println!("Energy of {0:.3}", Energy::from_joules(val));
         println!("Power of {0:.3}", Power::from_watts(val));
         println!("Force of {0:.3}", Force::from_newtons(val));

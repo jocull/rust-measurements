@@ -1,6 +1,5 @@
 use super::measurement::*;
-use super::Length;
-use super::Acceleration;
+use super::*;
 use std::time::Duration;
 
 /// The `Speed` struct can be used to deal with speeds in a common way.
@@ -68,7 +67,7 @@ impl ::std::ops::Div<Acceleration> for Speed {
     type Output = Duration;
 
     fn div(self, rhs: Acceleration) -> Duration {
-        let seconds =  self.as_meters_per_second() / rhs.as_meters_per_second_per_second();
+        let seconds = self.as_meters_per_second() / rhs.as_meters_per_second_per_second();
         let nanosecs = (seconds * 1e9) % 1e9;
         Duration::new(seconds as u64, nanosecs as u32)
     }
@@ -79,9 +78,7 @@ impl ::std::ops::Div<Duration> for Speed {
     type Output = Acceleration;
 
     fn div(self, rhs: Duration) -> Acceleration {
-        // It would be useful if Duration had a method that did this...
-        let seconds: f64 = rhs.as_secs() as f64 + ((rhs.subsec_nanos() as f64) * 1e-9);
-        Acceleration::from_meters_per_second_per_second(self.as_meters_per_second() / seconds)
+        Acceleration::from_meters_per_second_per_second(self.as_meters_per_second() / duration_as_f64(rhs))
     }
 }
 
@@ -90,9 +87,7 @@ impl ::std::ops::Mul<Duration> for Speed {
     type Output = Length;
 
     fn mul(self, rhs: Duration) -> Length {
-        // It would be useful if Duration had a method that did this...
-        let seconds: f64 = rhs.as_secs() as f64 + ((rhs.subsec_nanos() as f64) * 1e-9);
-        Length::from_meters(self.as_meters_per_second() * seconds)
+        Length::from_meters(self.as_meters_per_second() * duration_as_f64(rhs))
     }
 }
 

@@ -50,7 +50,7 @@ pub trait Measurement {
             if value.abs() > 1.0 {
                 return (unit, value);
             }
-        };
+        }
         (list[0].0, self.get_base_units() / list[0].1)
     }
 

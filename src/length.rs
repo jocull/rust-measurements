@@ -1,8 +1,6 @@
 use super::measurement::*;
+use super::*;
 use std::time::Duration;
-use speed::Speed;
-use area::Area;
-use volume::Volume;
 
 // Constants, metric
 pub const METER_NANOMETER_FACTOR: f64 = 1000000000.0;
@@ -217,9 +215,7 @@ impl ::std::ops::Div<Duration> for Length {
     type Output = Speed;
 
     fn div(self, rhs: Duration) -> Speed {
-        // It would be useful if Duration had a method that did this...
-        let seconds: f64 = rhs.as_secs() as f64 + ((rhs.subsec_nanos() as f64) * 1e-9);
-        Speed::from_meters_per_second(self.as_meters() / seconds)
+        Speed::from_meters_per_second(self.as_meters() / duration_as_f64(rhs))
     }
 }
 
@@ -228,7 +224,7 @@ impl ::std::ops::Div<Speed> for Length {
     type Output = Duration;
 
     fn div(self, rhs: Speed) -> Duration {
-        let seconds =  self.as_meters() / rhs.as_meters_per_second();
+        let seconds = self.as_meters() / rhs.as_meters_per_second();
         let nanosecs = (seconds * 1e9) % 1e9;
         Duration::new(seconds as u64, nanosecs as u32)
     }
@@ -242,6 +238,16 @@ impl ::std::ops::Mul<Area> for Length {
         Volume::from_cubic_meters(self.as_meters() * rhs.as_square_meters())
     }
 }
+
+/// Length * Force = Energy
+impl ::std::ops::Mul<Force> for Length {
+    type Output = Energy;
+
+    fn mul(self, rhs: Force) -> Energy {
+        Energy::from_joules(rhs.as_newtons() * self.as_meters())
+    }
+}
+
 
 impl Measurement for Length {
     fn get_base_units(&self) -> f64 {

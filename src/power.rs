@@ -1,6 +1,6 @@
 use super::measurement::*;
+use super::*;
 use std::time::Duration;
-use super::Energy;
 
 /// The `Power` struct can be used to deal with energies in a common way.
 /// Common metric and imperial units are supported.
@@ -58,9 +58,7 @@ impl ::std::ops::Mul<Duration> for Power {
     type Output = Energy;
 
     fn mul(self, rhs: Duration) -> Energy {
-        // It would be useful if Duration had a method that did this...
-        let seconds: f64 = rhs.as_secs() as f64 + ((rhs.subsec_nanos() as f64) * 1e-9);
-        Energy::from_joules(self.as_watts() * seconds)
+        Energy::from_joules(self.as_watts() * duration_as_f64(rhs))
     }
 }
 

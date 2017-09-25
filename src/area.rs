@@ -1,6 +1,5 @@
 use super::measurement::*;
-use length;
-use volume;
+use super::*;
 
 const SQUARE_METER_ACRE_FACTOR: f64 = 4046.86;
 
@@ -33,7 +32,9 @@ impl Area {
     }
 
     pub fn from_square_nanometers(square_nanometers: f64) -> Self {
-        Self::from_square_meters(square_nanometers / (length::METER_NANOMETER_FACTOR * length::METER_NANOMETER_FACTOR))
+        Self::from_square_meters(
+            square_nanometers / (length::METER_NANOMETER_FACTOR * length::METER_NANOMETER_FACTOR),
+        )
     }
 
     pub fn from_square_nanometres(square_nanometres: f64) -> Self {
@@ -41,7 +42,9 @@ impl Area {
     }
 
     pub fn from_square_micrometers(square_micrometers: f64) -> Self {
-        Self::from_square_meters(square_micrometers / (length::METER_MICROMETER_FACTOR * length::METER_MICROMETER_FACTOR))
+        Self::from_square_meters(
+            square_micrometers / (length::METER_MICROMETER_FACTOR * length::METER_MICROMETER_FACTOR),
+        )
     }
 
     pub fn from_square_micrometres(square_micrometres: f64) -> Self {
@@ -49,7 +52,9 @@ impl Area {
     }
 
     pub fn from_square_millimeters(square_millimeters: f64) -> Self {
-        Self::from_square_meters(square_millimeters / (length::METER_MILLIMETER_FACTOR * length::METER_MILLIMETER_FACTOR))
+        Self::from_square_meters(
+            square_millimeters / (length::METER_MILLIMETER_FACTOR * length::METER_MILLIMETER_FACTOR),
+        )
     }
 
     pub fn from_square_millimetres(square_millimetres: f64) -> Self {
@@ -57,7 +62,9 @@ impl Area {
     }
 
     pub fn from_square_centimeters(square_centimeters: f64) -> Self {
-        Self::from_square_meters(square_centimeters / (length::METER_CENTIMETER_FACTOR * length::METER_CENTIMETER_FACTOR))
+        Self::from_square_meters(
+            square_centimeters / (length::METER_CENTIMETER_FACTOR * length::METER_CENTIMETER_FACTOR),
+        )
     }
 
     pub fn from_square_centimetres(square_centimetres: f64) -> Self {
@@ -65,7 +72,9 @@ impl Area {
     }
 
     pub fn from_square_decameters(square_decameters: f64) -> Self {
-        Self::from_square_meters(square_decameters / (length::METER_DECAMETER_FACTOR * length::METER_DECAMETER_FACTOR))
+        Self::from_square_meters(
+            square_decameters / (length::METER_DECAMETER_FACTOR * length::METER_DECAMETER_FACTOR),
+        )
     }
 
     pub fn from_square_decametres(square_decametres: f64) -> Self {
@@ -73,7 +82,9 @@ impl Area {
     }
 
     pub fn from_square_hectometers(square_hectometers: f64) -> Self {
-        Self::from_square_meters(square_hectometers / (length::METER_HECTOMETER_FACTOR * length::METER_HECTOMETER_FACTOR))
+        Self::from_square_meters(
+            square_hectometers / (length::METER_HECTOMETER_FACTOR * length::METER_HECTOMETER_FACTOR),
+        )
     }
 
     pub fn from_square_hectometres(square_hectometres: f64) -> Self {
@@ -85,7 +96,9 @@ impl Area {
     }
 
     pub fn from_square_kilometers(square_kilometers: f64) -> Self {
-        Self::from_square_meters(square_kilometers / (length::METER_KILOMETER_FACTOR * length::METER_KILOMETER_FACTOR))
+        Self::from_square_meters(
+            square_kilometers / (length::METER_KILOMETER_FACTOR * length::METER_KILOMETER_FACTOR),
+        )
     }
 
     pub fn from_square_kilometres(square_kilometres: f64) -> Self {
@@ -94,15 +107,21 @@ impl Area {
 
     // Inputs, imperial
     pub fn from_square_inches(square_inches: f64) -> Self {
-        Self::from_square_meters(square_inches / (length::METER_INCH_FACTOR * length::METER_INCH_FACTOR))
+        Self::from_square_meters(
+            square_inches / (length::METER_INCH_FACTOR * length::METER_INCH_FACTOR),
+        )
     }
 
     pub fn from_square_feet(square_feet: f64) -> Self {
-        Self::from_square_meters(square_feet / (length::METER_FEET_FACTOR * length::METER_FEET_FACTOR))
+        Self::from_square_meters(
+            square_feet / (length::METER_FEET_FACTOR * length::METER_FEET_FACTOR),
+        )
     }
 
     pub fn from_square_yards(square_yards: f64) -> Self {
-        Self::from_square_meters(square_yards / (length::METER_YARD_FACTOR * length::METER_YARD_FACTOR))
+        Self::from_square_meters(
+            square_yards / (length::METER_YARD_FACTOR * length::METER_YARD_FACTOR),
+        )
     }
 
     pub fn from_acres(acres: f64) -> Self {
@@ -110,12 +129,14 @@ impl Area {
     }
 
     pub fn from_square_miles(square_miles: f64) -> Self {
-        Self::from_square_meters(square_miles / (length::METER_MILE_FACTOR * length::METER_MILE_FACTOR))
+        Self::from_square_meters(
+            square_miles / (length::METER_MILE_FACTOR * length::METER_MILE_FACTOR),
+        )
     }
 
     // Outputs, metric
     pub fn as_square_nanometers(&self) -> f64 {
-        self.square_meters * length::METER_NANOMETER_FACTOR * length::METER_NANOMETER_FACTOR
+        self.square_meters * (length::METER_NANOMETER_FACTOR * length::METER_NANOMETER_FACTOR)
     }
 
     pub fn as_square_nanometres(&self) -> f64 {
@@ -123,7 +144,7 @@ impl Area {
     }
 
     pub fn as_square_micrometers(&self) -> f64 {
-        self.square_meters * length::METER_MICROMETER_FACTOR * length::METER_MICROMETER_FACTOR
+        self.square_meters * (length::METER_MICROMETER_FACTOR * length::METER_MICROMETER_FACTOR)
     }
 
     pub fn as_square_micrometres(&self) -> f64 {
@@ -131,7 +152,7 @@ impl Area {
     }
 
     pub fn as_square_millimeters(&self) -> f64 {
-        self.square_meters * length::METER_MILLIMETER_FACTOR * length::METER_MILLIMETER_FACTOR
+        self.square_meters * (length::METER_MILLIMETER_FACTOR * length::METER_MILLIMETER_FACTOR)
     }
 
     pub fn as_square_millimetres(&self) -> f64 {
@@ -139,7 +160,7 @@ impl Area {
     }
 
     pub fn as_square_centimeters(&self) -> f64 {
-        self.square_meters * length::METER_CENTIMETER_FACTOR * length::METER_CENTIMETER_FACTOR
+        self.square_meters * (length::METER_CENTIMETER_FACTOR * length::METER_CENTIMETER_FACTOR)
     }
 
     pub fn as_square_centimetres(&self) -> f64 {
@@ -155,7 +176,7 @@ impl Area {
     }
 
     pub fn as_square_decameters(&self) -> f64 {
-        self.square_meters * length::METER_DECAMETER_FACTOR * length::METER_DECAMETER_FACTOR
+        self.square_meters * (length::METER_DECAMETER_FACTOR * length::METER_DECAMETER_FACTOR)
     }
 
     pub fn as_square_decametres(&self) -> f64 {
@@ -163,7 +184,7 @@ impl Area {
     }
 
     pub fn as_square_hectometers(&self) -> f64 {
-        self.square_meters * length::METER_HECTOMETER_FACTOR * length::METER_HECTOMETER_FACTOR
+        self.square_meters * (length::METER_HECTOMETER_FACTOR * length::METER_HECTOMETER_FACTOR)
     }
 
     pub fn as_square_hectometres(&self) -> f64 {
@@ -175,7 +196,7 @@ impl Area {
     }
 
     pub fn as_square_kilometers(&self) -> f64 {
-        self.square_meters * length::METER_KILOMETER_FACTOR * length::METER_KILOMETER_FACTOR
+        self.square_meters * (length::METER_KILOMETER_FACTOR * length::METER_KILOMETER_FACTOR)
     }
 
     pub fn as_square_kilometres(&self) -> f64 {
@@ -184,15 +205,15 @@ impl Area {
 
     // Outputs, imperial
     pub fn as_square_inches(&self) -> f64 {
-        self.square_meters * length::METER_INCH_FACTOR * length::METER_INCH_FACTOR
+        self.square_meters * (length::METER_INCH_FACTOR * length::METER_INCH_FACTOR)
     }
 
     pub fn as_square_feet(&self) -> f64 {
-        self.square_meters * length::METER_FEET_FACTOR * length::METER_FEET_FACTOR
+        self.square_meters * (length::METER_FEET_FACTOR * length::METER_FEET_FACTOR)
     }
 
     pub fn as_square_yards(&self) -> f64 {
-        self.square_meters * length::METER_YARD_FACTOR * length::METER_YARD_FACTOR
+        self.square_meters * (length::METER_YARD_FACTOR * length::METER_YARD_FACTOR)
     }
 
     pub fn as_acres(&self) -> f64 {
@@ -200,25 +221,34 @@ impl Area {
     }
 
     pub fn as_square_miles(&self) -> f64 {
-        self.square_meters * length::METER_MILE_FACTOR * length::METER_MILE_FACTOR
+        self.square_meters * (length::METER_MILE_FACTOR * length::METER_MILE_FACTOR)
     }
 }
 
 /// Area / Length = Length
-impl ::std::ops::Div<length::Length> for Area {
-    type Output = length::Length;
+impl ::std::ops::Div<Length> for Area {
+    type Output = Length;
 
-    fn div(self, rhs: length::Length) -> length::Length {
-        length::Length::from_meters(self.as_square_meters() / rhs.as_meters())
+    fn div(self, rhs: Length) -> Length {
+        Length::from_meters(self.as_square_meters() / rhs.as_meters())
     }
 }
 
 /// Area * Length = Volume
-impl ::std::ops::Mul<length::Length> for Area {
-    type Output = volume::Volume;
+impl ::std::ops::Mul<Length> for Area {
+    type Output = Volume;
 
-    fn mul(self, rhs: length::Length) -> volume::Volume {
-        volume::Volume::from_cubic_meters(self.as_square_meters() * rhs.as_meters())
+    fn mul(self, rhs: Length) -> Volume {
+        Volume::from_cubic_meters(self.as_square_meters() * rhs.as_meters())
+    }
+}
+
+/// Area * Pressure = Force
+impl ::std::ops::Mul<Pressure> for Area {
+    type Output = Force;
+
+    fn mul(self, rhs: Pressure) -> Force {
+        Force::from_newtons(self.as_square_meters() * rhs.as_pascals())
     }
 }
 
