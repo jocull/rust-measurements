@@ -94,6 +94,21 @@ impl Measurement for Speed {
     fn as_base_units_name(&self) -> &'static str {
         "m/s"
     }
+
+    fn get_appropriate_units(&self) -> (&'static str, f64) {
+        // Smallest to largest
+        let list = [
+            ("nm/s", 1e-9),
+            ("\u{00B5}m/s", 1e-6),
+            ("mm/s", 1e-3),
+            ("m/s", 1e0),
+            ("km/s", 1e3),
+            ("thousand km/s", 1e6),
+            ("million km/s", 1e9),
+        ];
+        self.pick_appropriate_units(&list)
+    }
+
 }
 
 implement_measurement! { Speed }

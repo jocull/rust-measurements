@@ -82,8 +82,7 @@ macro_rules! implement_display {
             fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
                 let (unit, value) = self.get_appropriate_units();
                 value.fmt(f)?;      // Value
-                "\u{00A0}".fmt(f)?; // Non-breaking space
-                unit.fmt(f)         // Units
+                write!(f, "\u{00A0}{}", unit)
             }
         }
     )*)

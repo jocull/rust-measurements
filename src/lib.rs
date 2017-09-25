@@ -48,6 +48,9 @@ pub use area::Area;
 pub mod angle;
 pub use angle::Angle;
 
+pub mod frequency;
+pub use frequency::Frequency;
+
 pub mod prelude;
 
 /// For given types A, B and C, implement, using base units:
