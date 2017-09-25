@@ -52,7 +52,7 @@ pub trait Measurement {
     /// The list must be smallest to largest, e.g. ("nanometre", 10-9) to
     /// ("kilometre", 10e3)
     fn pick_appropriate_units(&self, list: &[(&'static str, f64)]) -> (&'static str, f64) {
-        for &(ref unit, ref scale) in list.iter().rev() {
+        for &(unit, ref scale) in list.iter().rev() {
             let value = self.as_base_units() / scale;
             if value.abs() > 1.0 {
                 return (unit, value);

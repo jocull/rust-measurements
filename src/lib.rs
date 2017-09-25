@@ -114,7 +114,7 @@ macro_rules! impl_maths {
 
 impl Measurement for std::time::Duration {
     fn as_base_units(&self) -> f64 {
-        self.as_secs() as f64 + ((self.subsec_nanos() as f64) * 1e-9)
+        self.as_secs() as f64 + (f64::from(self.subsec_nanos()) * 1e-9)
     }
 
     fn from_base_units(units: f64) -> Self {

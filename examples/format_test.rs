@@ -3,7 +3,7 @@ use measurements::*;
 
 fn main() {
     for power in -12..12 {
-        let val: f64 = 123.456 * (10f64.powf(power as f64));
+        let val: f64 = 123.456 * (10f64.powf(f64::from(power)));
         println!("10^{}...", power);
         println!("Temp of {0:.3} outside", Temperature::from_kelvin(val));
         println!("Distance of {0:.3}", Length::from_meters(val));
