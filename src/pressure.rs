@@ -1,5 +1,4 @@
 use super::measurement::*;
-use super::*;
 
 /// The `Pressure` struct can be used to deal with presssures in a common way.
 /// Common metric and imperial units are supported.
@@ -73,15 +72,6 @@ impl Pressure {
 
     pub fn as_atmospheres(&self) -> f64 {
         self.pascals / 101_325.0
-    }
-}
-
-/// Pressure * Area = Force
-impl ::std::ops::Mul<Area> for Pressure {
-    type Output = Force;
-
-    fn mul(self, rhs: Area) -> Force {
-        Force::from_newtons(rhs.as_square_meters() * self.as_pascals())
     }
 }
 

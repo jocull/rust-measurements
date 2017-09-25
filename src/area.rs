@@ -1,5 +1,5 @@
 use super::measurement::*;
-use super::*;
+use super::length;
 
 const SQUARE_METER_ACRE_FACTOR: f64 = 4046.86;
 
@@ -222,33 +222,6 @@ impl Area {
 
     pub fn as_square_miles(&self) -> f64 {
         self.square_meters * (length::METER_MILE_FACTOR * length::METER_MILE_FACTOR)
-    }
-}
-
-/// Area / Length = Length
-impl ::std::ops::Div<Length> for Area {
-    type Output = Length;
-
-    fn div(self, rhs: Length) -> Length {
-        Length::from_meters(self.as_square_meters() / rhs.as_meters())
-    }
-}
-
-/// Area * Length = Volume
-impl ::std::ops::Mul<Length> for Area {
-    type Output = Volume;
-
-    fn mul(self, rhs: Length) -> Volume {
-        Volume::from_cubic_meters(self.as_square_meters() * rhs.as_meters())
-    }
-}
-
-/// Area * Pressure = Force
-impl ::std::ops::Mul<Pressure> for Area {
-    type Output = Force;
-
-    fn mul(self, rhs: Pressure) -> Force {
-        Force::from_newtons(self.as_square_meters() * rhs.as_pascals())
     }
 }
 

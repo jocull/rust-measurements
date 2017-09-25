@@ -1,5 +1,4 @@
 use super::measurement::*;
-use super::*;
 
 /// The `Mass` struct can be used to deal with mass in a common way.
 ///
@@ -143,15 +142,6 @@ impl Mass {
 
     pub fn as_long_tons(&self) -> f64 {
         self.kilograms / 1016.0469
-    }
-}
-
-///  Mass * Acceleration = Force
-impl ::std::ops::Mul<Acceleration> for Mass {
-    type Output = Force;
-
-    fn mul(self, rhs: Acceleration) -> Force {
-        rhs * self
     }
 }
 

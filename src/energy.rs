@@ -1,6 +1,4 @@
 use super::measurement::*;
-use super::*;
-use std::time::Duration;
 
 /// The `Energy` struct can be used to deal with energies in a common way.
 /// Common metric and imperial units are supported.
@@ -65,44 +63,6 @@ impl Energy {
 
     pub fn as_kilowatt_hours(&self) -> f64 {
         self.joules / (3600.0 * 1000.0)
-    }
-}
-
-/// Energy / Time = Power
-impl ::std::ops::Div<Duration> for Energy {
-    type Output = Power;
-
-    fn div(self, rhs: Duration) -> Power {
-        Power::from_watts(self.as_joules() / duration_as_f64(rhs))
-    }
-}
-
-/// Energy / Power = Time
-impl ::std::ops::Div<Power> for Energy {
-    type Output = Duration;
-
-    fn div(self, rhs: Power) -> Duration {
-        let seconds = self.as_joules() / rhs.as_watts();
-        let nanosecs = (seconds * 1e9) % 1e9;
-        Duration::new(seconds as u64, nanosecs as u32)
-    }
-}
-
-/// Energy / Length = Force
-impl ::std::ops::Div<Length> for Energy {
-    type Output = Force;
-
-    fn div(self, rhs: Length) -> Force {
-        Force::from_newtons(self.as_joules() / rhs.as_meters())
-    }
-}
-
-/// Energy / Force = Length
-impl ::std::ops::Div<Force> for Energy {
-    type Output = Length;
-
-    fn div(self, rhs: Force) -> Length {
-        Length::from_meters(self.as_joules() / rhs.as_newtons())
     }
 }
 

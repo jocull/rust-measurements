@@ -1,5 +1,4 @@
 use super::measurement::*;
-use super::*;
 
 /// The `Force` struct can be used to deal with force in a common way.
 ///
@@ -86,51 +85,6 @@ impl Force {
 
     pub fn as_dynes(&self) -> f64 {
         self.newtons * DYNES_PER_NEWTON
-    }
-}
-
-/// Force / Mass = Acceleration
-impl ::std::ops::Div<Mass> for Force {
-    type Output = Acceleration;
-
-    fn div(self, rhs: Mass) -> Acceleration {
-        Acceleration::from_meters_per_second_per_second(self.as_newtons() / rhs.as_kilograms())
-    }
-}
-
-/// Force / Acceleration = Mass
-impl ::std::ops::Div<Acceleration> for Force {
-    type Output = Mass;
-
-    fn div(self, rhs: Acceleration) -> Mass {
-        Mass::from_kilograms(self.as_newtons() / rhs.as_meters_per_second_per_second())
-    }
-}
-
-/// Force / Area = Pressure
-impl ::std::ops::Div<Area> for Force {
-    type Output = Pressure;
-
-    fn div(self, rhs: Area) -> Pressure {
-        Pressure::from_pascals(self.as_newtons() / rhs.as_square_metres())
-    }
-}
-
-/// Force / Pressure = Area
-impl ::std::ops::Div<Pressure> for Force {
-    type Output = Area;
-
-    fn div(self, rhs: Pressure) -> Area {
-        Area::from_square_meters(self.as_newtons() / rhs.as_pascals())
-    }
-}
-
-/// Force * Length = Energy
-impl ::std::ops::Mul<Length> for Force {
-    type Output = Energy;
-
-    fn mul(self, rhs: Length) -> Energy {
-        Energy::from_joules(self.as_newtons() * rhs.as_meters())
     }
 }
 

@@ -1,6 +1,4 @@
 use super::measurement::*;
-use super::*;
-use std::time::Duration;
 
 /// The `Power` struct can be used to deal with energies in a common way.
 /// Common metric and imperial units are supported.
@@ -50,24 +48,6 @@ impl Power {
 
     pub fn as_kilowatts(&self) -> f64 {
         self.watts / 1000.0
-    }
-}
-
-/// Power * Time = Energy
-impl ::std::ops::Mul<Duration> for Power {
-    type Output = Energy;
-
-    fn mul(self, rhs: Duration) -> Energy {
-        Energy::from_joules(self.as_watts() * duration_as_f64(rhs))
-    }
-}
-
-/// Time * Power = Energy
-impl ::std::ops::Mul<Power> for Duration {
-    type Output = Energy;
-
-    fn mul(self, rhs: Power) -> Energy {
-        rhs * self
     }
 }
 

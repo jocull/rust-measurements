@@ -1,6 +1,5 @@
 use super::measurement::*;
-use super::*;
-use std::time::Duration;
+use super::length;
 
 /// The `Acceleration` struct can be used to deal with Accelerations in a common way.
 /// Common metric and imperial units are supported.
@@ -46,33 +45,6 @@ impl Acceleration {
 
     pub fn as_feet_per_second_per_second(&self) -> f64 {
         self.meters_per_second_per_second * length::METER_FEET_FACTOR
-    }
-}
-
-/// Acceleration * Time = Speed
-impl ::std::ops::Mul<Duration> for Acceleration {
-    type Output = Speed;
-
-    fn mul(self, rhs: Duration) -> Speed {
-        Speed::from_meters_per_second(self.as_meters_per_second_per_second() * duration_as_f64(rhs))
-    }
-}
-
-/// Time * Acceleration = Speed
-impl ::std::ops::Mul<Acceleration> for Duration {
-    type Output = Speed;
-
-    fn mul(self, rhs: Acceleration) -> Speed {
-        rhs * self
-    }
-}
-
-/// mass * acceleration = Force
-impl ::std::ops::Mul<Mass> for Acceleration {
-    type Output = Force;
-
-    fn mul(self, rhs: Mass) -> Force {
-        Force::from_newtons(rhs.as_kilograms() * self.as_meters_per_second_per_second())
     }
 }
 
