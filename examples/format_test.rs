@@ -8,6 +8,7 @@ use measurements::Speed;
 use measurements::Acceleration;
 use measurements::Energy;
 use measurements::Power;
+use measurements::Force;
 
 fn main() {
     for power in -12..12 {
@@ -22,5 +23,6 @@ fn main() {
         println!("Acceleration of {0:.3}", Acceleration::from_meters_per_second_per_second(val));
         println!("Energy of {0:.3}", Energy::from_joules(val));
         println!("Power of {0:.3}", Power::from_watts(val));
+        println!("Force of {0:.3}", Force::from_newtons(val));
     }
 }

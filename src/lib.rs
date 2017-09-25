@@ -29,6 +29,12 @@ pub use energy::Energy;
 pub mod power;
 pub use power::Power;
 
+pub mod force;
+pub use force::Force;
+
+pub mod area;
+pub use area::Area;
+
 // Include when running tests, but don't export them
 #[cfg(test)]
 #[allow(dead_code)]

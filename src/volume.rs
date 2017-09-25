@@ -1,4 +1,5 @@
 use super::measurement::*;
+use super::{Length, Area};
 
 /// The `Volume` struct can be used to deal with volumes in a common way.
 ///
@@ -226,6 +227,24 @@ impl Volume {
 
     pub fn as_cubic_yards(&self) -> f64 {
         self.liters * LITER_CUBIC_YARD_FACTOR
+    }
+}
+
+/// Volume / Length = Area
+impl ::std::ops::Div<Length> for Volume {
+    type Output = Area;
+
+    fn div(self, rhs: Length) -> Area {
+        Area::from_square_meters(self.as_cubic_meters() / rhs.as_meters())
+    }
+}
+
+/// Volume / Area = Length
+impl ::std::ops::Div<Area> for Volume {
+    type Output = Length;
+
+    fn div(self, rhs: Area) -> Length {
+        Length::from_meters(self.as_cubic_meters() / rhs.as_square_meters())
     }
 }
 

@@ -78,12 +78,12 @@ fn grains() {
 }
 
 #[test]
-fn pennymasss() {
+fn pennyweights() {
     let t = Mass::from_kilograms(1.0);
-    let o = t.as_pennymasss();
+    let o = t.as_pennyweights();
     assert_almost_eq(o, 643.01493);
 
-    let t = Mass::from_pennymasss(100.0);
+    let t = Mass::from_pennyweights(100.0);
     let o = t.as_kilograms();
     assert_almost_eq(o, 0.15551738);
 }

@@ -1,6 +1,7 @@
 use super::measurement::*;
+use super::{Acceleration, Force};
 
-/// The `Mass` struct can be used to deal with masss in a common way.
+/// The `Mass` struct can be used to deal with mass in a common way.
 ///
 /// #Example
 ///
@@ -50,8 +51,8 @@ impl Mass {
         Self::from_kilograms(grains / 15432.358)
     }
 
-    pub fn from_pennymasss(pennymasss: f64) -> Self {
-        Self::from_kilograms(pennymasss / 643.01493)
+    pub fn from_pennyweights(pennyweights: f64) -> Self {
+        Self::from_kilograms(pennyweights / 643.01493)
     }
 
     pub fn from_ounces(ounces: f64) -> Self {
@@ -112,7 +113,7 @@ impl Mass {
         self.kilograms * 15432.358
     }
 
-    pub fn as_pennymasss(&self) -> f64 {
+    pub fn as_pennyweights(&self) -> f64 {
         self.kilograms * 643.01493
     }
 
@@ -142,6 +143,15 @@ impl Mass {
 
     pub fn as_long_tons(&self) -> f64 {
         self.kilograms / 1016.0469
+    }
+}
+
+///  Mass * Acceleration = Force
+impl ::std::ops::Mul<Acceleration> for Mass {
+    type Output = Force;
+
+    fn mul(self, rhs: Acceleration) -> Force {
+        rhs * self 
     }
 }
 

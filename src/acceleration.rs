@@ -1,5 +1,5 @@
 use super::measurement::*;
-use super::Speed;
+use super::{Force, Mass, Speed};
 use std::time::Duration;
 
 /// The `Acceleration` struct can be used to deal with Accelerations in a common way.
@@ -58,6 +58,15 @@ impl ::std::ops::Mul<Acceleration> for Duration {
 
     fn mul(self, rhs: Acceleration) -> Speed {
         rhs * self
+    }
+}
+
+/// mass * acceleration = Force
+impl ::std::ops::Mul<Mass> for Acceleration {
+    type Output = Force;
+
+    fn mul(self, rhs: Mass) -> Force {
+        Force::from_newtons(rhs.as_kilograms() * self.as_meters_per_second_per_second())
     }
 }
 
