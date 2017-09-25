@@ -135,3 +135,151 @@ impl Measurement for Force {
 }
 
 implement_measurement! { Force }
+
+#[cfg(test)]
+mod test {
+    use force::*;
+    use test_utils::assert_almost_eq;
+
+    #[test]
+    pub fn newtons() {
+        let i1 = Force::from_newtons(100.0);
+        let r1 = i1.as_newtons();
+
+        assert_almost_eq(r1, 100.0);
+    }
+
+    #[test]
+    pub fn micronewtons() {
+        let i1 = Force::from_newtons(100.0);
+        let r1 = i1.as_micronewtons();
+
+        let i2 = Force::from_micronewtons(100.0);
+        let r2 = i2.as_newtons();
+
+        assert_almost_eq(r1, 1e8);
+        assert_almost_eq(r2, 1e-4);
+    }
+
+    #[test]
+    pub fn millinewtons() {
+        let i1 = Force::from_newtons(100.0);
+        let r1 = i1.as_millinewtons();
+
+        let i2 = Force::from_millinewtons(100.0);
+        let r2 = i2.as_newtons();
+
+        assert_almost_eq(r1, 1e5);
+        assert_almost_eq(r2, 1e-1);
+    }
+
+    #[test]
+    pub fn pounds() {
+        let i1 = Force::from_newtons(100.0);
+        let r1 = i1.as_pounds();
+
+        let i2 = Force::from_pounds(100.0);
+        let r2 = i2.as_newtons();
+
+        assert_almost_eq(r1, 22.480886300718);
+        assert_almost_eq(r2, 444.822);
+    }
+
+    #[test]
+    pub fn poundals() {
+        let i1 = Force::from_newtons(100.0);
+        let r1 = i1.as_poundals();
+
+        let i2 = Force::from_poundals(100.0);
+        let r2 = i2.as_newtons();
+
+        assert_almost_eq(r1, 723.3016238104);
+        assert_almost_eq(r2, 13.8255);
+    }
+
+    #[test]
+    pub fn kiloponds() {
+        let i1 = Force::from_newtons(100.0);
+        let r1 = i1.as_kiloponds();
+
+        let i2 = Force::from_kiloponds(100.0);
+        let r2 = i2.as_newtons();
+
+        assert_almost_eq(r1, 10.1972);
+        assert_almost_eq(r2, 980.665);
+    }
+
+    #[test]
+    pub fn dynes() {
+        let i1 = Force::from_newtons(100.0);
+        let r1 = i1.as_dynes();
+
+        let i2 = Force::from_dynes(100.0);
+        let r2 = i2.as_newtons();
+
+        assert_almost_eq(r1, 1e7);
+        assert_almost_eq(r2, 0.001);
+    }
+
+    #[test]
+    fn add() {
+        let a = Force::from_newtons(2.0);
+        let b = Force::from_newtons(4.0);
+        let c = a + b;
+        let d = b + a;
+        assert_almost_eq(c.as_newtons(), 6.0);
+        assert_eq!(c, d);
+    }
+
+    #[test]
+    fn sub() {
+        let a = Force::from_newtons(2.0);
+        let b = Force::from_newtons(4.0);
+        let c = a - b;
+        assert_almost_eq(c.as_newtons(), -2.0);
+    }
+
+    #[test]
+    fn mul() {
+        let a = Force::from_newtons(3.0);
+        let b = a * 2.0;
+        let c = 2.0 * a;
+        assert_almost_eq(b.as_newtons(), 6.0);
+        assert_eq!(b, c);
+    }
+
+    #[test]
+    fn div() {
+        let a = Force::from_newtons(2.0);
+        let b = Force::from_newtons(4.0);
+        let c = a / b;
+        let d = a / 2.0;
+        assert_almost_eq(c, 0.5);
+        assert_almost_eq(d.as_newtons(), 1.0);
+    }
+
+    #[test]
+    fn eq() {
+        let a = Force::from_newtons(2.0);
+        let b = Force::from_newtons(2.0);
+        assert_eq!(a == b, true);
+    }
+
+    #[test]
+    fn neq() {
+        let a = Force::from_newtons(2.0);
+        let b = Force::from_newtons(4.0);
+        assert_eq!(a == b, false);
+    }
+
+    #[test]
+    fn cmp() {
+        let a = Force::from_newtons(2.0);
+        let b = Force::from_newtons(4.0);
+        assert_eq!(a < b, true);
+        assert_eq!(a <= b, true);
+        assert_eq!(a > b, false);
+        assert_eq!(a >= b, false);
+    }
+
+}
