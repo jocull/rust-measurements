@@ -1,4 +1,4 @@
-//! Utility code for test_utils
+//! Utility code for writing tests.
 
 const DEFAULT_DELTA: f64 = 1e-5;
 

@@ -73,7 +73,7 @@ pub trait Measurement {
 }
 
 /// This is a special macro that creates the code to implement
-/// std::fmt::Display.
+/// `std::fmt::Display`.
 #[macro_export]
 macro_rules! implement_display {
     ($($t:ty)*) => ($(
