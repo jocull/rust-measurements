@@ -1,4 +1,4 @@
-//! Types and contants for handling temperature.
+//! Types and constants for handling temperature.
 
 use super::measurement::*;
 
@@ -29,7 +29,7 @@ pub struct Temperature {
 ///
 /// let boiling_water = Temperature::from_celsius(100.0);
 /// let frozen_water = Temperature::from_celsius(0.0);
-/// let difference = boiling_water - frozen_water;
+/// let difference: TemperatureDelta = boiling_water - frozen_water;
 /// println!("Boiling water is {} above freezing.", difference);
 /// ```
 #[derive(Copy, Clone, Debug)]

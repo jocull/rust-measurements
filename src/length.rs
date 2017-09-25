@@ -1,4 +1,4 @@
-//! Types and contants for handling lengths (or distances).
+//! Types and constants for handling lengths (or distances).
 
 use super::measurement::*;
 

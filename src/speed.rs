@@ -1,4 +1,4 @@
-//! Types and contants for handling speed.
+//! Types and constants for handling speed.
 
 use super::measurement::*;
 use super::*;

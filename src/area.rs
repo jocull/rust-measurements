@@ -1,4 +1,4 @@
-//! Types and contants for handling areas.
+//! Types and constants for handling areas.
 
 use super::measurement::*;
 use super::length;

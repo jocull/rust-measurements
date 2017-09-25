@@ -1,4 +1,4 @@
-//! Types and contants for handling force.
+//! Types and constants for handling force.
 
 use super::measurement::*;
 
@@ -23,7 +23,7 @@ pub const DYNES_PER_NEWTON: f64 = 1e5;
 ///
 /// let metric_ton = Mass::from_metric_tons(1.0);
 /// let gravity = Acceleration::from_meters_per_second_per_second(9.81);
-/// let force = metric_ton * gravity; // F=ma
+/// let force: Force = metric_ton * gravity; // F=ma
 /// println!(
 ///     "One metric ton exerts a force of {} due to gravity",
 ///     force);

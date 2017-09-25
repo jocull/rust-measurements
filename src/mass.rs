@@ -1,4 +1,4 @@
-//! Types and contants for handling masses.
+//! Types and constants for handling masses.
 
 use super::measurement::*;
 

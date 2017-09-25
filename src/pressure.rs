@@ -1,4 +1,4 @@
-//! Types and contants for handling pressure.
+//! Types and constants for handling pressure.
 
 use super::measurement::*;
 

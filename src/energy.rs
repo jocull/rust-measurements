@@ -1,4 +1,4 @@
-//! Types and contants for handling energy.
+//! Types and constants for handling energy.
 
 use super::measurement::*;
 

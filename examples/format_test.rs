@@ -1,14 +1,5 @@
 extern crate measurements;
-use measurements::Temperature;
-use measurements::Length;
-use measurements::Pressure;
-use measurements::Volume;
-use measurements::Mass;
-use measurements::Speed;
-use measurements::Acceleration;
-use measurements::Energy;
-use measurements::Power;
-use measurements::Force;
+use measurements::*;
 
 fn main() {
     for power in -12..12 {

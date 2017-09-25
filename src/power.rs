@@ -1,4 +1,4 @@
-//! Types and contants for handling power.
+//! Types and constants for handling power.
 
 use super::measurement::*;
 

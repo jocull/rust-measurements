@@ -1,4 +1,4 @@
-//! Types and contants for handling volumes (that is, three-dimensional space, not loudness).
+//! Types and constants for handling volumes (that is, three-dimensional space, not loudness).
 
 use super::measurement::*;
 

@@ -1,4 +1,4 @@
-//! Types and contants for handling acceleration.
+//! Types and constants for handling acceleration.
 
 use super::measurement::*;
 use super::length;
@@ -16,7 +16,7 @@ use super::length;
 /// let track = Length::from_miles(0.25);
 /// let finish = Speed::from_miles_per_hour(120.0);
 /// let time = Duration::new(10, 0);
-/// let accel = finish / time;
+/// let accel: Acceleration = finish / time;
 /// println!("You accelerated over {} at an average of {}", track, accel);
 /// ```
 #[derive(Copy, Clone, Debug)]
