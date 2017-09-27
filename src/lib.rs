@@ -51,7 +51,18 @@ pub use angle::Angle;
 pub mod frequency;
 pub use frequency::Frequency;
 
+pub mod angular_velocity;
+pub use angular_velocity::AngularVelocity;
+
+pub mod torque;
+pub use torque::Torque;
+
 pub mod prelude;
+
+mod torque_energy;
+pub use torque_energy::TorqueEnergy;
+
+pub mod test_utils;
 
 /// For given types A, B and C, implement, using base units:
 ///     - A = B * C
@@ -129,7 +140,6 @@ impl Measurement for std::time::Duration {
 }
 
 impl_maths!(Area, Length);
-impl_maths!(Energy, Force, Length);
 impl_maths!(Energy, std::time::Duration, Power);
 impl_maths!(Force, Mass, Acceleration);
 impl_maths!(Force, Pressure, Area);
@@ -137,5 +147,44 @@ impl_maths!(Length, std::time::Duration, Speed);
 impl_maths!(Power, Force, Speed);
 impl_maths!(Speed, std::time::Duration, Acceleration);
 impl_maths!(Volume, Length, Area);
+impl_maths!(Power, AngularVelocity, Torque);
 
-pub mod test_utils;
+// Force * Distance is ambiguous. Create an ambiguous struct the user can then
+// cast into either Torque or Energy.
+
+impl_maths!(TorqueEnergy, Force, Length);
+
+// Implement the divisions manually (the above macro only implemented the
+// TorqueEnergy / X operations).
+
+impl ::std::ops::Div<Length> for Torque {
+    type Output = Force;
+
+    fn div(self, rhs: Length) -> Self::Output {
+        Self::Output::from_base_units(self.as_base_units() / rhs.as_base_units())
+    }
+}
+
+impl ::std::ops::Div<Force> for Torque {
+    type Output = Length;
+
+    fn div(self, rhs: Force) -> Self::Output {
+        Self::Output::from_base_units(self.as_base_units() / rhs.as_base_units())
+    }
+}
+
+impl ::std::ops::Div<Length> for Energy {
+    type Output = Force;
+
+    fn div(self, rhs: Length) -> Self::Output {
+        Self::Output::from_base_units(self.as_base_units() / rhs.as_base_units())
+    }
+}
+
+impl ::std::ops::Div<Force> for Energy {
+    type Output = Length;
+
+    fn div(self, rhs: Force) -> Self::Output {
+        Self::Output::from_base_units(self.as_base_units() / rhs.as_base_units())
+    }
+}

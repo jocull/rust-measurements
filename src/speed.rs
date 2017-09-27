@@ -108,7 +108,6 @@ impl Measurement for Speed {
         ];
         self.pick_appropriate_units(&list)
     }
-
 }
 
 implement_measurement! { Speed }
