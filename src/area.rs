@@ -276,7 +276,7 @@ impl Measurement for Area {
         Self::from_square_meters(units)
     }
 
-    fn as_base_units_name(&self) -> &'static str {
+    fn get_base_units_name(&self) -> &'static str {
         "m\u{00B2}"
     }
 

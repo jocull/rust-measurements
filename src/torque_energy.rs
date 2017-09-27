@@ -32,7 +32,7 @@ impl Measurement for TorqueEnergy {
         TorqueEnergy { newton_metres: units }
     }
 
-    fn as_base_units_name(&self) -> &'static str {
+    fn get_base_units_name(&self) -> &'static str {
         "Nm||J"
     }
 }

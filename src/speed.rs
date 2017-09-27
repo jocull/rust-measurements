@@ -91,7 +91,7 @@ impl Measurement for Speed {
         Self::from_meters_per_second(units)
     }
 
-    fn as_base_units_name(&self) -> &'static str {
+    fn get_base_units_name(&self) -> &'static str {
         "m/s"
     }
 

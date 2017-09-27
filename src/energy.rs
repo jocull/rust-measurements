@@ -89,7 +89,7 @@ impl Measurement for Energy {
         Self::from_joules(units)
     }
 
-    fn as_base_units_name(&self) -> &'static str {
+    fn get_base_units_name(&self) -> &'static str {
         "J"
     }
 

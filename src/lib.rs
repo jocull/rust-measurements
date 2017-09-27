@@ -57,11 +57,13 @@ pub use angular_velocity::AngularVelocity;
 pub mod torque;
 pub use torque::Torque;
 
-pub mod prelude;
+pub mod data;
+pub use data::Data;
 
 mod torque_energy;
 pub use torque_energy::TorqueEnergy;
 
+pub mod prelude;
 pub mod test_utils;
 
 /// For given types A, B and C, implement, using base units:
@@ -134,7 +136,7 @@ impl Measurement for std::time::Duration {
         std::time::Duration::new(secs, subsec_nanos)
     }
 
-    fn as_base_units_name(&self) -> &'static str {
+    fn get_base_units_name(&self) -> &'static str {
         "s"
     }
 }

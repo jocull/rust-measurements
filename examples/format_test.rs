@@ -18,5 +18,11 @@ fn main() {
         println!("Energy of {0:.3}", Energy::from_joules(val));
         println!("Power of {0:.3}", Power::from_watts(val));
         println!("Force of {0:.3}", Force::from_newtons(val));
+        println!("Force of {0:.3}", Torque::from_newton_metres(val));
+        println!(
+            "Force of {0:.3}",
+            AngularVelocity::from_radians_per_second(val)
+        );
+        println!("Data size is {0:.3}", Data::from_octets(val));
     }
 }

@@ -67,7 +67,7 @@ impl Measurement for Acceleration {
         Self::from_meters_per_second_per_second(units)
     }
 
-    fn as_base_units_name(&self) -> &'static str {
+    fn get_base_units_name(&self) -> &'static str {
         "m/s\u{00B2}"
     }
 }

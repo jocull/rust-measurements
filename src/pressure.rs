@@ -113,7 +113,7 @@ impl Measurement for Pressure {
         Self::from_pascals(units)
     }
 
-    fn as_base_units_name(&self) -> &'static str {
+    fn get_base_units_name(&self) -> &'static str {
         "Pa"
     }
 

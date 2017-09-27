@@ -22,7 +22,7 @@
 ///         Cubits { forearms: units }
 ///     }
 ///
-///    fn as_base_units_name(&self) -> &'static str {
+///    fn get_base_units_name(&self) -> &'static str {
 ///        "cu"
 ///    }
 /// }
@@ -43,7 +43,7 @@ pub trait Measurement {
     /// The default implementation always selects the base unit. Override in your
     /// Measurement  impl to select better units if required.
     fn get_appropriate_units(&self) -> (&'static str, f64) {
-        (self.as_base_units_name(), self.as_base_units())
+        (self.get_base_units_name(), self.as_base_units())
     }
 
     /// Given a list of units and their scale relative to the base unit,
@@ -63,7 +63,7 @@ pub trait Measurement {
 
     /// Return the base unit for this type, as a string.
     /// For example "kilograms"
-    fn as_base_units_name(&self) -> &'static str;
+    fn get_base_units_name(&self) -> &'static str;
 
     /// Get this quantity in the base units
     fn as_base_units(&self) -> f64;

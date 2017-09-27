@@ -61,7 +61,7 @@ impl Measurement for Torque {
         Self::from_newton_metres(units)
     }
 
-    fn as_base_units_name(&self) -> &'static str {
+    fn get_base_units_name(&self) -> &'static str {
         "Nm"
     }
 }

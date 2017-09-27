@@ -273,7 +273,7 @@ impl Measurement for Length {
         Self::from_meters(units)
     }
 
-    fn as_base_units_name(&self) -> &'static str {
+    fn get_base_units_name(&self) -> &'static str {
         "m"
     }
 

@@ -137,7 +137,7 @@ impl Measurement for Frequency {
         Self::from_hertz(units)
     }
 
-    fn as_base_units_name(&self) -> &'static str {
+    fn get_base_units_name(&self) -> &'static str {
         "Hz"
     }
 

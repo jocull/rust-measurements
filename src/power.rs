@@ -99,7 +99,7 @@ impl Measurement for Power {
         Self::from_watts(units)
     }
 
-    fn as_base_units_name(&self) -> &'static str {
+    fn get_base_units_name(&self) -> &'static str {
         "W"
     }
 

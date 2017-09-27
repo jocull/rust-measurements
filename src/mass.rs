@@ -229,7 +229,7 @@ impl Measurement for Mass {
         Self::from_kilograms(units)
     }
 
-    fn as_base_units_name(&self) -> &'static str {
+    fn get_base_units_name(&self) -> &'static str {
         "kg"
     }
 
