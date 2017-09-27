@@ -11,6 +11,5 @@ fn oscillator() {
     // Speed = PI * Displacement / Period
     let v = ::std::f64::consts::PI * d / f.as_period();
     // Check against https://www.spaceagecontrol.com/calcsinm.htm
-    assert_almost_eq(v.as_meters_per_second(), 0.78539816339745);    
+    assert_almost_eq(v.as_meters_per_second(), 0.78539816339745);
 }
-

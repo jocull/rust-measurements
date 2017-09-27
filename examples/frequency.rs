@@ -7,6 +7,10 @@ fn main() {
     // Speed = PI * Frequency * Displacement
     // Speed = PI * Displacement / Period
     let v = ::std::f64::consts::PI * d / f.as_period();
-    println!("Maximum speed of a pendulum at {:.1} with max displacement {:.1} is {:.1}", f, d, v);
+    println!(
+        "Maximum speed of a pendulum at {:.1} with max displacement {:.1} is {:.1}",
+        f,
+        d,
+        v
+    );
 }
-

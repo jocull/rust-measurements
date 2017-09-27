@@ -126,7 +126,6 @@ impl Frequency {
     pub fn as_period(&self) -> ::std::time::Duration {
         ::std::time::Duration::from_base_units(1.0 / self.hertz)
     }
-
 }
 
 impl Measurement for Frequency {
