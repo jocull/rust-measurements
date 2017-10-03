@@ -1,6 +1,9 @@
+//! Types and constants for handling temperature.
+
 use super::measurement::*;
 
-/// The `Temperature` struct can be used to deal with temperatures in a common way.
+/// The `Temperature` struct can be used to deal with absolute temperatures in
+/// a common way.
 ///
 /// # Example
 ///
@@ -26,7 +29,7 @@ pub struct Temperature {
 ///
 /// let boiling_water = Temperature::from_celsius(100.0);
 /// let frozen_water = Temperature::from_celsius(0.0);
-/// let difference = boiling_water - frozen_water;
+/// let difference: TemperatureDelta = boiling_water - frozen_water;
 /// println!("Boiling water is {} above freezing.", difference);
 /// ```
 #[derive(Copy, Clone, Debug)]
@@ -35,75 +38,91 @@ pub struct TemperatureDelta {
 }
 
 impl TemperatureDelta {
+    /// Create a new TemperatureDelta from a floating point value in Kelvin
     pub fn from_kelvin(kelvin_degrees: f64) -> Self {
         TemperatureDelta { kelvin_degrees: kelvin_degrees }
     }
 
+    /// Create a new TemperatureDelta from a floating point value in Celsius
     pub fn from_celsius(celsius_degrees: f64) -> Self {
         TemperatureDelta::from_kelvin(celsius_degrees)
     }
 
+    /// Create a new TemperatureDelta from a floating point value in Fahrenheit
     pub fn from_fahrenheit(farenheit_degrees: f64) -> Self {
         TemperatureDelta { kelvin_degrees: farenheit_degrees / 1.8 }
     }
 
+    /// Create a new TemperatureDelta from a floating point value in Rankine
     pub fn from_rankine(rankine_degrees: f64) -> Self {
         TemperatureDelta { kelvin_degrees: rankine_degrees / 1.8 }
     }
 
+    /// Convert this TemperatureDelta to a floating point value in Kelvin
     pub fn as_kelvin(&self) -> f64 {
         self.kelvin_degrees
     }
 
+    /// Convert this TemperatureDelta to a floating point value in Celsius
     pub fn as_celsius(&self) -> f64 {
         self.kelvin_degrees
     }
 
+    /// Convert this TemperatureDelta to a floating point value in Fahrenheit
     pub fn as_fahrenheit(&self) -> f64 {
         self.kelvin_degrees * 1.8
     }
 
+    /// Convert this TemperatureDelta to a floating point value in Rankine
     pub fn as_rankine(&self) -> f64 {
         self.kelvin_degrees * 1.8
     }
 }
 
 impl Temperature {
+    /// Create a new Temperature from a floating point value in Kelvin
     pub fn from_kelvin(degrees_kelvin: f64) -> Self {
         Temperature { degrees_kelvin: degrees_kelvin }
     }
 
+    /// Create a new Temperature from a floating point value in Celsius
     pub fn from_celsius(degrees_celsius: f64) -> Self {
         Self::from_kelvin(degrees_celsius + 273.15)
     }
 
+    /// Create a new Temperature from a floating point value in Fahrenheit
     pub fn from_fahrenheit(degrees_fahrenheit: f64) -> Self {
         Self::from_kelvin((degrees_fahrenheit - 32.0) / 1.8 + 273.15)
     }
 
+    /// Create a new Temperature from a floating point value in Rankine
     pub fn from_rankine(degrees_rankine: f64) -> Self {
         Self::from_kelvin((degrees_rankine - 491.67) / 1.8 + 273.15)
     }
 
+    /// Convert this absolute Temperature to a floating point value in Kelvin
     pub fn as_kelvin(&self) -> f64 {
         self.degrees_kelvin
     }
 
+    /// Convert this absolute Temperature to a floating point value in Celsius
     pub fn as_celsius(&self) -> f64 {
         self.degrees_kelvin - 273.15
     }
 
+    /// Convert this absolute Temperature to a floating point value in Fahrenheit
     pub fn as_fahrenheit(&self) -> f64 {
         (self.degrees_kelvin - 273.15) * 1.8 + 32.0
     }
 
+    /// Convert this absolute Temperature to a floating point value in Rankine
     pub fn as_rankine(&self) -> f64 {
         (self.degrees_kelvin - 273.15) * 1.8 + 491.67
     }
 }
 
 impl Measurement for Temperature {
-    fn get_base_units(&self) -> f64 {
+    fn as_base_units(&self) -> f64 {
         self.degrees_kelvin
     }
 
@@ -117,7 +136,7 @@ impl Measurement for Temperature {
 }
 
 impl Measurement for TemperatureDelta {
-    fn get_base_units(&self) -> f64 {
+    fn as_base_units(&self) -> f64 {
         self.kelvin_degrees
     }
 
@@ -165,15 +184,133 @@ impl ::std::ops::Sub<Temperature> for Temperature {
 impl ::std::cmp::Eq for Temperature {}
 impl ::std::cmp::PartialEq for Temperature {
     fn eq(&self, other: &Self) -> bool {
-        self.get_base_units() == other.get_base_units()
+        self.as_base_units() == other.as_base_units()
     }
 }
 
 impl ::std::cmp::PartialOrd for Temperature {
     fn partial_cmp(&self, other: &Self) -> Option<::std::cmp::Ordering> {
-        self.get_base_units().partial_cmp(&other.get_base_units())
+        self.as_base_units().partial_cmp(&other.as_base_units())
     }
 }
 
 implement_display!(Temperature);
 implement_measurement!(TemperatureDelta);
+
+#[cfg(test)]
+mod test {
+    use temperature::*;
+    use test_utils::assert_almost_eq;
+
+    // Temperature Units
+    #[test]
+    fn kelvin() {
+        let t = Temperature::from_kelvin(100.0);
+        let o = t.as_kelvin();
+
+        assert_almost_eq(o, 100.0);
+    }
+
+    #[test]
+    fn celsius() {
+        let t = Temperature::from_kelvin(100.0);
+        let o = t.as_celsius();
+
+        assert_almost_eq(o, -173.15);
+    }
+
+    #[test]
+    fn fahrenheit() {
+        let t = Temperature::from_kelvin(100.0);
+        let o = t.as_fahrenheit();
+
+        assert_almost_eq(o, -279.67);
+    }
+
+    #[test]
+    fn rankine() {
+        let t = Temperature::from_kelvin(100.0);
+        let o = t.as_rankine();
+
+        assert_almost_eq(o, 180.0);
+    }
+
+    // Traits
+    #[test]
+    fn add() {
+        let a = Temperature::from_kelvin(2.0);
+        let b = TemperatureDelta::from_kelvin(4.0);
+        let c = a + b;
+        let d = b + a;
+        assert_almost_eq(c.as_kelvin(), 6.0);
+        assert_eq!(c, d);
+    }
+
+    #[test]
+    fn add2() {
+        let a = TemperatureDelta::from_kelvin(2.0);
+        let b = TemperatureDelta::from_kelvin(4.0);
+        let c = a + b;
+        let d = b + a;
+        assert_almost_eq(c.as_kelvin(), 6.0);
+        assert_eq!(c, d);
+    }
+
+    #[test]
+    fn sub() {
+        let a = Temperature::from_kelvin(4.0);
+        let b = TemperatureDelta::from_kelvin(2.0);
+        let c = a - b;
+        assert_almost_eq(c.as_kelvin(), 2.0);
+    }
+
+    #[test]
+    fn sub2() {
+        let a = Temperature::from_fahrenheit(212.0);
+        let b = Temperature::from_celsius(75.0);
+        let c = a - b;
+        assert_almost_eq(c.as_kelvin(), 25.0);
+    }
+
+    #[test]
+    fn sub3() {
+        let a = TemperatureDelta::from_fahrenheit(180.0);
+        let b = TemperatureDelta::from_celsius(75.0);
+        let c = a - b;
+        assert_almost_eq(c.as_kelvin(), 25.0);
+    }
+
+    #[test]
+    fn mul() {
+        let a = TemperatureDelta::from_celsius(5.0);
+        let b = a * 2.0;
+        let c = 2.0 * a;
+        assert_almost_eq(b.as_celsius(), 10.0);
+        assert_eq!(b, c);
+    }
+
+    #[test]
+    fn eq() {
+        let a = Temperature::from_kelvin(2.0);
+        let b = Temperature::from_kelvin(2.0);
+        assert_eq!(a == b, true);
+    }
+
+    #[test]
+    fn neq() {
+        let a = Temperature::from_kelvin(2.0);
+        let b = Temperature::from_kelvin(4.0);
+        assert_eq!(a == b, false);
+    }
+
+    #[test]
+    fn cmp() {
+        let a = Temperature::from_kelvin(2.0);
+        let b = Temperature::from_kelvin(4.0);
+        assert_eq!(a < b, true);
+        assert_eq!(a <= b, true);
+        assert_eq!(a > b, false);
+        assert_eq!(a >= b, false);
+    }
+
+}

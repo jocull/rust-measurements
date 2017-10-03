@@ -1,6 +1,15 @@
+//! Types and constants for handling power.
+
 use super::measurement::*;
-use std::time::Duration;
-use super::Energy;
+
+/// Number of horsepower in a watt
+pub const WATT_HORSEPOWER_FACTOR: f64 = 1.0 / 745.6998715822702;
+/// Number of BTU/min in a watt
+pub const WATT_BTU_MIN_FACTOR: f64 = 1.0 / 17.58426666666667;
+/// Number of kW in a W
+pub const WATT_KILOWATT_FACTOR: f64 = 1e-3;
+/// Number of pferdstarken (PS) in a W
+pub const WATT_PS_FACTOR: f64 = 1.0 / 735.499;
 
 /// The `Power` struct can be used to deal with energies in a common way.
 /// Common metric and imperial units are supported.
@@ -20,61 +29,69 @@ pub struct Power {
 }
 
 impl Power {
+    /// Create a new Power from a floating point value in Watts
     pub fn from_watts(watts: f64) -> Power {
         Power { watts: watts }
     }
 
+    /// Create a new Power from a floating point value in horsepower (hp)
     pub fn from_horsepower(horsepower: f64) -> Power {
-        Self::from_watts(horsepower * 745.6998715822702)
+        Self::from_watts(horsepower / WATT_HORSEPOWER_FACTOR)
     }
 
+    /// Create a new Power from a floating point value in metric horsepower (PS)
+    pub fn from_ps(ps: f64) -> Power {
+        Self::from_watts(ps / WATT_PS_FACTOR)
+    }
+
+    /// Create a new Power from a floating point value in metric horsepower (PS)
+    pub fn from_metric_horsepower(metric_horsepower: f64) -> Power {
+        Self::from_watts(metric_horsepower / WATT_PS_FACTOR)
+    }
+
+    /// Create a new Power from a floating point value in BTU/mjn
     pub fn from_btu_per_minute(btu_per_minute: f64) -> Power {
-        Self::from_watts(btu_per_minute * 17.58426666666667)
+        Self::from_watts(btu_per_minute / WATT_BTU_MIN_FACTOR)
     }
 
+    /// Create a new Power from a floating point value in Kilowatts (kW)
     pub fn from_kilowatts(kw: f64) -> Power {
-        Self::from_watts(kw * 1000.0)
+        Self::from_watts(kw / WATT_KILOWATT_FACTOR)
     }
 
+    /// Convert this Power into a floating point value in Watts
     pub fn as_watts(&self) -> f64 {
         self.watts
     }
 
+    /// Convert this Power into a floating point value in horsepower (hp)
     pub fn as_horsepower(&self) -> f64 {
-        self.watts / 745.6998715822702
+        self.watts * WATT_HORSEPOWER_FACTOR
     }
 
+    /// Convert this Power into a floating point value in metric horsepower (PS)
+    pub fn as_ps(&self) -> f64 {
+        self.watts * WATT_PS_FACTOR
+    }
+
+    /// Convert this Power into a floating point value in metric horsepower (PS)
+    pub fn as_metric_horsepower(&self) -> f64 {
+        self.watts * WATT_PS_FACTOR
+    }
+
+    /// Convert this Power into a floating point value in BTU/min
     pub fn as_btu_per_minute(&self) -> f64 {
-        self.watts / 17.58426666666667
+        self.watts * WATT_BTU_MIN_FACTOR
     }
 
+    /// Convert this Power into a floating point value in kilowatts (kW)
     pub fn as_kilowatts(&self) -> f64 {
-        self.watts / 1000.0
-    }
-}
-
-/// Power * Time = Energy
-impl ::std::ops::Mul<Duration> for Power {
-    type Output = Energy;
-
-    fn mul(self, rhs: Duration) -> Energy {
-        // It would be useful if Duration had a method that did this...
-        let seconds: f64 = rhs.as_secs() as f64 + ((rhs.subsec_nanos() as f64) * 1e-9);
-        Energy::from_joules(self.as_watts() * seconds)
-    }
-}
-
-/// Time * Power = Energy
-impl ::std::ops::Mul<Power> for Duration {
-    type Output = Energy;
-
-    fn mul(self, rhs: Power) -> Energy {
-        rhs * self
+        self.watts * WATT_KILOWATT_FACTOR
     }
 }
 
 impl Measurement for Power {
-    fn get_base_units(&self) -> f64 {
+    fn as_base_units(&self) -> f64 {
         self.watts
     }
 
@@ -107,3 +124,108 @@ impl Measurement for Power {
 }
 
 implement_measurement! { Power }
+
+#[cfg(test)]
+mod test {
+    use power::*;
+    use test_utils::assert_almost_eq;
+
+    #[test]
+    pub fn as_btu_per_minute() {
+        let i1 = Power::from_btu_per_minute(100.0);
+        let r1 = i1.as_watts();
+
+        let i2 = Power::from_watts(100.0);
+        let r2 = i2.as_btu_per_minute();
+
+        assert_almost_eq(r1, 1758.426666666667);
+        assert_almost_eq(r2, 5.686901927480627);
+    }
+
+    #[test]
+    pub fn as_horsepower() {
+        let i1 = Power::from_horsepower(100.0);
+        let r1 = i1.as_watts();
+
+        let i2 = Power::from_watts(100.0);
+        let r2 = i2.as_horsepower();
+
+        assert_almost_eq(r1, 74569.98715822702);
+        assert_almost_eq(r2, 0.1341022089595028);
+    }
+
+    #[test]
+    pub fn as_kilowatts() {
+        let i1 = Power::from_kilowatts(100.0);
+        let r1 = i1.as_watts();
+
+        let i2 = Power::from_watts(100.0);
+        let r2 = i2.as_kilowatts();
+
+        assert_almost_eq(r1, 100000.0);
+        assert_almost_eq(r2, 0.1);
+    }
+
+    // Traits
+    #[test]
+    fn add() {
+        let a = Power::from_watts(2.0);
+        let b = Power::from_watts(4.0);
+        let c = a + b;
+        let d = b + a;
+        assert_almost_eq(c.as_watts(), 6.0);
+        assert_eq!(c, d);
+    }
+
+    #[test]
+    fn sub() {
+        let a = Power::from_watts(2.0);
+        let b = Power::from_watts(4.0);
+        let c = a - b;
+        assert_almost_eq(c.as_watts(), -2.0);
+    }
+
+    #[test]
+    fn mul() {
+        let a = Power::from_watts(3.0);
+        let b = a * 2.0;
+        let c = 2.0 * a;
+        assert_almost_eq(b.as_watts(), 6.0);
+        assert_eq!(b, c);
+    }
+
+    #[test]
+    fn div() {
+        let a = Power::from_watts(2.0);
+        let b = Power::from_watts(4.0);
+        let c = a / b;
+        let d = a / 2.0;
+        assert_almost_eq(c, 0.5);
+        assert_almost_eq(d.as_watts(), 1.0);
+    }
+
+    #[test]
+    fn eq() {
+        let a = Power::from_watts(2.0);
+        let b = Power::from_watts(2.0);
+        assert_eq!(a == b, true);
+    }
+
+    #[test]
+    fn neq() {
+        let a = Power::from_watts(2.0);
+        let b = Power::from_watts(4.0);
+        assert_eq!(a == b, false);
+    }
+
+    #[test]
+    fn cmp() {
+        let a = Power::from_watts(2.0);
+        let b = Power::from_watts(4.0);
+        assert_eq!(a < b, true);
+        assert_eq!(a <= b, true);
+        assert_eq!(a > b, false);
+        assert_eq!(a >= b, false);
+    }
+
+}
