@@ -69,7 +69,6 @@ impl Force {
         Self::from_newtons(dynes / DYNES_PER_NEWTON)
     }
 
-
     /// Convert this Force into a floating point value in Micronewtons
     pub fn as_micronewtons(&self) -> f64 {
         self.newtons * 1e6

@@ -26,7 +26,9 @@ pub struct Area {
 impl Area {
     /// Create new area from floating point value in Square Meters
     pub fn from_square_meters(square_meters: f64) -> Self {
-        Area { square_meters: square_meters }
+        Area {
+            square_meters: square_meters,
+        }
     }
 
     /// Create new area from floating point value in Square Metres
@@ -49,7 +51,8 @@ impl Area {
     /// Create new area from floating point value in Square Micrometers
     pub fn from_square_micrometers(square_micrometers: f64) -> Self {
         Self::from_square_meters(
-            square_micrometers / (length::METER_MICROMETER_FACTOR * length::METER_MICROMETER_FACTOR),
+            square_micrometers
+                / (length::METER_MICROMETER_FACTOR * length::METER_MICROMETER_FACTOR),
         )
     }
 
@@ -61,7 +64,8 @@ impl Area {
     /// Create new area from floating point value in Square Millimeters
     pub fn from_square_millimeters(square_millimeters: f64) -> Self {
         Self::from_square_meters(
-            square_millimeters / (length::METER_MILLIMETER_FACTOR * length::METER_MILLIMETER_FACTOR),
+            square_millimeters
+                / (length::METER_MILLIMETER_FACTOR * length::METER_MILLIMETER_FACTOR),
         )
     }
 
@@ -73,7 +77,8 @@ impl Area {
     /// Create new area from floating point value in Square Centimeters
     pub fn from_square_centimeters(square_centimeters: f64) -> Self {
         Self::from_square_meters(
-            square_centimeters / (length::METER_CENTIMETER_FACTOR * length::METER_CENTIMETER_FACTOR),
+            square_centimeters
+                / (length::METER_CENTIMETER_FACTOR * length::METER_CENTIMETER_FACTOR),
         )
     }
 
@@ -97,7 +102,8 @@ impl Area {
     /// Create new area from floating point value in Square Hectometers
     pub fn from_square_hectometers(square_hectometers: f64) -> Self {
         Self::from_square_meters(
-            square_hectometers / (length::METER_HECTOMETER_FACTOR * length::METER_HECTOMETER_FACTOR),
+            square_hectometers
+                / (length::METER_HECTOMETER_FACTOR * length::METER_HECTOMETER_FACTOR),
         )
     }
 

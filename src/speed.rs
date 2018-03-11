@@ -30,7 +30,9 @@ pub struct Speed {
 impl Speed {
     /// Create a new Speed from a floating point number of m/s
     pub fn from_meters_per_second(meters_per_second: f64) -> Speed {
-        Speed { meters_per_second: meters_per_second }
+        Speed {
+            meters_per_second: meters_per_second,
+        }
     }
 
     /// Create a new Speed from a floating point number of m/s
@@ -74,7 +76,6 @@ impl Speed {
     pub fn as_kilometres_per_hour(&self) -> f64 {
         self.as_kilometers_per_hour()
     }
-
 
     /// Convert this speed to a floating point number of miles/hour (mph)
     pub fn as_miles_per_hour(&self) -> f64 {

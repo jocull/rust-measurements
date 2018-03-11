@@ -1,5 +1,5 @@
 extern crate measurements;
-use measurements::{Power, AngularVelocity};
+use measurements::{AngularVelocity, Power};
 
 fn main() {
     let power = Power::from_ps(225.0);

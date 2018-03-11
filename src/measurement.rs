@@ -89,7 +89,6 @@ macro_rules! implement_display {
     )*)
 }
 
-
 /// This is a special macro that creates the code to implement
 /// operator and comparison overrides.
 #[macro_export]
