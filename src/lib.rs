@@ -42,6 +42,9 @@ pub use energy::Energy;
 pub mod power;
 pub use power::Power;
 
+pub mod voltage;
+pub use voltage::Voltage;
+
 pub mod force;
 pub use force::Force;
 
