@@ -160,6 +160,7 @@ impl_maths!(Power, Force, Speed);
 impl_maths!(Speed, time::Duration, Acceleration);
 impl_maths!(Volume, Length, Area);
 impl_maths!(Power, AngularVelocity, Torque);
+impl_maths!(Power, Voltage, Current);
 impl_maths!(Voltage, Resistance, Current);
 
 // Force * Distance is ambiguous. Create an ambiguous struct the user can then
