@@ -48,6 +48,9 @@ pub use voltage::Voltage;
 pub mod current;
 pub use current::Current;
 
+pub mod resistance;
+pub use resistance::Resistance;
+
 pub mod force;
 pub use force::Force;
 
