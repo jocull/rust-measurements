@@ -1,7 +1,7 @@
 //! Types and constants for handling speed of rotation (angular velocity)
 
 use super::measurement::*;
-use std::f64::consts::PI;
+use core::f64::consts::PI;
 
 /// The 'AngularVelocity' struct can be used to deal with angular velocities in a common way.
 ///

@@ -1,6 +1,6 @@
 [package]
 name = "measurements"
-version = "0.6.0"
+version = "0.7.0"
 authors = ["James O'Cull <jocull@delmarsd.com>",
           "Jonathan Pallant <github@thejpster.org.uk>",
           "Hannah McLaughlin <h@mcla.ug>"]
@@ -10,3 +10,7 @@ keywords = ["measurements", "lengths", "weights", "temperatures", "volumes"]
 description = "Handle metric, imperial, and other measurements with ease! Types: Length, Temperature, Weight, Volume, Pressure"
 license = "MIT"
 readme = "README.md"
+
+
+[dependencies]
+time = "0.1"

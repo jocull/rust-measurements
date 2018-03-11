@@ -3,6 +3,7 @@
 ///
 /// # Example
 /// ```
+/// #![no_std]
 /// // Importing the `implement_measurement` macro from the external crate is important
 /// #[macro_use]
 /// extern crate measurements;
@@ -73,13 +74,13 @@ pub trait Measurement {
 }
 
 /// This is a special macro that creates the code to implement
-/// `std::fmt::Display`.
+/// `core::fmt::Display`.
 #[macro_export]
 macro_rules! implement_display {
     ($($t:ty)*) => ($(
 
-        impl ::std::fmt::Display for $t {
-            fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        impl ::core::fmt::Display for $t {
+            fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
                 let (unit, value) = self.get_appropriate_units();
                 value.fmt(f)?;      // Value
                 write!(f, "\u{00A0}{}", unit)
@@ -97,7 +98,7 @@ macro_rules! implement_measurement {
 
         implement_display!( $t );
 
-        impl ::std::ops::Add for $t {
+        impl ::core::ops::Add for $t {
             type Output = Self;
 
             fn add(self, rhs: Self) -> Self {
@@ -105,7 +106,7 @@ macro_rules! implement_measurement {
             }
         }
 
-        impl ::std::ops::Sub for $t {
+        impl ::core::ops::Sub for $t {
             type Output = Self;
 
             fn sub(self, rhs: Self) -> Self {
@@ -115,7 +116,7 @@ macro_rules! implement_measurement {
 
         // Dividing a `$t` by another `$t` returns a ratio.
         //
-        impl ::std::ops::Div<$t> for $t {
+        impl ::core::ops::Div<$t> for $t {
             type Output = f64;
 
             fn div(self, rhs: Self) -> f64 {
@@ -125,7 +126,7 @@ macro_rules! implement_measurement {
 
         // Dividing a `$t` by a factor returns a new portion of the measurement.
         //
-        impl ::std::ops::Div<f64> for $t {
+        impl ::core::ops::Div<f64> for $t {
             type Output = Self;
 
             fn div(self, rhs: f64) -> Self {
@@ -135,7 +136,7 @@ macro_rules! implement_measurement {
 
         // Multiplying a `$t` by a factor increases (or decreases) that
         // measurement a number of times.
-        impl ::std::ops::Mul<f64> for $t {
+        impl ::core::ops::Mul<f64> for $t {
             type Output = Self;
 
             fn mul(self, rhs: f64) -> Self {
@@ -144,7 +145,7 @@ macro_rules! implement_measurement {
         }
 
         // Multiplying `$t` by a factor is commutative
-        impl ::std::ops::Mul<$t> for f64 {
+        impl ::core::ops::Mul<$t> for f64 {
             type Output = $t;
 
             fn mul(self, rhs: $t) -> $t {
@@ -152,15 +153,15 @@ macro_rules! implement_measurement {
             }
         }
 
-        impl ::std::cmp::Eq for $t { }
-        impl ::std::cmp::PartialEq for $t {
+        impl ::core::cmp::Eq for $t { }
+        impl ::core::cmp::PartialEq for $t {
             fn eq(&self, other: &Self) -> bool {
                 self.as_base_units() == other.as_base_units()
             }
         }
 
-        impl ::std::cmp::PartialOrd for $t {
-            fn partial_cmp(&self, other: &Self) -> Option<::std::cmp::Ordering> {
+        impl ::core::cmp::PartialOrd for $t {
+            fn partial_cmp(&self, other: &Self) -> Option<::core::cmp::Ordering> {
                 self.as_base_units().partial_cmp(&other.as_base_units())
             }
         }

@@ -95,7 +95,7 @@ implement_measurement! { Angle }
 #[cfg(test)]
 mod test {
     use angle::*;
-    use std::f64::consts::PI;
+    use core::f64::consts::PI;
     use test_utils::assert_almost_eq;
 
     #[test]
