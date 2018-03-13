@@ -45,6 +45,12 @@ pub use power::Power;
 pub mod voltage;
 pub use voltage::Voltage;
 
+pub mod current;
+pub use current::Current;
+
+pub mod resistance;
+pub use resistance::Resistance;
+
 pub mod force;
 pub use force::Force;
 
@@ -154,6 +160,8 @@ impl_maths!(Power, Force, Speed);
 impl_maths!(Speed, time::Duration, Acceleration);
 impl_maths!(Volume, Length, Area);
 impl_maths!(Power, AngularVelocity, Torque);
+impl_maths!(Power, Voltage, Current);
+impl_maths!(Voltage, Resistance, Current);
 
 // Force * Distance is ambiguous. Create an ambiguous struct the user can then
 // cast into either Torque or Energy.

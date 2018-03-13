@@ -90,6 +90,8 @@ implement_measurement! { Voltage }
 #[cfg(test)]
 mod test {
     use voltage::*;
+    use resistance::*;
+    use current::*;
     use test_utils::assert_almost_eq;
 
     #[test]
@@ -166,6 +168,30 @@ mod test {
         assert_eq!(a <= b, true);
         assert_eq!(a > b, false);
         assert_eq!(a >= b, false);
+    }
+
+    #[test]
+    fn mul_resistance_current() {
+        let r = Resistance::from_ohms(470.0);
+        let i = Current::from_amperes(2.0);
+        let u = r * i;
+        assert_eq!(u.as_volts(), 940.0);
+    }
+
+    #[test]
+    fn div_resistance() {
+        let r = Resistance::from_ohms(470.0);
+        let u = Voltage::from_kilovolts(4.7);
+        let i = u / r;
+        assert_eq!(i.as_amperes(), 10.0);
+    }
+
+    #[test]
+    fn div_current() {
+        let i = Current::from_amperes(10.0);
+        let u = Voltage::from_kilovolts(4.7);
+        let r = u / i;
+        assert_eq!(r.as_ohms(), 470.0);
     }
 
 }

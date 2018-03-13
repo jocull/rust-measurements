@@ -128,6 +128,8 @@ implement_measurement! { Power }
 #[cfg(test)]
 mod test {
     use power::*;
+    use current::*;
+    use voltage::*;
     use test_utils::assert_almost_eq;
 
     #[test]
@@ -226,6 +228,30 @@ mod test {
         assert_eq!(a <= b, true);
         assert_eq!(a > b, false);
         assert_eq!(a >= b, false);
+    }
+
+    #[test]
+    fn mul_voltage_current() {
+        let u = Voltage::from_volts(230.0);
+        let i = Current::from_amperes(10.0);
+        let p = u * i;
+        assert_almost_eq(p.as_kilowatts(), 2.3);
+    }
+
+    #[test]
+    fn div_voltage() {
+        let u = Voltage::from_volts(230.0);
+        let p = Power::from_kilowatts(2.3);
+        let i = p / u;
+        assert_eq!(i.as_amperes(), 10.0);
+    }
+
+    #[test]
+    fn div_current() {
+        let i = Current::from_amperes(10.0);
+        let p = Power::from_kilowatts(2.3);
+        let u = p / i;
+        assert_eq!(u.as_volts(), 230.0);
     }
 
 }
