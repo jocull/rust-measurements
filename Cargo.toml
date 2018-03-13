@@ -1,6 +1,6 @@
 [package]
 name = "measurements"
-version = "0.8.0"
+version = "0.9.0"
 authors = ["James O'Cull <jocull@delmarsd.com>",
           "Jonathan Pallant <github@thejpster.org.uk>",
           "Hannah McLaughlin <h@mcla.ug>",
