@@ -157,7 +157,7 @@ impl Measurement for TemperatureDelta {
     }
 }
 
-impl ::core::ops::Add<TemperatureDelta> for Temperature {
+impl ::std::ops::Add<TemperatureDelta> for Temperature {
     type Output = Temperature;
 
     fn add(self, other: TemperatureDelta) -> Temperature {
@@ -165,7 +165,7 @@ impl ::core::ops::Add<TemperatureDelta> for Temperature {
     }
 }
 
-impl ::core::ops::Add<Temperature> for TemperatureDelta {
+impl ::std::ops::Add<Temperature> for TemperatureDelta {
     type Output = Temperature;
 
     fn add(self, other: Temperature) -> Temperature {
@@ -173,7 +173,7 @@ impl ::core::ops::Add<Temperature> for TemperatureDelta {
     }
 }
 
-impl ::core::ops::Sub<TemperatureDelta> for Temperature {
+impl ::std::ops::Sub<TemperatureDelta> for Temperature {
     type Output = Temperature;
 
     fn sub(self, other: TemperatureDelta) -> Temperature {
@@ -181,7 +181,7 @@ impl ::core::ops::Sub<TemperatureDelta> for Temperature {
     }
 }
 
-impl ::core::ops::Sub<Temperature> for Temperature {
+impl ::std::ops::Sub<Temperature> for Temperature {
     type Output = TemperatureDelta;
 
     fn sub(self, other: Temperature) -> TemperatureDelta {
@@ -189,15 +189,15 @@ impl ::core::ops::Sub<Temperature> for Temperature {
     }
 }
 
-impl ::core::cmp::Eq for Temperature {}
-impl ::core::cmp::PartialEq for Temperature {
+impl ::std::cmp::Eq for Temperature {}
+impl ::std::cmp::PartialEq for Temperature {
     fn eq(&self, other: &Self) -> bool {
         self.as_base_units() == other.as_base_units()
     }
 }
 
-impl ::core::cmp::PartialOrd for Temperature {
-    fn partial_cmp(&self, other: &Self) -> Option<::core::cmp::Ordering> {
+impl ::std::cmp::PartialOrd for Temperature {
+    fn partial_cmp(&self, other: &Self) -> Option<::std::cmp::Ordering> {
         self.as_base_units().partial_cmp(&other.as_base_units())
     }
 }

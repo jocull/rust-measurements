@@ -9,16 +9,15 @@ use super::length;
 /// # Example
 ///
 /// ```
-/// extern crate time;
 /// extern crate measurements;
 /// use measurements::{Acceleration, Length, Speed};
-/// use time::Duration;
+/// use std::time::Duration;
 ///
 /// fn main() {
 ///     // Standing quarter mile in 10.0 dead, at 120.0 mph
 ///     let track = Length::from_miles(0.25);
 ///     let finish = Speed::from_miles_per_hour(120.0);
-///     let time = Duration::seconds(10);
+///     let time = Duration::new(10, 0);
 ///     let accel: Acceleration = finish / time;
 ///     println!("You accelerated over {} at an average of {}", track, accel);
 ///}
@@ -85,14 +84,13 @@ mod test {
 
     use super::*;
     use test_utils::assert_almost_eq;
-    use time::Duration;
     use speed::Speed;
 
     // Metric
     #[test]
     fn speed_over_time() {
         let s1 = Speed::from_meters_per_second(10.0);
-        let t1 = Duration::seconds(5);
+        let t1 = ::time::Duration::new(5, 0);
         let i1 = s1 / t1;
         let r1 = i1.as_meters_per_second_per_second();
         assert_almost_eq(r1, 2.0);
@@ -159,5 +157,4 @@ mod test {
         assert_eq!(a > b, false);
         assert_eq!(a >= b, false);
     }
-
 }

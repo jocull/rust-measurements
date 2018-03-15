@@ -117,7 +117,7 @@ implement_measurement! { Speed }
 mod test {
     use speed::*;
     use test_utils::assert_almost_eq;
-    use time::Duration;
+    use ::time::Duration;
     use length::Length;
 
     // Metric
@@ -136,7 +136,7 @@ mod test {
     #[test]
     fn length_over_time() {
         let l1 = Length::from_meters(3.0);
-        let t1 = Duration::milliseconds(1500);
+        let t1 = Duration::new(1, 500_000_000);
         let i1 = l1 / t1;
         let r1 = i1.as_meters_per_second();
         assert_almost_eq(r1, 2.0);
@@ -145,10 +145,10 @@ mod test {
     #[test]
     fn acceleration() {
         // To get to 100 m/s at 50 m/s/s takes 2.0 seconds
-        let s = Length::from_meters(100.0) / Duration::seconds(1);
-        let a = Length::from_meters(50.0) / Duration::seconds(1) / Duration::seconds(1);
+        let s = Length::from_meters(100.0) / Duration::new(1, 0);
+        let a = Length::from_meters(50.0) / Duration::new(1, 0) / Duration::new(1, 0);
         let t = s / a;
-        assert_eq!(t, Duration::seconds(2));
+        assert_eq!(t, Duration::new(2, 0));
     }
 
     #[test]

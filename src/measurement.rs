@@ -35,6 +35,16 @@
 /// // You should't need it in your own code.
 /// fn main() { }
 /// ```
+
+#[cfg(feature = "no-std")]
+use core as std;
+
+#[cfg(feature = "no-std")]
+use core::num::Float;
+
+/// All measurements implement this.
+///
+/// It provides conversion functions to and from raw numbers.
 pub trait Measurement {
     /// Returns a string containing the most appropriate units for this quantity,
     /// and a floating point value representing this quantity in those units.
@@ -55,7 +65,7 @@ pub trait Measurement {
     fn pick_appropriate_units(&self, list: &[(&'static str, f64)]) -> (&'static str, f64) {
         for &(unit, ref scale) in list.iter().rev() {
             let value = self.as_base_units() / scale;
-            if value.abs() > 1.0 {
+            if value > 1.0 || value < -1.0 {
                 return (unit, value);
             }
         }
@@ -74,13 +84,13 @@ pub trait Measurement {
 }
 
 /// This is a special macro that creates the code to implement
-/// `core::fmt::Display`.
+/// `std::fmt::Display`.
 #[macro_export]
 macro_rules! implement_display {
     ($($t:ty)*) => ($(
 
-        impl ::core::fmt::Display for $t {
-            fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        impl ::std::fmt::Display for $t {
+            fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
                 let (unit, value) = self.get_appropriate_units();
                 value.fmt(f)?;      // Value
                 write!(f, "\u{00A0}{}", unit)
@@ -97,7 +107,7 @@ macro_rules! implement_measurement {
 
         implement_display!( $t );
 
-        impl ::core::ops::Add for $t {
+        impl ::std::ops::Add for $t {
             type Output = Self;
 
             fn add(self, rhs: Self) -> Self {
@@ -105,7 +115,7 @@ macro_rules! implement_measurement {
             }
         }
 
-        impl ::core::ops::Sub for $t {
+        impl ::std::ops::Sub for $t {
             type Output = Self;
 
             fn sub(self, rhs: Self) -> Self {
@@ -115,7 +125,7 @@ macro_rules! implement_measurement {
 
         // Dividing a `$t` by another `$t` returns a ratio.
         //
-        impl ::core::ops::Div<$t> for $t {
+        impl ::std::ops::Div<$t> for $t {
             type Output = f64;
 
             fn div(self, rhs: Self) -> f64 {
@@ -125,7 +135,7 @@ macro_rules! implement_measurement {
 
         // Dividing a `$t` by a factor returns a new portion of the measurement.
         //
-        impl ::core::ops::Div<f64> for $t {
+        impl ::std::ops::Div<f64> for $t {
             type Output = Self;
 
             fn div(self, rhs: f64) -> Self {
@@ -135,7 +145,7 @@ macro_rules! implement_measurement {
 
         // Multiplying a `$t` by a factor increases (or decreases) that
         // measurement a number of times.
-        impl ::core::ops::Mul<f64> for $t {
+        impl ::std::ops::Mul<f64> for $t {
             type Output = Self;
 
             fn mul(self, rhs: f64) -> Self {
@@ -144,7 +154,7 @@ macro_rules! implement_measurement {
         }
 
         // Multiplying `$t` by a factor is commutative
-        impl ::core::ops::Mul<$t> for f64 {
+        impl ::std::ops::Mul<$t> for f64 {
             type Output = $t;
 
             fn mul(self, rhs: $t) -> $t {
@@ -152,15 +162,15 @@ macro_rules! implement_measurement {
             }
         }
 
-        impl ::core::cmp::Eq for $t { }
-        impl ::core::cmp::PartialEq for $t {
+        impl ::std::cmp::Eq for $t { }
+        impl ::std::cmp::PartialEq for $t {
             fn eq(&self, other: &Self) -> bool {
                 self.as_base_units() == other.as_base_units()
             }
         }
 
-        impl ::core::cmp::PartialOrd for $t {
-            fn partial_cmp(&self, other: &Self) -> Option<::core::cmp::Ordering> {
+        impl ::std::cmp::PartialOrd for $t {
+            fn partial_cmp(&self, other: &Self) -> Option<::std::cmp::Ordering> {
                 self.as_base_units().partial_cmp(&other.as_base_units())
             }
         }
