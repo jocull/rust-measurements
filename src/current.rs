@@ -36,6 +36,11 @@ impl Current {
         Self::from_amperes(microamperes / 1000.0 / 1000.0)
     }
 
+    /// Create a new Current from a floating point value in nanoamperes
+    pub fn from_nanoamperes(nanoamperes: f64) -> Self {
+        Self::from_amperes(nanoamperes / 1_000_000_000.0)
+    }
+
     /// Convert this Current into a floating point value in amperes
     pub fn as_amperes(&self) -> f64 {
         self.amperes
@@ -49,6 +54,11 @@ impl Current {
     /// Convert this Current into a floating point value in microamperes
     pub fn as_microamperes(&self) -> f64 {
         self.amperes * 1000.0 * 1000.0
+    }
+
+    /// Convert this Current into a floating point value in nanoamperes
+    pub fn as_nanoamperes(&self) -> f64 {
+        self.amperes * 1_000_000_000.0
     }
 }
 
@@ -110,6 +120,12 @@ mod test {
         assert_almost_eq(u.as_microamperes(), 1000.0);
     }
 
+    #[test]
+    pub fn as_nanoamperes() {
+        let u = Current::from_amperes(0.000001);
+        assert_almost_eq(u.as_nanoamperes(), 1000.0);
+    }
+
     // Traits
     #[test]
     fn add() {
@@ -148,7 +164,10 @@ mod test {
     fn eq() {
         let a = Current::from_microamperes(1_000_000.0);
         let b = Current::from_milliamperes(1_000.0);
+        let c = Current::from_nanoamperes(1_000_000_000.0);
         assert_eq!(a, b);
+        assert_eq!(b, c);
+        assert_eq!(a, c);
     }
 
     #[test]
