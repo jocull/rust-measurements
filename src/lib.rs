@@ -86,7 +86,6 @@ pub use torque_energy::TorqueEnergy;
 
 pub mod prelude;
 
-#[cfg(test)]
 pub mod test_utils;
 
 /// For given types A, B and C, implement, using base units:
