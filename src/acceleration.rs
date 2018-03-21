@@ -9,15 +9,18 @@ use super::length;
 /// # Example
 ///
 /// ```
+/// extern crate measurements;
 /// use measurements::{Acceleration, Length, Speed};
 /// use std::time::Duration;
 ///
-/// // Standing quarter mile in 10.0 dead, at 120.0 mph
-/// let track = Length::from_miles(0.25);
-/// let finish = Speed::from_miles_per_hour(120.0);
-/// let time = Duration::new(10, 0);
-/// let accel: Acceleration = finish / time;
-/// println!("You accelerated over {} at an average of {}", track, accel);
+/// fn main() {
+///     // Standing quarter mile in 10.0 dead, at 120.0 mph
+///     let track = Length::from_miles(0.25);
+///     let finish = Speed::from_miles_per_hour(120.0);
+///     let time = Duration::new(10, 0);
+///     let accel: Acceleration = finish / time;
+///     println!("You accelerated over {} at an average of {}", track, accel);
+///}
 /// ```
 #[derive(Copy, Clone, Debug)]
 pub struct Acceleration {
@@ -27,7 +30,9 @@ pub struct Acceleration {
 impl Acceleration {
     /// Create a new Acceleration from a floating point value in meters per second per second
     pub fn from_meters_per_second_per_second(meters_per_second_per_second: f64) -> Acceleration {
-        Acceleration { meters_per_second_per_second: meters_per_second_per_second }
+        Acceleration {
+            meters_per_second_per_second: meters_per_second_per_second,
+        }
     }
 
     /// Create a new Acceleration from a floating point value in metres per second per second
@@ -79,14 +84,13 @@ mod test {
 
     use super::*;
     use test_utils::assert_almost_eq;
-    use std::time::Duration;
     use speed::Speed;
 
     // Metric
     #[test]
     fn speed_over_time() {
         let s1 = Speed::from_meters_per_second(10.0);
-        let t1 = Duration::new(5, 0);
+        let t1 = ::time::Duration::new(5, 0);
         let i1 = s1 / t1;
         let r1 = i1.as_meters_per_second_per_second();
         assert_almost_eq(r1, 2.0);
@@ -153,5 +157,4 @@ mod test {
         assert_eq!(a > b, false);
         assert_eq!(a >= b, false);
     }
-
 }

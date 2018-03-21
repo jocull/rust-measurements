@@ -1,7 +1,7 @@
 //! Types and constants for handling speed of rotation (angular velocity)
 
 use super::measurement::*;
-use std::f64::consts::PI;
+use ::PI;
 
 /// The 'AngularVelocity' struct can be used to deal with angular velocities in a common way.
 ///
@@ -22,7 +22,9 @@ pub struct AngularVelocity {
 impl AngularVelocity {
     /// Create a new AngularVelocity from a floating point value in radians per second
     pub fn from_radians_per_second(radians_per_second: f64) -> Self {
-        AngularVelocity { radians_per_second: radians_per_second }
+        AngularVelocity {
+            radians_per_second: radians_per_second,
+        }
     }
 
     /// Create a new AngularVelocity from a floating point value in revolutions per minute (RPM)

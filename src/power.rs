@@ -8,6 +8,10 @@ pub const WATT_HORSEPOWER_FACTOR: f64 = 1.0 / 745.6998715822702;
 pub const WATT_BTU_MIN_FACTOR: f64 = 1.0 / 17.58426666666667;
 /// Number of kW in a W
 pub const WATT_KILOWATT_FACTOR: f64 = 1e-3;
+/// Number of mW in a W
+pub const WATT_MILLIWATT_FACTOR: f64 = 1e3;
+/// Number of µW in a W
+pub const WATT_MICROWATT_FACTOR: f64 = 1e6;
 /// Number of pferdstarken (PS) in a W
 pub const WATT_PS_FACTOR: f64 = 1.0 / 735.499;
 
@@ -32,6 +36,16 @@ impl Power {
     /// Create a new Power from a floating point value in Watts
     pub fn from_watts(watts: f64) -> Power {
         Power { watts: watts }
+    }
+
+    /// Create a new Power from a floating point value in milliwatts
+    pub fn from_milliwatts(milliwatts: f64) -> Power {
+        Self::from_watts(milliwatts / WATT_MILLIWATT_FACTOR)
+    }
+
+    /// Create a new Power from a floating point value in microwatts
+    pub fn from_microwatts(microwatts: f64) -> Power {
+        Self::from_watts(microwatts / WATT_MICROWATT_FACTOR)
     }
 
     /// Create a new Power from a floating point value in horsepower (hp)
@@ -88,6 +102,16 @@ impl Power {
     pub fn as_kilowatts(&self) -> f64 {
         self.watts * WATT_KILOWATT_FACTOR
     }
+
+    /// Convert this Power into a floating point value in milliwatts (mW)
+    pub fn as_milliwatts(&self) -> f64 {
+        self.watts * WATT_MILLIWATT_FACTOR
+    }
+
+    /// Convert this Power into a floating point value in microwatts (µW)
+    pub fn as_microwatts(&self) -> f64 {
+        self.watts * WATT_MICROWATT_FACTOR
+    }
 }
 
 impl Measurement for Power {
@@ -128,6 +152,8 @@ implement_measurement! { Power }
 #[cfg(test)]
 mod test {
     use power::*;
+    use current::*;
+    use voltage::*;
     use test_utils::assert_almost_eq;
 
     #[test]
@@ -164,6 +190,30 @@ mod test {
 
         assert_almost_eq(r1, 100000.0);
         assert_almost_eq(r2, 0.1);
+    }
+
+    #[test]
+    pub fn as_milliwatts() {
+        let i1 = Power::from_milliwatts(100.0);
+        let r1 = i1.as_watts();
+
+        let i2 = Power::from_watts(100.0);
+        let r2 = i2.as_milliwatts();
+
+        assert_almost_eq(r1, 0.1);
+        assert_almost_eq(r2, 100_000.0);
+    }
+
+    #[test]
+    pub fn as_microwatts() {
+        let i1 = Power::from_microwatts(100.0);
+        let r1 = i1.as_milliwatts();
+
+        let i2 = Power::from_milliwatts(100.0);
+        let r2 = i2.as_microwatts();
+
+        assert_almost_eq(r1, 0.1);
+        assert_almost_eq(r2, 100_000.0);
     }
 
     // Traits
@@ -226,6 +276,30 @@ mod test {
         assert_eq!(a <= b, true);
         assert_eq!(a > b, false);
         assert_eq!(a >= b, false);
+    }
+
+    #[test]
+    fn mul_voltage_current() {
+        let u = Voltage::from_volts(230.0);
+        let i = Current::from_amperes(10.0);
+        let p = u * i;
+        assert_almost_eq(p.as_kilowatts(), 2.3);
+    }
+
+    #[test]
+    fn div_voltage() {
+        let u = Voltage::from_volts(230.0);
+        let p = Power::from_kilowatts(2.3);
+        let i = p / u;
+        assert_eq!(i.as_amperes(), 10.0);
+    }
+
+    #[test]
+    fn div_current() {
+        let i = Current::from_amperes(10.0);
+        let p = Power::from_kilowatts(2.3);
+        let u = p / i;
+        assert_eq!(u.as_volts(), 230.0);
     }
 
 }

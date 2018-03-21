@@ -29,7 +29,9 @@ impl Measurement for TorqueEnergy {
     }
 
     fn from_base_units(units: f64) -> Self {
-        TorqueEnergy { newton_metres: units }
+        TorqueEnergy {
+            newton_metres: units,
+        }
     }
 
     fn get_base_units_name(&self) -> &'static str {

@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jocull/rust-measurements.svg)](https://travis-ci.org/jocull/rust-measurements)
+[![Build Status](https://travis-ci.org/thejpster/rust-measurements.svg)](https://travis-ci.org/thejpster/rust-measurements)
 
 # Type-safe units of measure for Rust
 
@@ -18,11 +18,25 @@ Conversions to and from different units are simple, and operator overrides allow
 
 ### Currently available measurement types
 
+- Acceleration
+- Angle
+- Angular Velocity
+- Area
+- Current
+- Data (bytes, etc)
+- Energy
+- Force
+- Frequency
 - Length
-- Temperature
-- Weight
-- Volume
+- Mass
+- Power
 - Pressure
+- Resistance
+- Speed
+- Temperature
+- Torque
+- Voltage
+- Volume
 
 ### Examples
 
@@ -30,7 +44,7 @@ In your Cargo.toml add the dependency...
 
 ```toml
 [dependencies]
-measurements = "^0.3.0"
+measurements = "^0.9.0"
 ```
 
 In your code...

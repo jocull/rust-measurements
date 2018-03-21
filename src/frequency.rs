@@ -1,6 +1,7 @@
 //! Types and constants for handling frequencies.
 
 use super::measurement::*;
+use ::time;
 
 /// Number of nanohertz in a Hz
 pub const HERTZ_NANOHERTZ_FACTOR: f64 = 1e9;
@@ -78,7 +79,7 @@ impl Frequency {
     }
 
     /// Create a new Frequency from a floating point value of the period in seconds.
-    pub fn from_period(period: ::std::time::Duration) -> Self {
+    pub fn from_period(period: time::Duration) -> Self {
         Self::from_hertz(1.0 / period.as_base_units())
     }
 
@@ -123,8 +124,8 @@ impl Frequency {
     }
 
     /// Convert this Frequency to a floating point value of the period in seconds.
-    pub fn as_period(&self) -> ::std::time::Duration {
-        ::std::time::Duration::from_base_units(1.0 / self.hertz)
+    pub fn as_period(&self) -> time::Duration {
+        time::Duration::from_base_units(1.0 / self.hertz)
     }
 }
 
@@ -163,6 +164,7 @@ implement_measurement! { Frequency }
 mod test {
     use super::*;
     use test_utils::assert_almost_eq;
+    use ::time;
 
     #[test]
     pub fn hertz() {
@@ -245,7 +247,7 @@ mod test {
     pub fn period() {
         let i1 = Frequency::from_hertz(100.0);
         let r1 = i1.as_period().as_base_units();
-        let i2 = Frequency::from_period(::std::time::Duration::new(100, 0));
+        let i2 = Frequency::from_period(time::Duration::new(100, 0));
         let r2 = i2.as_hertz();
         assert_almost_eq(r1, 1e-2);
         assert_almost_eq(r2, 1e-2);

@@ -9,7 +9,7 @@ pub fn almost_eq(a: f64, b: f64) -> bool {
 
 /// Check two floating point values are approximately equal using some given delta (a fraction of the inputs)
 pub fn almost_eq_delta(a: f64, b: f64, d: f64) -> bool {
-    ((a - b).abs() / a) < d
+    (abs(a - b) / a) < d
 }
 
 /// Assert two floating point values are approximately equal
@@ -22,4 +22,14 @@ pub fn assert_almost_eq_delta(a: f64, b: f64, d: f64) {
     if !almost_eq_delta(a, b, d) {
         panic!("assertion failed: {:?} != {:?} (within {:?})", a, b, d);
     }
+}
+
+/// This function doesn't seem to be available no `#![no_std]` so we re-
+/// implement it here.
+fn abs(x: f64) -> f64 {
+	if x > 0.0 {
+		x
+	} else {
+		-x
+	}
 }

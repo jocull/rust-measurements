@@ -30,7 +30,9 @@ pub struct Speed {
 impl Speed {
     /// Create a new Speed from a floating point number of m/s
     pub fn from_meters_per_second(meters_per_second: f64) -> Speed {
-        Speed { meters_per_second: meters_per_second }
+        Speed {
+            meters_per_second: meters_per_second,
+        }
     }
 
     /// Create a new Speed from a floating point number of m/s
@@ -75,7 +77,6 @@ impl Speed {
         self.as_kilometers_per_hour()
     }
 
-
     /// Convert this speed to a floating point number of miles/hour (mph)
     pub fn as_miles_per_hour(&self) -> f64 {
         (self.meters_per_second / 1609.0) * 3600.0
@@ -116,7 +117,7 @@ implement_measurement! { Speed }
 mod test {
     use speed::*;
     use test_utils::assert_almost_eq;
-    use std::time::Duration;
+    use ::time::Duration;
     use length::Length;
 
     // Metric

@@ -40,7 +40,9 @@ pub struct TemperatureDelta {
 impl TemperatureDelta {
     /// Create a new TemperatureDelta from a floating point value in Kelvin
     pub fn from_kelvin(kelvin_degrees: f64) -> Self {
-        TemperatureDelta { kelvin_degrees: kelvin_degrees }
+        TemperatureDelta {
+            kelvin_degrees: kelvin_degrees,
+        }
     }
 
     /// Create a new TemperatureDelta from a floating point value in Celsius
@@ -50,12 +52,16 @@ impl TemperatureDelta {
 
     /// Create a new TemperatureDelta from a floating point value in Fahrenheit
     pub fn from_fahrenheit(farenheit_degrees: f64) -> Self {
-        TemperatureDelta { kelvin_degrees: farenheit_degrees / 1.8 }
+        TemperatureDelta {
+            kelvin_degrees: farenheit_degrees / 1.8,
+        }
     }
 
     /// Create a new TemperatureDelta from a floating point value in Rankine
     pub fn from_rankine(rankine_degrees: f64) -> Self {
-        TemperatureDelta { kelvin_degrees: rankine_degrees / 1.8 }
+        TemperatureDelta {
+            kelvin_degrees: rankine_degrees / 1.8,
+        }
     }
 
     /// Convert this TemperatureDelta to a floating point value in Kelvin
@@ -82,7 +88,9 @@ impl TemperatureDelta {
 impl Temperature {
     /// Create a new Temperature from a floating point value in Kelvin
     pub fn from_kelvin(degrees_kelvin: f64) -> Self {
-        Temperature { degrees_kelvin: degrees_kelvin }
+        Temperature {
+            degrees_kelvin: degrees_kelvin,
+        }
     }
 
     /// Create a new Temperature from a floating point value in Celsius

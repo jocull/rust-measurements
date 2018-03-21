@@ -3,6 +3,7 @@
 ///
 /// # Example
 /// ```
+/// #![no_std]
 /// // Importing the `implement_measurement` macro from the external crate is important
 /// #[macro_use]
 /// extern crate measurements;
@@ -34,6 +35,16 @@
 /// // You should't need it in your own code.
 /// fn main() { }
 /// ```
+
+#[cfg(feature = "no-std")]
+use core as std;
+
+#[cfg(feature = "no-std")]
+use core::num::Float;
+
+/// All measurements implement this.
+///
+/// It provides conversion functions to and from raw numbers.
 pub trait Measurement {
     /// Returns a string containing the most appropriate units for this quantity,
     /// and a floating point value representing this quantity in those units.
@@ -54,7 +65,7 @@ pub trait Measurement {
     fn pick_appropriate_units(&self, list: &[(&'static str, f64)]) -> (&'static str, f64) {
         for &(unit, ref scale) in list.iter().rev() {
             let value = self.as_base_units() / scale;
-            if value.abs() > 1.0 {
+            if value > 1.0 || value < -1.0 {
                 return (unit, value);
             }
         }
@@ -87,7 +98,6 @@ macro_rules! implement_display {
         }
     )*)
 }
-
 
 /// This is a special macro that creates the code to implement
 /// operator and comparison overrides.
